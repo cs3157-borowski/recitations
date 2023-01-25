@@ -8,4 +8,4 @@ for Prof. Brian Borowski's offering of the course.
 
 - Recitation 1
     - [Git](recitation_1/git.md): Git
-    - [Bash](recitation_1/bash.md)): Bash
+    - [Bash](recitation_1/bash.md): Bash
