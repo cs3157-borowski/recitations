@@ -104,33 +104,7 @@ These sections are to be interpreted as follows:
 
 It is sometimes helpful to think of these statuses as stages in the life cycle of each file tracked by Git:
 
-`                            `|
-
-`                `create file |
-
-`                            `v         +-------------------------------------------+
-
-`        `|   (1) Untracked                           |         +-------------------------------------------+                             |
-
-`                    `git add |
-
-`                            `v         +-------------------------------------------+
-
-`        `|   (2) Tracked + modified + staged         |         +-------------------------------------------+
-
-`                    `|               ^       |
-
-`                    `|       git add |       | modify file
-
-`                    `|               |       v
-
-`                    `|       +-------------------------------------------+          git commit |       |   (3) Tracked + modified + not staged     |                     |       +-------------------------------------------+                     |                       ^
-
-`                    `|                       | modify file
-
-`                    `v                       |         +-------------------------------------------+
-
-`        `|   (4) Tracked + unmodified                |         +-------------------------------------------+
+![git-create-new-file.png](../images/git.png)
 
 Note that it is possible for a file to have both staged (2) and unstaged (3) changes, i.e., if it has been modified since it was git added.  The life cycle diagram does not illustrate this scenario.
 
