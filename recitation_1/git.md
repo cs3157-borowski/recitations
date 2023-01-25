@@ -38,17 +38,11 @@ Anatomy of a repository -----------------------
 
 Git organizes collections of files as repositories (aka "repos"):
 
-- A repo is always "rooted" in some directory; all "tracked" files must live
+- A repo is always "rooted" in some directory; all "tracked" files must live within that directory tree.
 
-`    `within that directory tree.
+- Repos keep track of the version history of their files in a "commit log" (AKA "commit history").
 
-- Repos keep track of the version history of their files in a "commit log"
-
-`    `(AKA "commit history").
-
-- Each Git repo contains a special, hidden .git/ directory where the commit
-
-`    `history and other metadata is stored.
+- Each Git repo contains a special, hidden .git/ directory where the commit history and other metadata is stored.
 
 You can run Git commands from any subdirectory within a repo.
 
@@ -82,32 +76,26 @@ git status will tell you when there are differences between the copies of a file
 
 keeping track of which modifications end up in your next commit.  The output of git status usually looks something like this:
 
-`    `$ git status
-
-`    `Changes to be committed:
-
-`            `modified:   foo.txt
-
-`    `Changes not staged for commit:             modified:   bar.txt
-
-`    `Untracked files:             baz.txt
+	$ git status
+	Changes to be committed:
+		modified:   foo.txt
+	Changes not staged for commit:
+		modified:   bar.txt
+	Untracked files:
+		baz.txt
 
 These sections are to be interpreted as follows:
 
-1) If a file appears in the "Untracked files" section like baz.txt, then it
+1) If a file appears in the "Untracked files" section like baz.txt, then it only exists in your working directory, and is not yet tracked in the staging area or commit history.
 
-`    `only exists in your working directory, and is not yet tracked in the staging     area or commit history.
+2) If a file appears in the "Changes to be committed" section like foo.txt, then the staged copy of that file differs from the copy in HEAD.
+2) If a file appears in the "Changes not staged for commit" section like bar.txt, then the working copy of that file differs from its staged copy.
 
-2) If a file appears in the "Changes to be committed" section like foo.txt,     then the staged copy of that file differs from the copy in HEAD.
-2) If a file appears in the "Changes not staged for commit" section like
-
-`    `bar.txt, then the working copy of that file differs from its staged copy.
-
-4) If a file does not appear in any of these sections, then the working,     staged, and HEAD copies of that file are identical.
+4) If a file does not appear in any of these sections, then the working, staged, and HEAD copies of that file are identical.
 
 It is sometimes helpful to think of these statuses as stages in the life cycle of each file tracked by Git:
 
-![git-create-new-file.png](../images/git.png)
+![git.png](../images/git.png)
 
 Note that it is possible for a file to have both staged (2) and unstaged (3) changes, i.e., if it has been modified since it was git added.  The life cycle diagram does not illustrate this scenario.
 
@@ -117,8 +105,7 @@ There are often files that you don’t ever want to track in a repo.  For exampl
 
 You can use a .gitignore file to tell Git that you don’t want to track a file. For example, this .gitignore tells Git not to track any files named "a.out", or whose file name ends with ".o":
 
-	$ cat .gitignore     a.out
-
+	$ cat .gitignore a.out
 	\*.o
 
 Any files matching those rules will not show up in git status, nor will they be tracked when you git add them.  These .gitignore rules only apply to directory the .gitignore file is in, and any of its subdirectories.  You can place
