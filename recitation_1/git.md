@@ -1,25 +1,27 @@
-Git is a version control system designed for source code and other kinds of
+Git is a version control system designed for source code and other kinds of plain text.
+It is great for synchronizing work when you are working in a team, as well as for keeping track of changes you make when you are working alone.
 
-plain text.  It is great for synchronizing work when you are working in a team, as well as for keeping track of changes you make when you are working alone.
+In this class, you are required to use Git for your homework assignments. You use it to obtain skeleton code, track your progress, and submit your work. You can also use Git to view my solutions, once I release them.
 
-In this class, you are required to use Git for your homework assignments (labs). You use it to obtain skeleton code, track your progress, and submit your work. You can also use Git to view my solutions, once I release them.
+Git is first and foremost a command-line tool, invoked using the "git" command. "git" actually encompasses a number of subcommands, such as "git clone", "git pull", and "git checkout".
+You can see the man pages for each subcommand using the --help flag:
 
-Git is first and foremost a command-line tool, invoked using the "git" command. "git" actually encompasses a number of subcommands, such as "git clone", "git pull", and "git checkout".  You can see the man pages for each subcommand using the --help flag:
-
-`    `$ git clone --help  # brings up the man pages for git clone     $ man git-clone     # does the same as above
+	$ git clone --help  # brings up the man pages for git clone
+	$ man git-clone     # does the same as above
 
 Git command cheat sheet -----------------------
 
-There are plenty of hands-on guides teaching you how to use Git.  Here are a few we recommend for getting started:
+There are plenty of hands-on guides teaching you how to use Git.
+Here are a few we recommend for getting started:
 
 - man gittutorial: the official Git tutorial included in its man pages
 - git - the simple guide (https://rogerdudler.github.io/git-guide/):
 
-`    `a guide that gets straight to the point with nice illustrations
+a guide that gets straight to the point with nice illustrations
 
 - Yet Another Git Guide (https://j-hui.com/pages/yagg/):
 
-`    `my own Git guide that I shares with my collaborators
+my own Git guide that I shares with my collaborators
 
 Here is a summary of the Git commands you should know for this class:
 
@@ -27,6 +29,7 @@ Here is a summary of the Git commands you should know for this class:
 - git log: view commit history
 - git add: add changed files to the staging area
 - git commit: create a commit from changes checked into the staging area
+- git tag: mark an important milestone
 - git push: push commits to a remote repo
 - git pull: pull changes from a remote repo
 - git clone: obtain a copy of another repo with its commit history
