@@ -1,5 +1,3 @@
-Lecture 02 - Version Control with Git                   (last updated: 10/27/22) -------------------------------------
-
 Git is a version control system designed for source code and other kinds of
 
 plain text.  It is great for synchronizing work when you are working in a team, as well as for keeping track of changes you make when you are working alone.
@@ -142,9 +140,9 @@ There are often files that you don’t ever want to track in a repo.  For exampl
 
 You can use a .gitignore file to tell Git that you don’t want to track a file. For example, this .gitignore tells Git not to track any files named "a.out", or whose file name ends with ".o":
 
-`    `$ cat .gitignore     a.out
+	$ cat .gitignore     a.out
 
-`    `\*.o
+	\*.o
 
 Any files matching those rules will not show up in git status, nor will they be tracked when you git add them.  These .gitignore rules only apply to directory the .gitignore file is in, and any of its subdirectories.  You can place
 
