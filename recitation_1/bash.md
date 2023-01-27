@@ -108,5 +108,31 @@ case "$ANSR" in
                 echo "well, wait for a couple years";;
 esac
 ```
+### Loop:
+Similar logic to conventional loops, Rules of thumb:
+- 3-part syntax: 
+                  1.  For - loops: **for** - **do** - **done**
+                  2.  While - loops: **while** - **do** - **done**
+
+```
+#!/bin/bash
+#Script to create 3 text files and append a prefix to their names using a for loop
+touch 1.txt 2.txt 3.txt
+FILES=$(ls *.txt)
+PRE="2023_"
+for FILE in $FILES
+do
+        mv $FILE $PRE$FILE
+done
+```
+
+Some other usefuls commands
+------
+
+
+
+
+
+
 
 
