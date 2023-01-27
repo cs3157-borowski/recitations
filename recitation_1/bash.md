@@ -128,8 +128,51 @@ done
 
 Some other usefuls commands
 ------
+### Cut command:
+Basically the cut command slices a line and extracts the text. It can be used to cut parts of a line, usually by byte position or character (using -b) and field (using -f). In this recitation, we are interested in using a delimiter to split the lines in the text into fields and we will acess those fields:
+Syntax:
+```
+$cut -d "delimiter" -f (field number) file.txt
+```
+Lets's say we have a file called cut_demo.txt with some names in it;
+```
+$ cat cut_demo.txt
+Dr. Borowski
+Leslie Chang
+Nguyen Tran
+$ cut -d " " -f2 cut_demo.txt     # delimiter: " " means a space character => we will break 'Dr. Borowski' into field 1:  'Dr.' and field2: 'Borowski'. 
+Borowski
+Chang
+Tran
+```
+### Basic pattern matching:
 
 
+Exercise:
+------
+### Agenda:
+- First, we will go through Dr.B's "grade.sh" script in class. We will apply what we just learnt above to see what and why the code is doing what it does. You can obtain a copy of the code on Coursework.
+- Second, we will go through a smaller piece of code called "sum.sh" that takes in `$1` and `$2`. It will compute the running total of every integer between the 2 arguments. You can look through the code and recreate it from scratch for practice after the recitation, or you can just program it rightaway.
+
+Here is the solution:
+
+```
+#!/bin/bash
+declare -i return_val
+compute_sum() {
+    local sum=0
+    for (( lower=$1; lower <= $2; lower++ )); do
+        sum=$(( $sum + $lower ))
+    done
+    return_val=$sum
+    return 0
+}
+if [ $# -ne 2 ]; then
+    echo “Usage: $0 [lower bound] [upper bound]”
+    exit 1
+fi
+compute_sum $1 $2
+echo “sum[$1..$2] = $return_val”
 
 
 
