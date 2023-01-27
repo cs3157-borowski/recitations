@@ -55,7 +55,7 @@ for a in "$List"   # Preserves whitespace in a single variable.
 do #     ^     ^
   echo "$a"
 done
-# one two three
+# one two three 
 ```
 #### Differentiating expansions: $()  vs  ${} 
 The expression $(command) is a modern synonym for `command` which stands for command substitution; it means run command and put its output here. So
@@ -67,8 +67,8 @@ echo "Today is $(date). A fine day."
 will run the date command and include its output in the argument to echo. The parentheses are unrelated to the syntax for running a command in a subshell, although they have something in common (the command substitution also runs in a separate subshell).
 By contrast, ${variable} is just a disambiguation mechanism, so you can say ${var}text when you mean the contents of the variable var, followed by text (as opposed to $vartext which means the contents of the variable vartext).
 
-### If statements and case:
-#### If statements:
+### If statement and case:
+#### If statement:
 The logic of `if statement` works the same as in another language. The difference lies in the syntax of the code. When you write script in bash, spacing MATTERS. ---- Always ensure that there's space between your conditions and your SQUARE brackets
 - Always remember the 3-part structure of every control flow, in the case of `if statement`, it's: `if` - `then` - `fi`   
 Take a look at the code below
