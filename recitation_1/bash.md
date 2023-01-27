@@ -173,6 +173,9 @@ if [ $# -ne 2 ]; then
 fi
 compute_sum $1 $2
 echo “sum[$1..$2] = $return_val”
+```
+
+Based on the script above, `$./sum.sh 1 5` will have an output of `15` 
 
 
 
