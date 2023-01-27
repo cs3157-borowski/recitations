@@ -28,7 +28,7 @@ NAME="Nguyen"
 echo "My name is $NAME"
 echo "Again, my name is ${NAME}"
 
-#Output:
+#Output :
 #My name is Nguyen
 #Again, my name is Nguyen
 
