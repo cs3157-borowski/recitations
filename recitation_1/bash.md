@@ -122,7 +122,7 @@ FILES=$(ls *.txt)
 PRE="2023_"
 for FILE in $FILES
 do
-        mv $FILE $PRE$FILE
+        mv "$FILE" "$PRE$FILE"
 done
 ```
 
@@ -162,17 +162,17 @@ declare -i return_val
 compute_sum() {
     local sum=0
     for (( lower=$1; lower <= $2; lower++ )); do
-        sum=$(( $sum + $lower ))
+        sum=$(( sum + lower ))
     done
     return_val=$sum
     return 0
 }
 if [ $# -ne 2 ]; then
-    echo “Usage: $0 [lower bound] [upper bound]”
+    echo "Usage: $0 [lower bound] [upper bound]"
     exit 1
 fi
-compute_sum $1 $2
-echo “sum[$1..$2] = $return_val”
+compute_sum "$1" "$2"
+echo "sum[$1..$2] = $return_val"
 ```
 
 Based on the script above, `$./sum.sh 1 5` will have an output of `15` 
