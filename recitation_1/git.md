@@ -1,4 +1,4 @@
-# Using Git in AP
+# Git For AP Workflow
 
 Git is a version control system designed for source code and other kinds of plain text.
 It is great for synchronizing work when you are working in a team, as well as keeping track of changes you make when you are working alone.
