@@ -30,7 +30,13 @@ You should see all the neccessary skeleton code that we distribute for the assig
 3. If that was successful, you now have a **local repository**. 
 
 ## Local Repository Structure 
-There are three things that you need to keep in mind when it comes to working in your **local repository** and they all pertain to making changes and where those changes are, these changes mostly come about in edits you are making to your file. Here are two related topics that are important to understand before we get into the actual commands. 
+Git manages multiple copies of your local repo’s contents:
+
+1. the working directory is what you can see and edit, i.e., outside of .git/
+2. the staging area (AKA "index") is what will form the next commit
+3. each commit has a snapshot of your repo’s contents at some point in time
+
+Thus, there are also multiple copies of each (tracked) file in your repo
 
 ## File States in Local Repository
 In the Git Repository, files can be in the following states:
@@ -113,7 +119,7 @@ Whether working with a gYes, finally! Passed all the terminology we are going to
  5. Assure that all the changes to the files you want to commit are in the staging area –listed under the "Changes to be committed" when you run `git status`
  6. You are ready to 'commit' to these changes! Run `git commit -m "<insert-short-message>"` You have made commit, this now becomes **HEAD** of this branch and is the latest revision of your local repository on **your branch**. This commit and all these changes will become the baseline of comparison that Git will use to recgonize further changes. 
 
-### **Notes**
+### Some Notes
 
 1. Remember you committed these changes onto ***your specific branch***
 2. Unlike `git add`, `git commit` status doesn't require you to specify specifc files to commit, that is because `git commit` commits all the files that you staged
@@ -138,9 +144,17 @@ What is a pull request?
 ## Pull Requests 
 Pull requests are great for those of you that are working in pairs but even for those of you that are working alone they can be incredibly helpful. Pull requests erssentially allow you to propoes the changes that you made on your own branch to be merged with another, probably, master branch. 
 
-If you clicked 'Compare & pull request', you should be prompted to create a title and leave a comment for your pull request. ***Everyone*** in your repository will see this. This pull request allows other members to see the changes you made on your branch (that you cloned from the master branch) and decide whether they want to **merge** these changes onto the ***master branch***. It is best practice that you run and test your code before you make your PR, as your can assure that your master branch is good-functioning code and your sub-branches are for developing. 
+If you clicked 'Compare & pull request', you should be prompted to create a title and leave a comment for your pull request. ***Everyone*** in your repository will see this. This pull request allows other members to see the changes you made on your branch (that you cloned from the master branch) and decide whether they want to **merge** these changes onto the **master branch**. 
+
+It is best practice that you run and test your code before you make your PR, as your can assure that your master branch is good-functioning code and your sub-branches are for developing. You and your partner can be working on different parts on the code on different branches, push your branches, and make pull requests to merge to the **master branch** which you will tag and the TA's will grade. 
+
+Sounds simple, and sometimes it is! But there are times that you will run into **merge conflicts** when trying to merge a sub-branch and master branch. 
 
 PR are a great tool, read more about them [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). 
+
+## Problems That May Arise
+
+1. 
 
 # *edits end here*
 
