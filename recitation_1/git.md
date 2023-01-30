@@ -131,9 +131,16 @@ There are a lot of layers of comparison that Git is responible for managing. Let
 Let's begin to reconcile these differences step by step. Starting with #2 (since we went over #1 above). If you were following closely (which we really hope you are) this process is quite simple though you to resolve a lot of these differences. 
 
 1. Since your branch is created from your local repository, you will need to 'upload' your branch to your remote repository. Run `git push origin <insert-branch-name>`
-2. Now, go back to your remote repository (github.com) and refresh the page, you should see in a yellow-box 'Compare & pull request', click that. 
+2. Now, go back to your remote repository (github.com) and refresh the page, you should see in a yellow-box 'Compare & pull request'. 
 
+What is a pull request? 
 
+## Pull Requests 
+Pull requests are great for those of you that are working in pairs but even for those of you that are working alone they can be incredibly helpful. Pull requests erssentially allow you to propoes the changes that you made on your own branch to be merged with another, probably, master branch. 
+
+If you clicked 'Compare & pull request', you should be prompted to create a title and leave a comment for your pull request. ***Everyone*** in your repository will see this. This pull request allows other members to see the changes you made on your branch (that you cloned from the master branch) and decide whether they want to **merge** these changes onto the ***master branch***. It is best practice that you run and test your code before you make your PR, as your can assure that your master branch is good-functioning code and your sub-branches are for developing. 
+
+PR are a great tool, read more about them [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). 
 
 # *edits end here*
 
