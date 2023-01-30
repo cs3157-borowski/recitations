@@ -1,4 +1,4 @@
-# Git for AP Workflow
+# **Git for AP Workflow**
 
 Git is a version control system designed for source code and other kinds of plain text. It is great for synchronizing work when you are working in a team, as well as keeping track of changes you make when you are working alone.
 
@@ -10,13 +10,17 @@ You can see the man pages for each subcommand using the --help flag:
 	$ git clone --help  # brings up the man pages for git clone
 	$ man git-clone     # does the same as above
 
+Take this as a guide of **limited** use of Git and not ***AP-specific*** as these commands and workflow are used everywhere. Using Git is a great skill to build for those of you who plan on continuing to code at Columbia andbeyond. 
+
+# Understanding the Basics of Git
+
 
 ## What is a Git Commit?
 Starting with the Git commit – the most integral part of using Git as a workflow manager. 
 
 Commits are "snapshots" of your code throughout the various stages of development. Most git commands are oriented around updating and interacting with git commits, commands that we will go over below.
 
-## Checking-out a Repository and Getting Skeleton Code
+## Remote Repository and Skeleton Code
 Now that we have established what Git and Git commits are, we can go ahead and start this demo! 
 
 1. Check your email for an invitation on the **"cs3157-borowski-s23/hw#-team#"** repository and accept the invitation. 
@@ -78,7 +82,7 @@ You might be picking up this is a cycle, and that is because it is! You are edit
 
 	I. **Tracked, modified, and staged**: this is a file under Git revision, you made changes, and staged these changes.
 
-## Working Responsibly in Git -- Branching
+# Working Responsibly in Git – Branching
 **With or without a group**, there is definitely a *right* way to use Git that would maxmize its many features that make Git a great workflow manager. Branching is **highly reccomended** when completing the assignments (especially for those of you in a pair)
 
 ### Branching Overview
@@ -95,14 +99,14 @@ To make a new branch (don't be scared) run `git branch <insert-branch-name>`. No
 
 Branches are made in your **local repository** and each branch is a copy of your local repository. To move to another branch and start coding on that branch, run `git checkout <insert-branch-name>`. You should see `Switched to branch '<insert-branch-name'>`. You can now start developing! 
 
-### Review: Git Commands for Branching 
+### **Review: Git Commands for Branching** 
 1. `~$ git branch` shows the branch that you are currently working on in your local repo
 2. `~$ git branch -a` lists all the branches in your local repo 
 3. `~$ git branch <branch-name>` creates a branch named "<branch-name>" 
 4. `~$ git checkout  <branch-name>` allows you to 'move' to the indicated branch 
 5. `~4 git push origin <branch-name>` pushes your local branch to your remote repo as well as all the commits you made on that branch 
 
-## Let's Start Coding (finally)! 
+# Let's Start Coding (finally)! 
 Passed all the terminology we are going to get into the commands. We are going to go through the commands as they would need to be used as you are writing code. 
 
  1. You edit the skeleton file (`vim <filename>`) and you made great progress! These are edits that only exist in your working directory. 
@@ -113,15 +117,16 @@ Passed all the terminology we are going to get into the commands. We are going t
  6. You are ready to 'commit' to these changes! Run `git commit -m "<insert-short-message>"` You have made commit, this now becomes **HEAD** of this branch and is the latest revision of your local repository on **your branch**. This commit and all these changes will become the baseline of comparison that Git will use to recgonize further changes. 
  7. Run `git log` to show your most recent commit as well as your commit history
 
-### Some Notes
-
+### Things to Remember:
 1. Remember you committed these changes onto ***your specific branch***
 2. Unlike `git add`, `git commit` status doesn't require you to specify specifc files to commit, that is because `git commit` commits all the files that you staged
 2. Try to make meaningful messages when you run `git commit` as they might be helpful for remmebering what you did at each commit
 
-**Check for understanding:** After you commit but do not make changes to your file, is it possible to have unstaged and uncommitted changes in your working directory? 
+ **Q:** After you commit but do not make changes to your file, is it possible to have unstaged and uncommitted changes in your working directory? 
+ 
+ **A:** Yes, you commit only the changes in the files that you staged. However, whatever is unstaged still only exists in the working directory.  
 
-### Review: Git Commands for Adding and Committing Changes 
+### **Review: Git Commands for Adding and Committing Changes** 
 	
 1. `~$ git status` compares the last committed version of your repo and the working directory and indicates what stage each file is in
 2. `~$ git diff` Git will show you the exact differences between HEAD reference and working directory
@@ -130,7 +135,7 @@ Passed all the terminology we are going to get into the commands. We are going t
 5. `~$ git log` will show your commit history 
 6. `~4 git push origin <branch-name>` pushes your local branch to your remote repo as well as all the commits you made on that branc
 
-# Reconciling Differences 
+# Settling Differences Cetween Commits
 Sounds dramatic, but really, Git is tracking alot of differences between versions of your code. Let's take a look: 
 1. Differences between files in your **working directory** the **staging area** and the last commit, **HEAD** 
 2. Differences between branches in the your **local repository** 
@@ -138,7 +143,7 @@ Sounds dramatic, but really, Git is tracking alot of differences between version
 
 Let's begin to ***reconcile*** these differences step by step. Starting with #2 (since we went over #1 above). If you were following closely (which we really hope you are) this process is quite simple though you to resolve a lot of these differences. 
 
-## Local Branch to Local Branch
+## Differences Between Two Local Branches
 
 Creating two local branches can be benefitial for various reasons, say you want to preserve two seperate branches that develop different parts of an assignment. That is one example, but whatever it may be, you might also want to **merge** two local branches.
 
@@ -146,7 +151,7 @@ Creating two local branches can be benefitial for various reasons, say you want 
 2. Use `~$ git merge <branch-name>` to merge the two local branches. 
 3. You will then use `~$ git commit` to commit this merge, to which you can `~$git push` to push local branch to remote repo
 	
-## Local Branch to Remote Branch
+## Differences Between a Local and Remote Branch
 
 When working in a pair, you and/or your partner will be making updates to your master branch. Once you cloned your remote repo, it only clones it in the moment you ran `~$ git clone` and does not update if your partner is updating any branch in your remote repo, including master. 
 	
@@ -156,7 +161,7 @@ When working in a pair, you and/or your partner will be making updates to your m
 
 You might be thinking, this sounds familiar. Good, it should! `~$ git pull` combines `~$ git fetch` and `~$ git merge`, but don't always default to pull. **There are times where you might want to seperate these steps.**
 
-## Local Branch to Remote Repo
+## Differences Between a Local Branch and Remote Repo
 	
 1. Since your branch is created from your local repository, you will need to 'upload' your branch to your remote repository. Run `git push origin <insert-branch-name>`
 2. Now, go back to your remote repository (github.com) and refresh the page, you should see in a yellow-box 'Compare & pull request'.
@@ -164,7 +169,7 @@ You might be thinking, this sounds familiar. Good, it should! `~$ git pull` comb
 Now, what is a pull request? 
 
 ## Pull Requests 
-Pull requests are great for those of you that are working in pairs but even for those of you that are working alone they can be incredibly helpful. Pull requests erssentially allow you to propoes the changes that you made on your own branch to be merged with another, probably, master branch. 
+Pull requests are great for those of you that are working in pairs but even for those of you that are working alone they can be incredibly helpful. Pull requests allow you to propoes the changes that you made on your own branch to be merged with another, probably, master branch. 
 
 If you clicked 'Compare & pull request', you should be prompted to create a title and leave a comment for your pull request. ***Everyone*** in your repository will see this. This pull request allows other members to see the changes you made on your branch (that you cloned from the master branch) and decide whether they want to **merge** these changes onto the **master branch**. 
 
@@ -176,31 +181,68 @@ Sounds simple, and sometimes it is! But there are times that you will run into *
 
 PR are a great tool, read more about them [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). 
 
-## Merge Conflicts: **Please Read Before Storming Ed!**
+# Merge Conflicts
 
-If you are working alone or working with a partner, merge conflicts are avoidable but ultimately inevitable (if you don't follow the directions above carefully). But they can be quite frightening. We talked about `~$ git merge <branch-name>` above, but something we did not mention is that merge will automatically try to merge using a fast-forward approach which will succeed **if the changes you are merging do not confict with one another** 
+If you are working alone or working with a partner, merge conflicts are avoidable but ultimately inevitable (if you don't follow the directions above carefully). But they can be quite frightening. We talked about `~$ git merge <branch-name>` above, but something we did not mention is that merge will automatically try to merge using a fast-forward approach which will succeed **if the changes you are merging do not confict with one another** but will fail otherwise. 
+
+Thus, we encourage that when merging two-local branches and a local branch to your remote reop, to run `~$ git merge` with the `--no-ff` option like this: `~$ git merge --no-ff <branch-name>`. 
+
+Let's see an example of merge conflict. 
+
+
+### Merge Conflict Example:
+
 	
 Conflict may arise if: 
 1. Changes to the same line(s) of code in two different branches.
 2. Deletions of a file in one branch and changes to the same file in another branch.
 3. Deletions of a file in one branch and changes to the same file in another branch.
-
-You will be aware of these conflicts if you push local branch to 
-
-	
-## Problems That May Arise
-
-1. 
+4. If you have uncommitted changes in your branch and want to merge, this will overwrite your changes in working directory
 
 
+### **What to Do If you have Merge Conflict?**
+Let's trigger a merge conflict.
+```bash
+UNI@ap:~/cs3157/hw1-team0/src$ git branch -a 
+* master 
+  your-branch
 
+UNI@ap:~/cs3157/hw1-team0/src$ git checkout your-branch
+Switched to branch 'your-branch'
+```
+Up to this point we have see that there are two branches. In both of those branches we have have a file named **AP.txt** that contains only one line Let's see what that looks like in each branch. Note `cat` is a bash command that when passed a file will output the files contents to the terminal (stdout to be precise). 
 
+```
+UNI@ap:~/cs3157/hw1-team0/src$ git checkout master
+Switched to branch 'master'
 
+UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
+AP teaching staff is the worst :( 
+```
+Let's see what that file contains in "your-branch":
+```
+UNI@ap:~/cs3157/hw1-team0/src$ git checkout your-branch
+Switched to branch 'your-branch'
 
-# *edits end here*
+UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
+AP teaching staff is the best :)
+```
+Running `~$git merge` will result in a conflict, as Git sees that both branches have committed changes to the same file and the same line. This is where `~$ git merge --no-ff <your branch>` comes in. In the above example, if we ran this command, the file might look something like this (remember we are on the master branch): 
 
-
-
+```
+UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
+<<<<< master
+AP teaching staff is the worst :(
+======
+AP teaching staff is the best :)
+>>>>>
+```
+As you can see, it has both of our changes, so we have to manually decide which one to keep, you would do that by removing the lines that start with <<<< (showing you the state of that line in the branch you are in, the one with the * when you run the git branch command), the one that starts with >>>> (showing you the state of that line in the branch you specified in the git merge <branch> command), and the one that starts with ==== (just a separator), and also the change you don't want to keep, so like this:
+```
+UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
+AP teaching staff is the best :)
+```
+Then, of course, you would stage and commit the file –– this is what we call a **merge commit**. 
 
 ## Other Git Resources
 
@@ -213,3 +255,6 @@ Here are a few we recommend for getting started:
 a guide that gets straight to the point with nice illustrations
 
 - Yet Another Git Guide (https://j-hui.com/pages/yagg/):
+
+## Acknowledgements
+This was prepared by Phillip Le, Leslie Chang, Xurxo Riesco, and Dorothy Zhang for COMS 3157 Spring '23
