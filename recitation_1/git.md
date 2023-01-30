@@ -1,4 +1,4 @@
-# Git 101
+# Using Git in AP
 
 Git is a version control system designed for source code and other kinds of plain text.
 It is great for synchronizing work when you are working in a team, as well as keeping track of changes you make when you are working alone.
@@ -11,7 +11,7 @@ You can see the man pages for each subcommand using the --help flag:
 	$ git clone --help  # brings up the man pages for git clone
 	$ man git-clone     # does the same as above
 
-## Git command cheat sheet -----------------------
+## Other Git Resources
 
 There are plenty of hands-on guides teaching you how to use Git.
 Here are a few we recommend for getting started:
@@ -25,9 +25,8 @@ a guide that gets straight to the point with nice illustrations
 
 my own Git guide that I shares with my collaborators
 
-Here is a summary of the Git commands you should know for this class and how you will use them for this class: 
 
-### What is a Git Commit
+### What is a Git Commit?
 Starting with the Git commit, really the most integral part of using Git as a workflow manager. Commits are "snapshots" of your code throughout the various stages of development. Most git commands are oriented around updating and interacting with git commits, commands that we will go over below.
 
 ### Checking-out a Repository and Getting Skeleton Code
@@ -44,7 +43,7 @@ The local repository in Git is a representation of your project's code and its e
 
 
 ### Working Directory to Staging Area
-You made some changes to your local repository in your working directory. Using `~$git status`, git will show you the files that you have changed using HEAD as a point of refrence for these changes. At this point, you can precisely see what changes you made using `~$ git diff' to see the difference between HEAD (reference to last commit) and your working directory. Now, let's stage these changes and prepare them for a future commit. Using `~$git add <filename(s)>` you can move these changes in your working directory to the staging area. Try running `~$git status` after, you will see that git reports that you have staged changes and are ready to commit.   
+You made some changes to your local repository in your working directory. Using `~$git status`, git will show you the files that you have changed using HEAD as a point of refrence for these changes. At this point, you can precisely see what changes you made using `~$ git diff` to see the difference between HEAD (reference to last commit) and your working directory. Now, let's stage these changes and prepare them for a future commit. Using `~$git add <filename(s)>` you can move these changes in your working directory to the staging area. Try running `~$git status` after, you will see that git reports that you have staged changes and are ready to commit.   
 
 1. `~$git status` - Shows differences from the result of changes in your working directory from the HEAD reference 
 2. `~$git diff` - Shows those exact differences between the HEAD reference and working directory
