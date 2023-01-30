@@ -29,14 +29,20 @@ You should see all the neccessary skeleton code that we distribute for the assig
 2. Using whatever interface you configured and go to the command-line and run `git clone <pasted-link>` 
 3. If that was successful, you now have a **local repository**. 
 
-## Local Repository Structure 
+## Repository Structure 
 Git manages multiple copies of your local repo’s contents:
 
 1. the working directory is what you can see and edit, i.e., outside of .git/
 2. the staging area (AKA "index") is what will form the next commit
 3. each commit has a snapshot of your repo’s contents at some point in time
 
-Thus, there are also multiple copies of each (tracked) file in your repo
+Git also keeps **HEAD**, which is a reference to your repo's most recent commit, aka staged **and** committed revision to your repo.
+
+Thus, there are also multiple copies of each (tracked) file in your repo.
+
+Git uses some clever tricks to make sure that identical copies of the same file don’t take up unnecessary space (beyond the scope of this lecture).
+
+Note that when you clone a repo, you will only receive its commit history; modifications in the working directory and staging area are not cloned.
 
 ## File States in Local Repository
 In the Git Repository, files can be in the following states:
@@ -71,28 +77,6 @@ It is important to know the difference between status of files that are in our *
 
 	I. **Tracked, modified, and staged**: this is a file under Git revision, you made changes, and staged these changes.
 
-Git manages multiple copies of your repo’s contents:
-
-- the working directory is what you can see and edit, i.e., outside of .git/
-- the staging area (AKA "index") is what will form the next commit
-- each commit has a snapshot of your repo’s contents at some point in time
-
-Thus, there are also multiple copies of each (tracked) file in your repo.
-
-A file is tracked if it is in the staging area or in some commit.  When you git add a file, you copy it from your working directory to the staging area.
-
-The most recent commit in your repo is known as HEAD.  When you git commit, you create a new commit (now the new HEAD) from the contents of your staging area.
-
-`                        `git add                  git commit
-
-`    `working directory ----------> staging area -------------> HEAD
-
-`                                                         `(commit history)
-
-Git uses some clever tricks to make sure that identical copies of the same file don’t take up unnecessary space (beyond the scope of this lecture).
-
-Note that when you clone a repo, you will only receive its commit history; modifications in the working directory and staging area are not cloned.
-
 ## Working Responsibly in Git -- Branching
 **With or without a group**, there is definitely a *right* way to use Git that would maxmize it's many features that make Git a great workflow manager. Branching is **highly reccomended** when completing the assignments (especially for those of you in a pair)
 
@@ -118,6 +102,7 @@ Whether working with a gYes, finally! Passed all the terminology we are going to
  4. You are sure of these changes, and you want to commit them, let's stage these files that are changed. Run `git add <file-name>` to stage these files for commit
  5. Assure that all the changes to the files you want to commit are in the staging area –listed under the "Changes to be committed" when you run `git status`
  6. You are ready to 'commit' to these changes! Run `git commit -m "<insert-short-message>"` You have made commit, this now becomes **HEAD** of this branch and is the latest revision of your local repository on **your branch**. This commit and all these changes will become the baseline of comparison that Git will use to recgonize further changes. 
+ 7. Run `git log` to show your most recent commit as well as your commit history
 
 ### Some Notes
 
