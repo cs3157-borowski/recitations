@@ -42,11 +42,9 @@ Git manages multiple copies of your local repo’s contents:
 
 Git also keeps **HEAD**, which is a reference to your repo's most recent commit, aka staged **and** committed revision to your repo.
 
-Thus, there are also multiple copies of each (tracked) file in your repo.
+Thus, there are also multiple copies of each (tracked) file in your repo. Git will use these multiple copies to automatically track changes between copies (IE: differences between the most committed version and files in the working directory)
 
-Git uses some clever tricks to make sure that identical copies of the same file don’t take up unnecessary space (beyond the scope of this lecture).
-
-Note that when you clone a repo, you will only receive its commit history; modifications in the working directory and staging area are not cloned.
+**Note**: when you clone a repo, you will only receive its commit history; modifications in the working directory and staging area (files that are un-staged and non-committed) are not cloned.
 
 ## File States in Local Repository
 In the Git Repository, files can be in the following states:
@@ -72,7 +70,7 @@ You might be picking up this is a cycle, and that is because it is! You are edit
 
 1. Working Directory:
 
-	I. **Untracked**: files that are not under Git revision control, these are files that were not part of skeleton code (IE: Executeables or files you created)
+	I. **Untracked**: files that are not under Git revision control, these are files that were not part of skeleton code (ie: executeables or files you created not included when you cloned remote repo)
 
 	II. **Tracked, unmodified**: the file is in the Git repository, and it has not been modified since the last commit.
 
@@ -145,7 +143,7 @@ Let's begin to ***reconcile*** these differences step by step. Starting with #2 
 
 ## Differences Between Two Local Branches
 
-Creating two local branches can be benefitial for various reasons, say you want to preserve two seperate branches that develop different parts of an assignment. That is one example, but whatever it may be, you might also want to **merge** two local branches.
+Creating two local branches can be benefitial for various reasons, say you want to preserve two seprate branches that develop different parts of an assignment. That is one example, but whatever it may be, you might also want to **merge** two local branches.
 
 1. Use `~$ git checkout <branch-name` to move to the branch you want (could be either of the two you want to merge)
 2. Use `~$ git merge <branch-name>` to merge the two local branches. 
@@ -169,9 +167,11 @@ You might be thinking, this sounds familiar. Good, it should! `~$ git pull` comb
 Now, what is a pull request? 
 
 ## Pull Requests 
-Pull requests are great for those of you that are working in pairs but even for those of you that are working alone they can be incredibly helpful. Pull requests allow you to propoes the changes that you made on your own branch to be merged with another, probably, master branch. 
+Pull requests are great for those of you that are working in pairs but even for those of you that are working alone they can be incredibly helpful. Pull requests allow you to propoes the changes that you made on your own branch to be merged with another such as the master branch. 
 
 If you clicked 'Compare & pull request', you should be prompted to create a title and leave a comment for your pull request. ***Everyone*** in your repository will see this. This pull request allows other members to see the changes you made on your branch (that you cloned from the master branch) and decide whether they want to **merge** these changes onto the **master branch**. 
+
+In that "Pull request" you are able to look at the changes that your partner changed by clicking "Files changed". You are able to leave comments and questions to which you and your partner can decide to resolve. 
 
 It is best practice that you run and test your code before you make your PR, as your can assure that your master branch is good-functioning code and your sub-branches are for developing. You and your partner can be working on different parts on the code on different branches, push your branches, and make pull requests to merge to the **master branch** which you will tag and the TA's will grade. 
 
@@ -257,4 +257,4 @@ a guide that gets straight to the point with nice illustrations
 - Yet Another Git Guide (https://j-hui.com/pages/yagg/):
 
 ## Acknowledgements
-This was prepared by Phillip Le, Leslie Chang, Xurxo Riesco, and Dorothy Zhang for COMS 3157 Spring '23
+This was developed by Phillip Le, Leslie Chang, Xurxo Riesco, and Dorothy Zhang for COMS 3157 Spring '23
