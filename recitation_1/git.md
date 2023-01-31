@@ -134,7 +134,7 @@ Of course you do! However, what we previously said about branching is that it is
 
 	1. Checkout to the branch that you want to make edits on
 	2. To get the latest version of that branch, run `~$ git pull` which will 'pull' the most recent commit of the remote repository (specific to the branch that you are on.) 
-	3. Make your edits, stage them, commit them, and to push them onto the remote repository, run `~$git push origin <branch-name>` (this should be a familiar command. 
+	3. Make your edits, stage them, commit them, and to push them onto the remote repository, run `$ git push origin <branch-name>` (this should be a familiar command. 
 
 You and your partner can do this in a cycle, pushing and pulling each others commits to update the same branch. However, when making big changes or developing large chunks of code, we recommend going the branching route and creating a separate branch and opening a pull request. This is a lot safer and can prevent conflicts which we will go over in future sections. 
 	
