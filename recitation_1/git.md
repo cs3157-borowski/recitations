@@ -10,7 +10,7 @@ You can see the man pages for each subcommand using the --help flag:
 	$ git clone --help  # brings up the man pages for git clone
 	$ man git-clone     # does the same as above
 
-Take this as a guide of **limited** use of Git and not ***AP-specific*** as these commands and workflow are used everywhere. Using Git is a great skill to build for those of you who plan on continuing to code at Columbia and beyond. 
+Take this as a guide of **limited** use of Git and not **AP-specific** as these commands and workflow are used everywhere. Using Git is a great skill to build for those of you who plan on continuing to code at Columbia and beyond. 
 
 # Understanding the Basics of Git
 
