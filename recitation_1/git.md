@@ -131,6 +131,7 @@ Passed all the terminology we are going to get into the commands. We are going t
 
 ## Branching, remember me? 
 Of course you do! However, what we previously said about branching is that it is good to develop on separate branches and then create pull requests to propose merging those changes to the master branch. In cases where you want to add something that would not be jeopardizing to your code or if you are working with your partner in real time, there is a way to bypass branching off for edits completely. Proceed with caution, but this is how you can bypass creating separate branches for edits. 
+
 	1. Checkout to the branch that you want to make edits on
 	2. To get the latest version of that branch, run `~$ git pull` which will 'pull' the most recent commit of the remote repository (specific to the branch that you are on.) 
 	3. Make your edits, stage them, commit them, and to push them onto the remote repository, run `~$git push origin <branch-name>` (this should be a familiar command. 
@@ -193,7 +194,7 @@ Sounds simple, and sometimes it is! But there are times that you will run into *
 
 PR are a great tool, read more about them [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). 
 
-# Merge Conflicts
+# Merge and Pull Conflicts
 
 If you are working alone or working with a partner, merge conflicts are avoidable but ultimately inevitable (if you don't follow the directions above carefully). But they can be quite frightening. We talked about `$ git merge <branch-name>` above, but something we did not mention is that merge will automatically try to merge using a fast-forward approach which will succeed **if the changes you are merging do not conflict with one another** but will fail otherwise. 
 
@@ -204,8 +205,8 @@ Let's see an example of merge conflict.
 
 ### Merge Conflict Example:
 
-	
-Conflict may arise if: 
+## Merge Conflict
+A merge conflict may arise if: 
 1. Changes to the same line(s) of code in two different branches.
 2. Deletions of a file in one branch and changes to the same file in another branch.
 3. If you have uncommitted changes in your branch and want to merge, this will overwrite your changes in working directory
@@ -253,7 +254,42 @@ As you can see, it has both of our changes, so we have to manually decide which 
 UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
 AP teaching staff is the best :)
 ```
-Then, of course, you would stage and commit the file –– this is what we call a **merge commit**. 
+Then, of course, you would stage and commit the file –– this is what we call a **merge commit**. You can configure merge so that it will always merge with the `--no-ff option` option. To make this configuration apply to this repo, run `git config --add merge.ff false` add the --global flag to apply this configuration for **every** repo: `$ git config --global --add merge.ff false`.
+	
+## Pull Conflicts
+Pull conflicts are sort of the same problem as a merge conflict. You might see this when running `$ git pull` you get, "You have divergent branches and need to specify how to reconcile them" along with a bunch of other scary messages. 
+
+Remember from the previous section that `$ git pull` fetches any commits on your remote repo and merges them to your local repo. Like merge, there are two approaches that Git uses to merge the differences between your local and remote repo. 
+	
+**Scenario:**You cloned your remote repo and you decide to work on the master branch in your local repo. You make good progress and commit twice to your local repo (directly to your local master branch) but did not push to the remote repo. A day later, your partner also has done the same, but went ahead and pushed their changes onto the remote repo which includes three commits also directly on the master branch. 
+	
+Now, your branch is ahead 2 commits and simultaneously behind 3 commits from the remote master branch. You try to run `$ git pull but git tells you you have divergent branches. You need to configure pull so that it knows what to do in this situation. You have two options: 
+
+### 1. Rebase: 
+When you `$ git pull` with pull configured to rebase, all the commits in the remote repo (the committed and merged changes your parter made on the master branch) will get added to your local repo and ***your*** branch commits will be moved "ahead" of the master branch.  
+
+### 2. Merging 
+Using the same scenario, lets say you use the merge option. Both the steps that happened in rebase occur: the commits from the remote repo will get added to your local repo and your branch commits will be moved "on top" of the master branch but will actually merge the local remote changes and local branch and create a new merge commit. Since both branches will be preserved this is the safer option! 
+	
+### Rebase vs. Merging 
+
+1. Commit History
+Rebasing makes commit history linear, even when it is not. Using the scenario, remember that your friend made these changes after you and their commits are more recent. Yet, git pull with rebase configuration  ignores that and still places your local commits "ahead" of those that more recent commits that git copied from the remote repo. Merging will maintain commit history because of the way that it preserves the branches. 
+
+2. Discrepancies Between Branches When Pulling
+Another big difference, is that if there is discrepancies between branches when pulling, rebasing will let you handle them one commit at a time, while merging will have you handle them all at once. It is then easier to handle rebasing conflicts, but you might have to handle a lot more.
+
+These are just a two reasons that may influence you to pull to rebase or merge, but it is up to you. You can also read more [here](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+	
+### Configuring Pull 
+Similar to the way that you configured `$git merge` above, you can do the same to configure `$git pull`. 
+
+1. Merge: run `$ git config pull.rebase false`
+2. Rebase: `$ git config pull.rebase true`
+
+You can use the --global option or edit your ~/.gitconfig file directly, to have that configuration apply to all repos. 
+1. Merge: git config --global pull.rebase false
+2. Rebase: git config --global pull.rebase true
 
 ## Other Git Resources
 
