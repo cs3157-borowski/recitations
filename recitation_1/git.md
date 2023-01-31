@@ -10,7 +10,7 @@ You can see the man pages for each subcommand using the --help flag:
 	$ git clone --help  # brings up the man pages for git clone
 	$ man git-clone     # does the same as above
 
-Take this as a guide of **limited** use of Git and not ***AP-specific*** as these commands and workflow are used everywhere. Using Git is a great skill to build for those of you who plan on continuing to code at Columbia andbeyond. 
+Take this as a guide of **limited** use of Git and not ***AP-specific*** as these commands and workflow are used everywhere. Using Git is a great skill to build for those of you who plan on continuing to code at Columbia and beyond. 
 
 # Understanding the Basics of Git
 
@@ -24,49 +24,39 @@ Commits are "snapshots" of your code throughout the various stages of developmen
 Now that we have established what Git and Git commits are, we can go ahead and start this demo! 
 
 1. Check your email for an invitation on the **"cs3157-borowski-s23/hw#-team#"** repository and accept the invitation. 
-2. Now, sign-in to GitHub.com, go to the top right profile icon and click 'Your Organizations'. You should see **"cs3157-borowski-s23"** listed as one of them, click on that and find the repository that corresponds with the assignment number that we are on (ie: hw1-team1) and click on that
-3. This is **your remote repository** that you are collaborating on with your partner.
+2. Now, sign-in to GitHub.com, go to the top right profile icon and find 'Your Organizations'. You should see **"cs3157-borowski-s23"** listed as one of them, find the repository that corresponds with the assignment number that we are on (ie: hw1-team1)
+3. This is **your remote repository** that you are working out of
 
-You should see all the neccessary skeleton code that we distribute for the assignment. This your remote repository, and now we need to create your **local repository** in order for you to actually work on the assignment. 
+You should see all the neccessary skeleton code that we distribute for the assignment. Remember, this is your remote repository and now we need to create your **local repository** in order for you to actually work on the assignment. 
 
 1. Click the green "<> Code button, make sure you have selected 'SSH' and copy that link.
-2. Using whatever interface you configured and go to the command-line and run `git clone <pasted-link>` 
+2. Open whatever interface you configured and go to the command-line and run `git clone <pasted-link>` 
 3. If that was successful, you now have a **local repository**. 
 
 ## Repository Structure 
-Git manages multiple copies of your local repo’s contents:
+Git manages multiple copies of repo’s contents:
 
-1. the working directory is what you can see and edit, i.e., outside of .git/
+1. the working directory – where all your edits and created files will be (both in and out of your git repo)
 2. the staging area (AKA "index") is what will form the next commit
 3. each commit has a snapshot of your repo’s contents at some point in time
 
 Git also keeps **HEAD**, which is a reference to your repo's most recent commit, aka staged **and** committed revision to your repo.
 
-Thus, there are also multiple copies of each (tracked) file in your repo. Git will use these multiple copies to automatically track changes between copies (IE: differences between the most committed version and files in the working directory)
+Thus, there are also multiple copies of each (tracked) file in your repo. Git will use these copies to automatically track changes between your working directory and last commit (IE: differences between the most committed version and files in the working directory)
 
 **Note**: when you clone a repo, you will only receive its commit history; modifications in the working directory and staging area (files that are un-staged and non-committed) are not cloned.
 
 ## File States in Local Repository
-In the Git Repository, files can be in the following states:
+In the your working directory, files can be in four differnt states:
 
 1. **Untracked**: files that are not under Git revision control, a little deceiving.
 2. **Tracked, unmodified**: the file is in the Git repository, and it has not been modified since the last commit.
 3. **Tracked, modified, but unstaged**: this is a file that is under Git revision, you have made changes but have not staged these changes.
 4. **Tracked, modified, and staged**: this is a file under Git revision, you made changes, and staged these changes.
 
-
 ## Piecing this All together 
-It is important to know the difference between status of files that are in our **working directory** vs. the **staging area** 
 
-### HEAD, Staging Area, and Working Directory Flow
-Your fresh clone is ready to be worked on. Referring back to git repository structure, let's look at that one more time. 
-
-1. The **HEAD** refers to the most recent revision, which is the last commit (the skeleton code if you just cloned). Git uses the HEAD as a reference for changes made to your local repository files.
-2. As you code and make changes to the files, they are saved in the **working directory**. At this point, the HEAD (last commit) and the working directory differ.
-3. To save the changes in the working directory and reflect them in the last commit, you need to stage them in the **staging area**.
-4. Committing to the changes in the staging area updates the latest commit, making the **HEAD** refer to this latest commit.
-
-You might be picking up this is a cycle, and that is because it is! You are editing and revising files and using that revision for the next edit and revision. 
+We just went over a lot of different terms but these are all neccessary for understanding Git for AP workflow. Let's combine this understanding of repository structure and file states all together. 
 
 1. Working Directory:
 
@@ -79,6 +69,17 @@ You might be picking up this is a cycle, and that is because it is! You are edit
 2. Staging Area: 
 
 	I. **Tracked, modified, and staged**: this is a file under Git revision, you made changes, and staged these changes.
+
+
+## Now in the Context of Your Assignment: 
+
+1. The **HEAD** refers to the most recent revision, which is the last commit (the skeleton code if you just cloned). Git uses the HEAD as a reference for changes made to your local repository files.
+2. As you code and make changes to the files, they are saved in the **working directory**. At this point, the HEAD (last commit) and the working directory differ.
+3. To save the changes in the working directory and reflect them in the last commit, you need to stage them in the **staging area**.
+4. Committing to the changes in the staging area updates the latest commit, making the **HEAD** refer to this latest commit.
+
+You might be picking up this is a cycle, and that is because it is! You are editing and revising files and using that revision for the next edit and revision. 
+
 
 # Working Responsibly in Git – Branching
 **With or without a group**, there is definitely a *right* way to use Git that would maxmize its many features that make Git a great workflow manager. Branching is **highly reccomended** when completing the assignments (especially for those of you in a pair)
