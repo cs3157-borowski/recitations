@@ -282,7 +282,7 @@ Another big difference, is that if there is discrepancies between branches when 
 These are just a two reasons that may influence you to pull to rebase or merge, but it is up to you. You can also read more [here](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 	
 ### Configuring Pull 
-Similar to the way that you configured `$git merge` above, you can do the same to configure `$git pull`. 
+We presented you the options and now you can make a decision on you wish to configure `$git pull`. Run these commands based on your decision:
 
 1. Merge: run `$ git config pull.rebase false`
 2. Rebase: `$ git config pull.rebase true`
