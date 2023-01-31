@@ -94,7 +94,7 @@ You might be picking up this is a cycle, and that is because it is! You are edit
 
 - This makes it easy to isolate and manage different changes. When you're ready, you can merge the changes in your feature branch back into the original branch.
 
-Make sure you are in your local repository and run `$git branch` it should say `* master` with the asterisk indicating that you are on the master branch. The master branch is the **default branch**, but Git also supports **main** as a default branch name as well.  
+Make sure you are in your local repository and run `$ git branch` it should say `* master` with the asterisk indicating that you are on the master branch. The master branch is the **default branch**, but Git also supports **main** as a default branch name as well.  
 
 To make a new branch (don't be scared) run `git branch <insert-branch-name>`. Now run `git branch -a ` to see all the branches. 
 
