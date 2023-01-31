@@ -74,7 +74,6 @@ We just went over a lot of different terms but these are all neccessary for unde
 
 	I. **Tracked, modified, and staged**: this is a file under Git revision, you made changes, and staged these changes.
 
-
 ## Now in the Context of Your Assignment: 
 
 1. The **HEAD** refers to the most recent revision, which is the last commit (the skeleton code if you just cloned). Git uses the HEAD as a reference for changes made to your local repository files.
