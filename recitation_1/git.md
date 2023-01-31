@@ -166,7 +166,7 @@ Creating two local branches can be beneficial for various reasons, say you want 
 	
 ## Differences Between a Local and Remote Branch
 
-When working in a pair, you and/or your partner will be making updates to your master branch. Once you clone your remote repo, it only clones it the moment you run `~$ git clone` and does not update if your partner is updating any branch in your remote repo, including master. 
+When working in a pair, you and/or your partner will be making updates to your master branch. Once you clone your remote repo, it only clones it the moment you run `$ git clone` and does not update if your partner is updating any branch in your remote repo, including master. 
 	
 1. Using `$ git fetch` takes care of that discrepancy between local and remote repos, running this command will download the state of the remote repository and **put it into a branch named <remote>:<branch_name>**. This results in two branches: **local master branch** and **one with the most recent committed and pushed changes from GitHub**
 	
