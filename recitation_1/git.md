@@ -102,8 +102,9 @@ Branches are made in your **local repository** and each branch is a copy of your
 1. `~$ git branch` shows the branch that you are currently working on in your local repo
 2. `~$ git branch -a` lists all the branches in your local repo 
 3. `~$ git branch <branch-name>` creates a branch named "<branch-name>" 
-4. `~$ git checkout  <branch-name>` allows you to 'move' to the indicated branch 
-5. `~4 git push origin <branch-name>` pushes your local branch to your remote repo as well as all the commits you made on that branch 
+4. `~$ git branch -b <branch-name>` in one step creates a branch named "<branch-name>" and checksout to it
+5. `~$ git checkout  <branch-name>` allows you to 'move' to the indicated branch 
+6. `~4 git push origin <branch-name>` pushes your local branch to your remote repo as well as all the commits you made on that branch 
 	
 # Let's Start Coding (finally)! 
 Passed all the terminology we are going to get into the commands. We are going to go through the commands as they would need to be used as you are writing code. 
