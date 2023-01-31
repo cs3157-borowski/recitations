@@ -29,7 +29,7 @@ Now that we have established what Git and Git commits are, we can go ahead and s
 
 You should see all the neccessary skeleton code that we distribute for the assignment. Remember, this is your remote repository and now we need to create your **local repository** in order for you to actually work on the assignment. 
 
-1. Click the green "<> Code button, make sure you have selected 'SSH' and copy that link.
+1. Click the green "<> Code" button, make sure you have selected 'SSH' and copy that link.
 2. Open whatever interface you configured and go to the command-line and run `git clone <pasted-link>` 
 3. If that was successful, you now have a **local repository**. 
 
