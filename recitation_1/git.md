@@ -33,6 +33,10 @@ You should see all the neccessary skeleton code that we distribute for the assig
 2. Open whatever interface you configured and go to the command-line and run `git clone <pasted-link>` 
 3. If that was successful, you now have a **local repository**. 
 
+Git has the concept of both a *local* and *remote* repository. When you ran `git clone`, it took contents of the git repository at the remote server hosted by github.com and copied it down to the local working environment. This means that you can navigate the files that were previously hosted only on GitHub as you would any other files. Throughout this recitation, we will do most work locally, and then *push* our changes from our local repository to the remote on GitHub.```
+
+feel free to change this wording but I thnk some clarification on what git clone actually does is helpful here.
+
 ## Repository Structure 
 Git manages multiple copies of repo’s contents:
 
@@ -47,7 +51,7 @@ Thus, there are also multiple copies of each (tracked) file in your repo. Git wi
 **Note**: when you clone a repo, you will only receive its commit history; modifications in the working directory and staging area (files that are un-staged and non-committed) are not cloned.
 
 ## File States in Local Repository
-In the your working directory, files can be in four differnt states:
+In the your working directory, files can be in four different states:
 
 1. **Untracked**: files that are not under Git revision control, a little deceiving.
 2. **Tracked, unmodified**: the file is in the Git repository, and it has not been modified since the last commit.
@@ -82,7 +86,7 @@ You might be picking up this is a cycle, and that is because it is! You are edit
 
 
 # Working Responsibly in Git – Branching
-**With or without a group**, there is definitely a *right* way to use Git that would maxmize its many features that make Git a great workflow manager. Branching is **highly reccomended** when completing the assignments (especially for those of you in a pair)
+**With or without a group**, there is definitely a *right* way to use Git that would maxmize its many features that make Git a great workflow manager. Branching is **highly recommended** when completing the assignments (especially for those of you in a pair)
 
 ### Branching Overview
 
@@ -109,18 +113,19 @@ Branches are made in your **local repository** and each branch is a copy of your
 # Let's Start Coding (finally)! 
 Passed all the terminology we are going to get into the commands. We are going to go through the commands as they would need to be used as you are writing code. 
 
- 1. You edit the skeleton file (`vim <filename>`) and you made great progress! These are edits that only exist in your working directory. 
+ 1. You edit the skeleton file, as you would edit any file (eg. `vim <filename>`). These are edits that only exist in your working directory. 
  2. Run `git status`, this is a command that tells you the state of your working directory relative to last commit (**HEAD**). 
- 3. Maybe you are having some second guesses, you are nervous! You want to review the differences between the last commit and your working director. Run `git diff` to show you these changes. 
- 4. You are sure of these changes, and you want to commit them, let's stage these files that are changed. Run `git add <file-name>` to stage these files for commit
- 5. Assure that all the changes to the files you want to commit are in the staging area –listed under the "Changes to be committed" when you run `git status`
- 6. You are ready to 'commit' to these changes! Run `git commit -m "<insert-short-message>"` You have made commit, this now becomes **HEAD** of this branch and is the latest revision of your local repository on **your branch**. This commit and all these changes will become the baseline of comparison that Git will use to recgonize further changes. 
+ 3. If you want to check the difference between what you've committed and the changes you've made in the working directory, you'd run `git diff` to show these changes. 
+ 4. You are sure of these changes, and you want to commit them. Let's stage these files that are changed. Run `git add <file-name>` to stage these files for commit.
+ 5. Assure that all the changes to the files you want to commit are in the staging area, listed under the "Changes to be committed" when you run `git status`.
+ 6. You are ready to 'commit' to these changes! Run `git commit -m "<insert-short-message>"` Inside the quotations is your commit message, where you should summarize the changes you've made. You have made commit, this now becomes **HEAD** of this branch and is the latest revision of your local repository on **your branch**. This commit and all these changes will become the baseline of comparison that Git will use to recgonize further changes. 
  7. Run `git log` to show your most recent commit as well as your commit history
+ 8. To push your committed changes from your local repository to the remote repository on GitHub, run `git push origin <branch-name>`. If you're not sure which branch you're working on, you can type `git branch` to check first. By pushing, you make your changes available to be seen by your teammate or anyone who has access to your remote repository on GitHub.
 
 ### Things to Remember:
 1. Remember you committed these changes onto ***your specific branch***
 2. Unlike `git add`, `git commit` status doesn't require you to specify specifc files to commit, that is because `git commit` commits all the files that you staged
-2. Try to make meaningful messages when you run `git commit` as they might be helpful for remmebering what you did at each commit
+2. Try to make meaningful messages when you run `git commit` as they might be helpful for remembering what you did at each commit
 
  **Q:** After you commit but do not make changes to your file, is it possible to have unstaged and uncommitted changes in your working directory? 
  
