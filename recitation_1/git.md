@@ -33,7 +33,7 @@ You should see all the neccessary skeleton code that we distribute for the assig
 2. Open whatever interface you configured and go to the command-line and run `git clone <pasted-link>` 
 3. If that was successful, you now have a **local repository**. 
 
-Git has the concept of both a *local* and *remote* repository. When you ran `git clone`, it took contents of the git repository at the remote server hosted by github.com and copied it down to the local working environment. This means that you can navigate the files that were previously hosted only on GitHub as you would any other files. Throughout this recitation, we will do most work locally, and then *push* our changes from our local repository to the remote on GitHub.```
+Git has the concept of both a *local* and *remote* repository. When you ran `git clone`, it took contents of the git repository at the remote server hosted by github.com and copied it down to the local working environment. This means that you can navigate the files that were previously hosted only on GitHub as you would any other files. Throughout this recitation, we will do most work locally, and then *push* our changes from our local repository to the remote on GitHub.
 
 feel free to change this wording but I thnk some clarification on what git clone actually does is helpful here.
 
