@@ -239,7 +239,7 @@ Switched to branch 'your-branch'
 UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
 AP teaching staff is the best :)
 ```
-Running `~$git merge` will result in a conflict, as Git sees that both branches have committed changes to the same file and the same line. This is where `~$ git merge --no-ff <your branch>` comes in. In the above example, if we ran this command, the file might look something like this (remember we are on the master branch): 
+Running `$ git merge` will result in a conflict, as Git sees that both branches have committed changes to the same file and the same line. This is where `$ git merge --no-ff <your branch>` comes in. In the above example, if we ran this command, the file might look something like this (remember we are on the master branch): 
 
 ```
 UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
