@@ -133,7 +133,7 @@ Passed all the terminology we are going to get into the commands. We are going t
 Of course you do! However, what we previously said about branching is that it is good to develop on separate branches and then create pull requests to propose merging those changes to the master branch. In cases where you want to add something that would not be jeopardizing to your code or if you are working with your partner in real time, there is a way to bypass branching off for edits completely. Proceed with caution, but this is how you can bypass creating separate branches for edits. 
 
 	1. Checkout to the branch that you want to make edits on
-	2. To get the latest version of that branch, run `~$ git pull` which will 'pull' the most recent commit of the remote repository (specific to the branch that you are on.) 
+	2. To get the latest version of that branch, run `$ git pull` which will 'pull' the most recent commit of the remote repository (specific to the branch that you are on.) 
 	3. Make your edits, stage them, commit them, and to push them onto the remote repository, run `$ git push origin <branch-name>` (this should be a familiar command. 
 
 You and your partner can do this in a cycle, pushing and pulling each others commits to update the same branch. However, when making big changes or developing large chunks of code, we recommend going the branching route and creating a separate branch and opening a pull request. This is a lot safer and can prevent conflicts which we will go over in future sections. 
