@@ -1,8 +1,7 @@
-# **Git for AP Workflow**
+Git is a version control system designed for source code and other kinds of plain text.
+It is great for synchronizing work when you are working in a team, as well as for keeping track of changes you make when you are working alone.
 
-Git is a version control system designed for source code and other kinds of plain text. It is great for synchronizing work when you are working in a team, as well as keeping track of changes you make when you are working alone.
-
-In this class, you are **required to use Git for your homework assignments.** You use it to obtain skeleton code, document your progress, and submit your work. You can also use Git to view my solutions, once I release them.
+In this class, you are required to use Git for your homework assignments. You use it to obtain skeleton code, track your progress, and submit your work. You can also use Git to view my solutions, once I release them.
 
 Git is first and foremost a command-line tool, invoked using the "git" command. "git" actually encompasses a number of subcommands, such as "git clone", "git pull", and "git checkout".
 You can see the man pages for each subcommand using the --help flag:
@@ -10,253 +9,7 @@ You can see the man pages for each subcommand using the --help flag:
 	$ git clone --help  # brings up the man pages for git clone
 	$ man git-clone     # does the same as above
 
-Take this as a guide of **limited** use of Git and not ***AP-specific*** as these commands and workflow are used everywhere. Using Git is a great skill to build for those of you who plan on continuing to code at Columbia and beyond. 
-
-# Understanding the Basics of Git
-
-
-## What is a Git Commit?
-Starting with the Git commit – the most integral part of using Git as a workflow manager. 
-
-Commits are "snapshots" of your code throughout the various stages of development. Most git commands are oriented around updating and interacting with git commits, commands that we will go over below.
-
-## Remote Repository and Skeleton Code
-Now that we have established what Git and Git commits are, we can go ahead and start this demo! 
-
-1. Check your email for an invitation on the **"cs3157-borowski-s23/hw#-team#"** repository and accept the invitation. 
-2. Now, sign-in to GitHub.com, go to the top right profile icon and find 'Your Organizations'. You should see **"cs3157-borowski-s23"** listed as one of them, find the repository that corresponds with the assignment number that we are on (ie: hw1-team1)
-3. This is **your remote repository** that you are working out of
-
-You should see all the neccessary skeleton code that we distribute for the assignment. Remember, this is your remote repository and now we need to create your **local repository** in order for you to actually work on the assignment. 
-
-1. Click the green "<> Code" button, make sure you have selected 'SSH' and copy that link.
-2. Open whatever interface you configured and go to the command-line and run `git clone <pasted-link>` 
-3. If that was successful, you now have a **local repository**. 
-
-Git has the concept of both a *local* and *remote* repository. When you ran `git clone`, it took contents of the git repository at the remote server hosted by github.com and copied it down to the local working environment. This means that you can navigate the files that were previously hosted only on GitHub as you would any other files. Throughout this recitation, we will do most work locally, and then *push* our changes from our local repository to the remote on GitHub.```
-
-feel free to change this wording but I thnk some clarification on what git clone actually does is helpful here.
-
-## Repository Structure 
-Git manages multiple copies of repo’s contents:
-
-1. the working directory – where all your edits and created files will be (both in and out of your git repo)
-2. the staging area (AKA "index") is what will form the next commit
-3. each commit has a snapshot of your repo’s contents at some point in time
-
-Git also keeps **HEAD**, which is a reference to your repo's most recent commit, aka staged **and** committed revision to your repo.
-
-Thus, there are also multiple copies of each (tracked) file in your repo. Git will use these copies to automatically track changes between your working directory and last commit (IE: differences between the most committed version and files in the working directory)
-
-**Note**: when you clone a repo, you will only receive its commit history; modifications in the working directory and staging area (files that are un-staged and non-committed) are not cloned.
-
-## File States in Local Repository
-In the your working directory, files can be in four different states:
-
-1. **Untracked**: files that are not under Git revision control, a little deceiving.
-2. **Tracked, unmodified**: the file is in the Git repository, and it has not been modified since the last commit.
-3. **Tracked, modified, but unstaged**: this is a file that is under Git revision, you have made changes but have not staged these changes.
-4. **Tracked, modified, and staged**: this is a file under Git revision, you made changes, and staged these changes.
-
-## Piecing this All together 
-
-We just went over a lot of different terms but these are all neccessary for understanding Git for AP workflow. Let's combine this understanding of repository structure and file states all together. 
-
-1. Working Directory:
-
-	I. **Untracked**: files that are not under Git revision control, these are files that were not part of skeleton code (ie: executeables or files you created not included when you cloned remote repo)
-
-	II. **Tracked, unmodified**: the file is in the Git repository, and it has not been modified since the last commit.
-
-	III. **Tracked, modified, but unstaged**: this is a file that is under Git revision, you have made changes but have not staged these changes.
-
-2. Staging Area: 
-
-	I. **Tracked, modified, and staged**: this is a file under Git revision, you made changes, and staged these changes.
-
-## Now in the Context of Your Assignment: 
-
-1. The **HEAD** refers to the most recent revision, which is the last commit (the skeleton code if you just cloned). Git uses the HEAD as a reference for changes made to your local repository files.
-2. As you code and make changes to the files, they are saved in the **working directory**. At this point, the HEAD (last commit) and the working directory differ.
-3. To save the changes in the working directory and reflect them in the last commit, you need to stage them in the **staging area**.
-4. Committing to the changes in the staging area updates the latest commit, making the **HEAD** refer to this latest commit.
-
-You might be picking up this is a cycle, and that is because it is! You are editing and revising files and using that revision for the next edit and revision. 
-
-
-# Working Responsibly in Git – Branching
-**With or without a group**, there is definitely a *right* way to use Git that would maxmize its many features that make Git a great workflow manager. Branching is **highly recommended** when completing the assignments (especially for those of you in a pair)
-
-### Branching Overview
-
-- Git branches allow you to create **multiple streams of development within the same repository**. Each branch has its own **HEAD**, which points to the latest commit in that branch. 
-
-- When you create a new branch, it starts from the same place as the branch you created it from. You can then make separate commits to the new branch without affecting the original branch. 
-
-- This makes it easy to isolate and manage different changes. When you're ready, you can merge the changes in your feature branch back into the original branch.
-
-Make sure you are in your local repository and run `~$git branch` it should say `* master` with the aterick indicating that you are on the master branch. The master branch is the **default branch**, but Git also supports **main** as a default branch name as well.  
-
-To make a new branch (don't be scared) run `git branch <insert-branch-name>`. Now run `git branch -a ` to see all the branches. 
-
-Branches are made in your **local repository** and each branch is a copy of your local repository. To move to another branch and start coding on that branch, run `git checkout <insert-branch-name>`. You should see `Switched to branch '<insert-branch-name'>`. You can now start developing! 
-
-### **Review: Git Commands for Branching** 
-1. `~$ git branch` shows the branch that you are currently working on in your local repo
-2. `~$ git branch -a` lists all the branches in your local repo 
-3. `~$ git branch <branch-name>` creates a branch named "<branch-name>" 
-4. `~$ git branch -b <branch-name>` in one step creates a branch named "<branch-name>" and checksout to it
-5. `~$ git checkout  <branch-name>` allows you to 'move' to the indicated branch 
-6. `~4 git push origin <branch-name>` pushes your local branch to your remote repo as well as all the commits you made on that branch 
-	
-# Let's Start Coding (finally)! 
-Passed all the terminology we are going to get into the commands. We are going to go through the commands as they would need to be used as you are writing code. 
-
- 1. You edit the skeleton file, as you would edit any file (eg. `vim <filename>`). These are edits that only exist in your working directory. 
- 2. Run `git status`, this is a command that tells you the state of your working directory relative to last commit (**HEAD**). 
- 3. If you want to check the difference between what you've committed and the changes you've made in the working directory, you'd run `git diff` to show these changes. 
- 4. You are sure of these changes, and you want to commit them. Let's stage these files that are changed. Run `git add <file-name>` to stage these files for commit.
- 5. Assure that all the changes to the files you want to commit are in the staging area, listed under the "Changes to be committed" when you run `git status`.
- 6. You are ready to 'commit' to these changes! Run `git commit -m "<insert-short-message>"` Inside the quotations is your commit message, where you should summarize the changes you've made. You have made commit, this now becomes **HEAD** of this branch and is the latest revision of your local repository on **your branch**. This commit and all these changes will become the baseline of comparison that Git will use to recgonize further changes. 
- 7. Run `git log` to show your most recent commit as well as your commit history
- 8. To push your committed changes from your local repository to the remote repository on GitHub, run `git push origin <branch-name>`. If you're not sure which branch you're working on, you can type `git branch` to check first. By pushing, you make your changes available to be seen by your teammate or anyone who has access to your remote repository on GitHub.
-
-### Things to Remember:
-1. Remember you committed these changes onto ***your specific branch***
-2. Unlike `git add`, `git commit` status doesn't require you to specify specifc files to commit, that is because `git commit` commits all the files that you staged
-2. Try to make meaningful messages when you run `git commit` as they might be helpful for remembering what you did at each commit
-
- **Q:** After you commit but do not make changes to your file, is it possible to have unstaged and uncommitted changes in your working directory? 
- 
- **A:** Yes, you commit only the changes in the files that you staged. However, whatever is unstaged still only exists in the working directory.  
-
-## Branching, remember me? 
-Of course you do! However, what we previously said about branching is that it is good to develop on seperate branches and then create pull requests to propose merging those changes to the master branch. In cases where you want to add something that would not be jeopardizing to your code or if you are working with your parter in real time, there is a way to bypass branching off for edits completely. Proceed with caution, but this is how you can bypass creating seperate branches for edits. 
-	1. Checkout to the branch that you want to make edits on
-	2. To get the latest version of that branch, run `~$ git pull` which will 'pull' the most recent commit of the remote repository (specific to the branch that you are on.) 
-	3. Make your edits, stage them, commit them, and to push them onto the remote repository, run `~$git push origin <branch-name>` (this should be a familiar command. 
-
-You and your partner can do this in a cycle, pushing and pulling eachothers commits to update the same branch. However, when making big changes or developing large chunks of code, we reccomend going the branching route and creating a seperate branch and opening a pull request. This is a lot safer and can prevent conflicts which we will go over in future sections. 
-	
-### **Review: Git Commands for Adding and Committing Changes** 
-	
-1. `~$ git status` compares the last committed version of your repo and the working directory and indicates what stage each file is in
-2. `~$ git diff` Git will show you the exact differences between HEAD reference and working directory
-3. `~$ git add <filename(s)>` will stage files that have been modified, preparing them to be committed
-4. `~$ git commit -m "<short-message>` commits the tracked, modified, and staged files, updates HEAD reference, makes changes the most revent revision of git repo
-5. `~$ git log` will show your commit history 
-6. `~$ git push origin <branch-name>` pushes your local branch to your remote repo as well as all the commits you made on that branch
-7. `~$ git pull` gets the most recent commit from your remote repo and applies it to your local repo 
-
-# Settling Differences Between Commits
-Sounds dramatic, but really, Git is tracking alot of differences between versions of your code. Let's take a look: 
-1. Differences between files in your **working directory** the **staging area** and the last commit, **HEAD** 
-2. Differences between branches in the your **local repository** 
-2. Finally, differences between your **local** and **remote repository**
-
-Let's begin to ***reconcile*** these differences step by step. Starting with #2 (since we went over #1 above). If you were following closely (which we really hope you are) this process is quite simple though you to resolve a lot of these differences. 
-
-## Differences Between Two Local Branches
-
-Creating two local branches can be benefitial for various reasons, say you want to preserve two seprate branches that develop different parts of an assignment. That is one example, but whatever it may be, you might also want to **merge** two local branches.
-
-1. Use `~$ git checkout <branch-name` to move to the branch you want (could be either of the two you want to merge)
-2. Use `~$ git merge <branch-name>` to merge the two local branches. 
-3. You will then use `~$ git commit` to commit this merge, to which you can `~$git push` to push local branch to remote repo
-	
-## Differences Between a Local and Remote Branch
-
-When working in a pair, you and/or your partner will be making updates to your master branch. Once you cloned your remote repo, it only clones it in the moment you ran `~$ git clone` and does not update if your partner is updating any branch in your remote repo, including master. 
-	
-1. Using `~$ git fetch` takes care of that discepancy between local and remote repo's, running this command will download the state of the remote repository and **put it into a branch named <remote>:<branch_name>**. This results in two branches: **local master branch** and **one with the most recent committed and pushed changes from GitHub**
-	
-2. If you want changes rom GitHub to apply to your local branch, `~$ git merge <branch-name>` will merge changes from specified branch and the branch you are on. 
-	
-## Differences Between a Local Branch and Remote Repo
-	
-1. Since your branch is created from your local repository, you will need to 'upload' your branch to your remote repository. Run `git push origin <insert-branch-name>`
-2. Now, go back to your remote repository (github.com) and refresh the page, you should see in a yellow-box 'Compare & pull request'.
-
-Now, what is a pull request? 
-
-## Pull Requests 
-Pull requests are great for those of you that are working in pairs but even for those of you that are working alone they can be incredibly helpful. Pull requests allow you to propoes the changes that you made on your own branch to be merged with another such as the master branch. 
-
-If you clicked 'Compare & pull request', you should be prompted to create a title and leave a comment for your pull request. ***Everyone*** in your repository will see this. This pull request allows other members to see the changes you made on your branch (that you cloned from the master branch) and decide whether they want to **merge** these changes onto the **master branch**. 
-
-In that "Pull request" you are able to look at the changes that your partner changed by clicking "Files changed". You are able to leave comments and questions to which you and your partner can decide to resolve. 
-
-It is best practice that you run and test your code before you make your PR, as your can assure that your master branch is good-functioning code and your sub-branches are for developing. You and your partner can be working on different parts on the code on different branches, push your branches, and make pull requests to merge to the **master branch** which you will tag and the TA's will grade. 
-
-If you (and your partner if applicable) decide to merge, you will make a merge commit, and your now merged (sub and master) will become to the most recent revision of your code. 
-
-Sounds simple, and sometimes it is! But there are times that you will run into **merge conflicts** when trying to merge a sub-branch and master branch. 
-
-PR are a great tool, read more about them [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). 
-
-# Merge Conflicts
-
-If you are working alone or working with a partner, merge conflicts are avoidable but ultimately inevitable (if you don't follow the directions above carefully). But they can be quite frightening. We talked about `~$ git merge <branch-name>` above, but something we did not mention is that merge will automatically try to merge using a fast-forward approach which will succeed **if the changes you are merging do not confict with one another** but will fail otherwise. 
-
-Thus, we encourage that when merging two-local branches and a local branch to your remote reop, to run `~$ git merge` with the `--no-ff` option like this: `~$ git merge --no-ff <branch-name>`. 
-
-Let's see an example of merge conflict. 
-
-
-### Merge Conflict Example:
-
-	
-Conflict may arise if: 
-1. Changes to the same line(s) of code in two different branches.
-2. Deletions of a file in one branch and changes to the same file in another branch.
-3. If you have uncommitted changes in your branch and want to merge, this will overwrite your changes in working directory
-
-
-### **What to Do If you have Merge Conflict?**
-Let's trigger a merge conflict.
-```bash
-UNI@ap:~/cs3157/hw1-team0/src$ git branch -a 
-* master 
-  your-branch
-
-UNI@ap:~/cs3157/hw1-team0/src$ git checkout your-branch
-Switched to branch 'your-branch'
-```
-Up to this point we have see that there are two branches. In both of those branches we have have a file named **AP.txt** that contains only one line Let's see what that looks like in each branch. Note `cat` is a bash command that when passed a file will output the files contents to the terminal (stdout to be precise). 
-
-```
-UNI@ap:~/cs3157/hw1-team0/src$ git checkout master
-Switched to branch 'master'
-
-UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
-AP teaching staff is the worst :( 
-```
-Let's see what that file contains in "your-branch":
-```
-UNI@ap:~/cs3157/hw1-team0/src$ git checkout your-branch
-Switched to branch 'your-branch'
-
-UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
-AP teaching staff is the best :)
-```
-Running `~$git merge` will result in a conflict, as Git sees that both branches have committed changes to the same file and the same line. This is where `~$ git merge --no-ff <your branch>` comes in. In the above example, if we ran this command, the file might look something like this (remember we are on the master branch): 
-
-```
-UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
-<<<<< master
-AP teaching staff is the worst :(
-======
-AP teaching staff is the best :)
->>>>>
-```
-As you can see, it has both of our changes, so we have to manually decide which one to keep, you would do that by removing the lines that start with <<<< (showing you the state of that line in the branch you are in, the one with the * when you run the git branch command), the one that starts with >>>> (showing you the state of that line in the branch you specified in the git merge <branch> command), and the one that starts with ==== (just a separator), and also the change you don't want to keep, so like this:
-```
-UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
-AP teaching staff is the best :)
-```
-Then, of course, you would stage and commit the file –– this is what we call a **merge commit**. 
-
-## Other Git Resources
+Git command cheat sheet -----------------------
 
 There are plenty of hands-on guides teaching you how to use Git.
 Here are a few we recommend for getting started:
@@ -268,5 +21,128 @@ a guide that gets straight to the point with nice illustrations
 
 - Yet Another Git Guide (https://j-hui.com/pages/yagg/):
 
-## Acknowledgements
-This was developed by Phillip Le, Leslie Chang, Xurxo Riesco, and Dorothy Zhang for COMS 3157 Spring '23
+my own Git guide that I shares with my collaborators
+
+Here is a summary of the Git commands you should know for this class:
+
+- git status: show the status of the current working directory
+- git log: view commit history
+- git add: add changed files to the staging area
+- git commit: create a commit from changes checked into the staging area
+- git tag: mark an important milestone
+- git push: push commits to a remote repo
+- git pull: pull changes from a remote repo
+- git clone: obtain a copy of another repo with its commit history
+
+Anatomy of a repository -----------------------
+
+Git organizes collections of files as repositories (aka "repos"):
+
+- A repo is always "rooted" in some directory; all "tracked" files must live within that directory tree.
+
+- Repos keep track of the version history of their files in a "commit log" (AKA "commit history").
+
+- Each Git repo contains a special, hidden .git/ directory where the commit history and other metadata is stored.
+
+You can run Git commands from any subdirectory within a repo.
+
+From working directory to commit --------------------------------
+
+Git manages multiple copies of your repo’s contents:
+
+- the working directory is what you can see and edit, i.e., outside of .git/
+- the staging area (AKA "index") is what will form the next commit
+- each commit has a snapshot of your repo’s contents at some point in time
+
+Thus, there are also multiple copies of each (tracked) file in your repo.
+
+A file is tracked if it is in the staging area or in some commit.  When you git add a file, you copy it from your working directory to the staging area.
+
+The most recent commit in your repo is known as HEAD.  When you git commit, you create a new commit (now the new HEAD) from the contents of your staging area.
+
+`                        `git add                  git commit
+
+`    `working directory ----------> staging area -------------> HEAD
+
+`                                                         `(commit history)
+
+Git uses some clever tricks to make sure that identical copies of the same file don’t take up unnecessary space (beyond the scope of this lecture).
+
+Note that when you clone a repo, you will only receive its commit history; modifications in the working directory and staging area are not cloned.
+
+The Git file life cycle -----------------------
+
+git status will tell you when there are differences between the copies of a file in the working directory, the staging area, and HEAD.  This is helpful for
+
+keeping track of which modifications end up in your next commit.  The output of git status usually looks something like this:
+
+	$ git status
+	Changes to be committed:
+		modified:   foo.txt
+	Changes not staged for commit:
+		modified:   bar.txt
+	Untracked files:
+		baz.txt
+
+These sections are to be interpreted as follows:
+
+1) If a file appears in the "Untracked files" section like baz.txt, then it only exists in your working directory, and is not yet tracked in the staging area or commit history.
+
+2) If a file appears in the "Changes to be committed" section like foo.txt, then the staged copy of that file differs from the copy in HEAD.
+2) If a file appears in the "Changes not staged for commit" section like bar.txt, then the working copy of that file differs from its staged copy.
+
+4) If a file does not appear in any of these sections, then the working, staged, and HEAD copies of that file are identical.
+
+It is sometimes helpful to think of these statuses as stages in the life cycle of each file tracked by Git:
+
+![git.png](../images/git.png)
+
+Note that it is possible for a file to have both staged (2) and unstaged (3) changes, i.e., if it has been modified since it was git added.  The life cycle diagram does not illustrate this scenario.
+
+.gitignore files (optional) ---------------------------
+
+There are often files that you don’t ever want to track in a repo.  For example, it is considered bad practice to track object files and executables (you will learn about these in a later lecture).  It can be cumbersome to see them in your git status, and it’s easy to accidentally track these files.
+
+You can use a .gitignore file to tell Git that you don’t want to track a file. For example, this .gitignore tells Git not to track any files named "a.out", or whose file name ends with ".o":
+
+	$ cat .gitignore a.out
+	\*.o
+
+Any files matching those rules will not show up in git status, nor will they be tracked when you git add them.  These .gitignore rules only apply to directory the .gitignore file is in, and any of its subdirectories.  You can place
+
+different .gitignore files in different directories to ignore files more selectively.  You can read the man pages (man gitignore) for more usage details.
+
+It is considered good practice to include .gitignore files in your Git repos. You should also track .gitignore files themselves in your repo, since the same .gitignore rules will likely apply to any others who clone your repo.
+
+Anatomy of a commit -------------------
+
+We refer to each commit by its "commit hash", which is a long string of characters computed from the following information:
+
+- the file contents of the commit
+- the commit message (e.g., git commit -m "the commit message")
+- the author and timestamp of the commit
+- its parent commit(s), i.e., the previous commit(s) in the commit history
+
+If any of these change, the commit hash will also change.
+
+When you git commit, the old HEAD will become the parent commit of the new HEAD. For this course, we will only work with repos with a linear commit history:
+
+where each commit has a single parent, and where each parent has one child.
+
+It is possible for a commit to have multiple children if different commits are made with the same parent.  You will often encounter such divergent commit histories when using Git to collaborate with others.  You have two options in order to join a divergent history:
+
+- create a merge commit, i.e., a commit with multiple parent commits
+- rebase one set of commits onto another, modifying their commit hashes
+
+When you do either of these, Git will try to automatically merge the different sets of changes, but will stop and ask you to resolve merge conflicts if it encounters any.
+
+Other useful Git commands -------------------------
+
+- git ls-files: list tracked files
+- git mv/rm: rename or remove a tracked file
+- git diff: see changes between the working directory and staging area
+- git diff --cached: see changes between the staging area and HEAD
+- git diff HEAD: see changes between the working directory and HEAD
+- git restore: restore file in working directory from staging area
+- git restore --staged: restore file in staging area from HEAD
+
