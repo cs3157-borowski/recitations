@@ -104,7 +104,7 @@ Branches are made in your **local repository** and each branch is a copy of your
 3. `~$ git branch <branch-name>` creates a branch named "<branch-name>" 
 4. `~$ git checkout  <branch-name>` allows you to 'move' to the indicated branch 
 5. `~4 git push origin <branch-name>` pushes your local branch to your remote repo as well as all the commits you made on that branch 
-
+	
 # Let's Start Coding (finally)! 
 Passed all the terminology we are going to get into the commands. We are going to go through the commands as they would need to be used as you are writing code. 
 
@@ -125,6 +125,14 @@ Passed all the terminology we are going to get into the commands. We are going t
  
  **A:** Yes, you commit only the changes in the files that you staged. However, whatever is unstaged still only exists in the working directory.  
 
+## Branching, remember me? 
+Of course you do! However, what we previously said about branching is that it is good to develop on seperate branches and then create pull requests to propose merging those changes to the master branch. In cases where you want to add something that would not be jeopardizing to your code or if you are working with your parter in real time, there is a way to bypass branching off for edits completely. Proceed with caution, but this is how you can bypass creating seperate branches for edits. 
+	1. Checkout to the branch that you want to make edits on
+	2. To get the latest version of that branch, run `~$ git pull` which will 'pull' the most recent commit of the remote repository (specific to the branch that you are on.) 
+	3. Make your edits, stage them, commit them, and to push them onto the remote repository, run `~$git push origin <branch-name>` (this should be a familiar command. 
+
+You and your partner can do this in a cycle, pushing and pulling eachothers commits to update the same branch. However, when making big changes or developing large chunks of code, we reccomend going the branching route and creating a seperate branch and opening a pull request. This is a lot safer and can prevent conflicts which we will go over in future sections. 
+	
 ### **Review: Git Commands for Adding and Committing Changes** 
 	
 1. `~$ git status` compares the last committed version of your repo and the working directory and indicates what stage each file is in
@@ -132,9 +140,10 @@ Passed all the terminology we are going to get into the commands. We are going t
 3. `~$ git add <filename(s)>` will stage files that have been modified, preparing them to be committed
 4. `~$ git commit -m "<short-message>` commits the tracked, modified, and staged files, updates HEAD reference, makes changes the most revent revision of git repo
 5. `~$ git log` will show your commit history 
-6. `~4 git push origin <branch-name>` pushes your local branch to your remote repo as well as all the commits you made on that branc
+6. `~$ git push origin <branch-name>` pushes your local branch to your remote repo as well as all the commits you made on that branch
+7. `~$ git pull` gets the most recent commit from your remote repo and applies it to your local repo 
 
-# Settling Differences Cetween Commits
+# Settling Differences Between Commits
 Sounds dramatic, but really, Git is tracking alot of differences between versions of your code. Let's take a look: 
 1. Differences between files in your **working directory** the **staging area** and the last commit, **HEAD** 
 2. Differences between branches in the your **local repository** 
@@ -157,9 +166,7 @@ When working in a pair, you and/or your partner will be making updates to your m
 1. Using `~$ git fetch` takes care of that discepancy between local and remote repo's, running this command will download the state of the remote repository and **put it into a branch named <remote>:<branch_name>**. This results in two branches: **local master branch** and **one with the most recent committed and pushed changes from GitHub**
 	
 2. If you want changes rom GitHub to apply to your local branch, `~$ git merge <branch-name>` will merge changes from specified branch and the branch you are on. 
-
-You might be thinking, this sounds familiar. Good, it should! `~$ git pull` combines `~$ git fetch` and `~$ git merge`, but don't always default to pull. **There are times where you might want to seperate these steps.**
-
+	
 ## Differences Between a Local Branch and Remote Repo
 	
 1. Since your branch is created from your local repository, you will need to 'upload' your branch to your remote repository. Run `git push origin <insert-branch-name>`
@@ -197,8 +204,7 @@ Let's see an example of merge conflict.
 Conflict may arise if: 
 1. Changes to the same line(s) of code in two different branches.
 2. Deletions of a file in one branch and changes to the same file in another branch.
-3. Deletions of a file in one branch and changes to the same file in another branch.
-4. If you have uncommitted changes in your branch and want to merge, this will overwrite your changes in working directory
+3. If you have uncommitted changes in your branch and want to merge, this will overwrite your changes in working directory
 
 
 ### **What to Do If you have Merge Conflict?**
