@@ -162,7 +162,7 @@ Creating two local branches can be beneficial for various reasons, say you want 
 
 1. Use `$ git checkout <branch-name` to move to the branch you want (could be either of the two you want to merge)
 2. Use `$ git merge <branch-name>` to merge the two local branches. 
-3. You will then use `$ git commit` to commit this merge, to which you can `~$git push` to push local branch to remote repo
+3. You will then use `$ git commit` to commit this merge, to which you can `$ git push` to push local branch to remote repo
 	
 ## Differences Between a Local and Remote Branch
 
