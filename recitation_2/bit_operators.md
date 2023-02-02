@@ -71,7 +71,7 @@ Also known as a bitwise complement. Takes an integer as operand and returns an i
     assert(~x == 10);   // 1010 (10, unsigned)
     assert(~y == -6);   // 1010 (-6, signed)
 
-### Bitshifting
+### Bit Shifting
 
 Another useful operation is the bitshift. What we mean by "shifting bits" is pushing all the binary digits in a number. We can shift to the left, or shift to the right.
 
