@@ -5,7 +5,8 @@ Bash scripting
 Basic commands 
 ------
 ### TLDR and notable features
-Bash is the only shell scripting language permitted for executables. They usually start with `#!/bin/bash` and a minimum number of flags. Use `set` to set shell options so that calling your script as bash `script_name` does not break its functionality. Executables should have no extension (strongly preferred) or a `.sh` extension. Libraries must have a `.sh` extension and should not be executable.
+Bash is the only shell scripting language permitted for executables. Bash scripts usually start with `#!/bin/bash` and a minimum number of flags. Use `set` to set shell options so that calling your script as bash `script_name` does not break its functionality. Executables should have no extension (strongly preferred) or a `.sh` extension. Libraries must have a `.sh` extension and should not be executable.
+
 
 Some guidelines:
 
