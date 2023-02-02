@@ -139,5 +139,16 @@ Without using any arithmetic or comparison operators (e.g., `+`, `-`, `*`, `/`, 
             return _______________;
     }
 ```
+5. `swap(num)` swaps the **bytes** of an unsigned short. For example, `swap(1)` should return `256`. Note that `sizeof(unsigned short)` returns `2`, and one byte consists of eight bits.
+                                
+Unsigned short `1` in binary:   `0000 0000 0000 0001`
+Unsigned short `256` in binary: `0000 0001 0000 0000`
+```
+unsigned short swap(unsigned short num) {
+    unsigned short a = _______________;
+    unsigned short b = _______________;
+    return (a << 8) | b;
+}
+```
 ## Solutions
 
