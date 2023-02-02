@@ -33,7 +33,7 @@ For example:
     assert(x & y == 4); // 0100 (4)
 
 This provides a handy way of checking the bit value at a given position,
-using a ***bitmask***:
+using a **bitmask**:
 
     int mask = 0x8;         // 1000 in binary, for checking the 4th bit
     assert(!(x & mask));    // 5 (0101) doesn't contain a 1 in the 4th bit
@@ -94,7 +94,7 @@ For `x >> n`, each bit in `x` is shifted to the right (towards the Least Signifi
 - How the vacated bits get filled depends on what we're dealing with:
   - Right-shifting unsigned numbers fills vacated bits on the left with 0s
   - Right-shifting signed numbers produces results that vary
-    depending on the machine and compiler, but on most modern computers, doing so will ***sign extend*** the number, i.e. the value of the MSB (the sign) will be used to pad the vacated bits (See [StackOverflow](https://stackoverflow.com/questions/15729765/sign-extension-with-bitwise-shift-operation))
+    depending on the machine and compiler, but on most modern computers, doing so will **sign extend** the number, i.e. the value of the MSB (the sign) will be used to pad the vacated bits (See [StackOverflow](https://stackoverflow.com/questions/15729765/sign-extension-with-bitwise-shift-operation))
 - The displaced bits on the right are discarded (aka. the bits shoved into the pool, see 2/1 lecture)
 
 Note that this is equivalent to dividing a number by 2^`n`
@@ -139,7 +139,7 @@ Without using any arithmetic or comparison operators (e.g., `+`, `-`, `*`, `/`, 
             return _______________;
     }
 ```
-5. `swap(num)` swaps the ***bytes*** of an unsigned short. For example, `swap(1)` should return `256`. Note that `sizeof(unsigned short)` returns `2`, and one byte consists of eight bits.
+5. `swap(num)` swaps the **bytes** of an unsigned short. For example, `swap(1)` should return `256`. Note that `sizeof(unsigned short)` returns `2`, and one byte consists of eight bits.
                                 
     - Unsigned short `1` in binary:   `0000 0000 0000 0001`
     - Unsigned short `256` in binary: `0000 0001 0000 0000`
