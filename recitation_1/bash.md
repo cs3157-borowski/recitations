@@ -157,7 +157,10 @@ $ cat cut_demo.txt
 $ Dr. Borowski
 $ Leslie Chang
 $ Nguyen Tran
-$ cut -d " " -f2 cut_demo.txt     # delimiter: " " means a space character => we will use this to break 'Dr. Borowski' into field 1:  'Dr.' and field2: 'Borowski'. 
+$ cut -d " " -f2 cut_demo.txt     
+# delimiter: " " means a space character
+# we will use this to break 'Dr. Borowski' into field 1:  'Dr.' and field2: 'Borowski'. 
+
 $ Borowski
 $ Chang
 $ Tran
