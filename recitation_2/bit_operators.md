@@ -28,8 +28,8 @@ Takes two integers as operands and returns a new integer where its bit pattern
 consists of 1's only where both operands also have 1's in the same position.
 For example:
 
-    int x = 5;          // 0101 in binary
-    int y = 12;         // 1100 in binary
+    int x = 5;            // 0101 in binary
+    int y = 12;           // 1100 in binary
     assert((x & y) == 4); // 0100 (4)
 
 (Note that `==` has higher precedence than `&`, `|`, `^`, `<<`, and `>>`. See [cppreference](https://en.cppreference.com/w/c/language/operator_precedence).)
