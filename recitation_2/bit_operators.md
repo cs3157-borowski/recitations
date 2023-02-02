@@ -32,7 +32,7 @@ For example:
     int y = 12;         // 1100 in binary
     assert((x & y) == 4); // 0100 (4)
 
-Note that `==` has higher precedence than `&`, `|`, `^`, `<<`, and `>>` (See [cppreference](https://en.cppreference.com/w/c/language/operator_precedence)).
+(Note that `==` has higher precedence than `&`, `|`, `^`, `<<`, and `>>`. See [cppreference](https://en.cppreference.com/w/c/language/operator_precedence).)
 
 This provides a handy way of checking the bit value at a given position,
 using a **bitmask**:
