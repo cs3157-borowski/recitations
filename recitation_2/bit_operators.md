@@ -80,7 +80,7 @@ Another useful operation is the bitshift. What we mean by "shifting bits" is pus
 For `x << n`, each bit in `x` is shifted to the left (towards the Most Significant Bit, MSB) by `n` digits:
 
 - Left-shifting always fills the vacated bits on the right with 0's
-- The displaced bits on the left are discarded
+- The displaced bits beyond the size of the type on the left are discarded (aka. the bits shoved into the pool, see 2/1 lecture)
 
 Note that this is equivalent to multiplying a number by 2^`n`!
 
@@ -95,7 +95,7 @@ For `x >> n`, each bit in `x` is shifted to the right (towards the Least Signifi
   - Right-shifting unsigned numbers fills vacated bits on the left with 0s
   - Right-shifting signed numbers produces results that vary
     depending on the machine and compiler, but on most modern computers, doing so will **sign extend** the number, i.e. the value of the MSB (the sign) will be used to pad the vacated bits (See [StackOverflow](https://stackoverflow.com/questions/15729765/sign-extension-with-bitwise-shift-operation))
-- The displaced bits on the right are discarded
+- The displaced bits on the right are discarded (aka. the bits shoved into the pool, see 2/1 lecture)
 
 Note that this is equivalent to dividing a number by 2^`n`
 (and discarding the remainder)!
