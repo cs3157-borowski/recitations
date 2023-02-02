@@ -36,7 +36,7 @@ echo "Again, my name is ${NAME}"
 #^ Above is an example of our usage:  $<varname> or ${<varname>} to indicate that a variable is in place and acting as
 #  a placholder for a value. The curly braces in the latter case are an example of expansion. We will discuss them further below.
 ```
-#### Differentiating expansions: \\$()  vs  \\${} 
+#### Differentiating expansions: \$()  vs  \${} 
 The expression $(`command`) is a modern synonym for `command` which stands for command substitution; it means run command and put its output here. So
 
 ```
