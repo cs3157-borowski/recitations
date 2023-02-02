@@ -80,7 +80,8 @@ done
 #### `If` statement:
 The logic of an `if` statement works the same as in another language. The difference lies in the syntax of the code. When you write script in bash, spacing MATTERS. Always ensure that there's space between your conditions and your SQUARE brackets
 
-- Always remember the 3-part structure of every control flow, in the case of `if` statement, it's: `if` - `then` - `fi`   
+- Always remember the 3-part structure of every control flow, in the case of an `if` statement, it's: `if` - `then` - `fi`   
+
 Take a look at the code below
 ```
 #!/bin/bash
