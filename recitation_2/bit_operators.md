@@ -93,7 +93,7 @@ For `x >> n`, each bit in `x` is shifted to the right (towards the Least Signifi
 
 - How the vacated bits get filled depends on what we're dealing with:
   - Right-shifting unsigned numbers fills vacated bits on the left with 0s
-  - Right shifting signed numbers produces results that vary
+  - Right-shifting signed numbers produces results that vary
     depending on the machine and compiler, but on most modern computers, doing so will **sign extend** the number, i.e. the value of the MSB (the sign) will be used to pad the vacated bits (See [StackOverflow](https://stackoverflow.com/questions/15729765/sign-extension-with-bitwise-shift-operation))
 - The displaced bits on the right are discarded
 
