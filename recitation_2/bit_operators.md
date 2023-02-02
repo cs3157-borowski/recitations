@@ -4,6 +4,7 @@ Without using any arithmetic or comparison operators (e.g., `+`, `-`, `*`, `/`, 
 
 **Exception:** you may use `-` only to account for off-by-one (e.g., `x - 1` is ok; `x - 32` or `x - n` is not).
 
+
 - `mul8(num)` should return `num * 8`:
 ```
 int mul8(int num) {
@@ -42,4 +43,4 @@ int set_bit(int num, int n, int b) {
 
 ## Acknowledgements
 
-The exercises were created by John Hui. It was modified by Stanley Lin in Spring 2023.
+The exercises were created by John Hui. They were modified by Stanley Lin in Spring 2023.
