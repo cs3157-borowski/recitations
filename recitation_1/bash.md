@@ -150,7 +150,9 @@ $cut -d "delimiter" -f (field number) file.txt
 ```
 Lets's say we have a file called cut_demo.txt with some names in it;
 ```
-#This is the direct snapshot of a terminal, we will use the `$` symbol to differentiate it from codes in a text editor
+#This is the direct snapshot of a terminal
+# we will use the `$` symbol to differentiate it from codes in a text editor
+
 $ cat cut_demo.txt
 $ Dr. Borowski
 $ Leslie Chang
