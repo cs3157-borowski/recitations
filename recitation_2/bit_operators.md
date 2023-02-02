@@ -30,7 +30,7 @@ For example:
 
     int x = 5;          // 0101 in binary
     int y = 12;         // 1100 in binary
-    assert(x & y == 4); // 0100 (4)
+    assert((x & y) == 4); // 0100 (4)
 
 This provides a handy way of checking the bit value at a given position,
 using a **bitmask**:
@@ -50,16 +50,18 @@ For example:
 
     int x = 5;              // 0101 in binary
     int y = 12;             // 1100 in binary
-    assert(x | y == 13);    // 1101 (13)
+    assert((x | y) == 13);  // 1101 (13)
+
+Note that `==` has higher precedence than `&`, `|`, `^`, `<<`, and `>>`. See [cppreference](https://en.cppreference.com/w/c/language/operator_precedence) 
 
 #### Bitwise XOR `^`
 
 Also known as a bitwise eXclusive OR; behaves just like the bitwise AND and OR, except with an XOR operation. Takes two integers as operands and returns a new integer where its bit pattern consists of 1's where only one of its operands has a 1 in the same position.
 For example:
 
-    int x = 6;          // 0110 in binary
-    int y = 5;          // 0101 in binary
-    assert(x ^ y == 3); // 0011 (3)
+    int x = 6;            // 0110 in binary
+    int y = 5;            // 0101 in binary
+    assert((x ^ y) == 3); // 0011 (3)
 
 #### Bitwise NOT `~`
 
@@ -85,7 +87,7 @@ For `x << n`, each bit in `x` is shifted to the left (towards the Most Significa
 Note that this is equivalent to multiplying a number by 2^`n`!
 
     int x = 1;              // 0001 in binary
-    assert(x << 2 == 4);    // 0100 (4)
+    assert((x << 2) == 4);  // 0100 (4)
 
 #### Rightshift `>>`
 
@@ -101,7 +103,7 @@ Note that this is equivalent to dividing a number by 2^`n`
 (and discarding the remainder)!
 
     int x = 5;              // 0101 in binary
-    assert(x >> 2 == 1);    // 0001 (1)
+    assert((x >> 2) == 1);  // 0001 (1)
 
 ## Exercises 
 
