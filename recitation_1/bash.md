@@ -44,7 +44,7 @@ echo "Today is $(date). A fine day."
 ```
 
 will run the date command and include its output in the argument to echo. The parentheses are unrelated to the syntax for running a command in a subshell, although they have something in common (the command substitution also runs in a separate subshell).
-By contrast, \\${`variable`} is just a disambiguation mechanism, so you can say \\${`var`}`text` when you mean the contents of the variable var, followed by text (as opposed to \\$`vartext` which means the contents of the variable `vartext`). Here's a short example:
+By contrast, \\${`variable`} is just a disambiguation mechanism, so you can say \\${`var`}`text` when you mean the contents of the variable `var`, followed by some string called `text` (as opposed to \\$`vartext` which means the contents of the variable `vartext`). Here's a short example:
 
 ```
 LIMB="Foot"
