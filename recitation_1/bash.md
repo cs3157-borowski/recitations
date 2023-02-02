@@ -198,7 +198,7 @@ Based on the script above, `$./sum.sh 1 5` will have an output of `15`
 
 Acknowledgement
 ------
-This was developed by TAs Nguyen Tran, Xurxo Riesco, and Mateo Maturana for COMS 3157 Spring '23
+This was developed by TA Nguyen Tran for COMS 3157 Spring '23
 
 
 
