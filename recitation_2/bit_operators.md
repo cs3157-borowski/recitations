@@ -141,7 +141,7 @@ Without using any arithmetic or comparison operators (e.g., `+`, `-`, `*`, `/`, 
             return _______________;
     }
 ```
-5. `swap(num)` swaps the **bytes** of an unsigned short. For example, `swap(1)` should return `256`. Note that `sizeof(unsigned short)` returns `2`, and 1 byte consists of 8 bits.
+5. `swap(num)` swaps the **bytes** of an unsigned short. For example, `swap(1)` should return `256`. Note that `sizeof(unsigned short)` returns `2` on the AP server, and 1 byte consists of 8 bits.
 ```
 unsigned short swap(unsigned short num) {
     unsigned short a = _______________;
