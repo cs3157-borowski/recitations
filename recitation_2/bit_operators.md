@@ -25,7 +25,7 @@ C also includes two bit-shift operators:
 #### Bitwise AND `&`
 
 Takes two integers as operands and returns a new integer where its bit pattern
-consists of 1s only where both operands also have 1s in the same position.
+consists of 1's only where both operands also have 1's in the same position.
 For example:
 
     int x = 5;          // 0101 in binary
@@ -39,13 +39,13 @@ using a **bitmask**:
     assert(!(x & mask));    // 5 (0101) doesn't contain a 1 in the 4th bit
     assert(y & mask);       // 12 (1100) contains a 1 in the 4th bit
 
-It's called a bitmask because we place 0s in the digits we don't want to read,
+It's called a bitmask because we place 0's in the digits we don't want to read,
 which will _mask_ out the corresponding digits via the bitwise AND.
 
 #### Bitwise OR `|`
 
 Behaves just like the bitwise AND, except with an OR operation. Takes two integers as operands and returns a new integer where its bit pattern
-consists of 1s where either operand also has a 1 in the same position.
+consists of 1's where either operand also has a 1 in the same position.
 For example:
 
     int x = 5;              // 0101 in binary
@@ -54,7 +54,7 @@ For example:
 
 #### Bitwise XOR `^`
 
-Also known as a bitwise eXclusive OR; behaves just like the bitwise AND and OR, except with an XOR operation. Takes two integers as operands and returns a new integer where its bit pattern consists of 1s where only one of its operands has a 1 in the same position.
+Also known as a bitwise eXclusive OR; behaves just like the bitwise AND and OR, except with an XOR operation. Takes two integers as operands and returns a new integer where its bit pattern consists of 1's where only one of its operands has a 1 in the same position.
 For example:
 
     int x = 6;          // 0110 in binary
@@ -92,7 +92,7 @@ Note that this is equivalent to multiplying a number by 2^`n`!
 For `x >> n`, each bit in `x` is shifted to the right (towards the Least Significant Bit, LSB) by `n` digits:
 
 - How the vacated bits get filled depends on what we're dealing with:
-  - Right-shifting unsigned numbers fills vacated bits on the left with 0s
+  - Right-shifting unsigned numbers fills vacated bits on the left with 0's
   - Right-shifting signed numbers produces results that vary
     depending on the machine and compiler, but on most modern computers, doing so will **sign extend** the number, i.e. the value of the MSB (the sign) will be used to pad the vacated bits (See [StackOverflow](https://stackoverflow.com/questions/15729765/sign-extension-with-bitwise-shift-operation))
 - The displaced bits on the right are discarded (aka. the bits shoved into the pool, see 2/1 lecture)
@@ -140,15 +140,15 @@ Without using any arithmetic or comparison operators (e.g., `+`, `-`, `*`, `/`, 
     }
 ```
 5. `swap(num)` swaps the **bytes** of an unsigned short. For example, `swap(1)` should return `256`. Note that `sizeof(unsigned short)` returns `2`, and one byte consists of eight bits.
-                                
-    - Unsigned short `1` in binary:   `0000 0000 0000 0001`
-    - Unsigned short `256` in binary: `0000 0001 0000 0000`
 ```
 unsigned short swap(unsigned short num) {
     unsigned short a = _______________;
     unsigned short b = _______________;
     return (a << 8) | b;
 }
+
+unsigned short x = 1;   // 0000 0000 0000 0001 in binary
+assert(swap(x) == 256); // 0000 0001 0000 0000 (256)
 ```
 ## Solutions
 
