@@ -82,7 +82,7 @@ For `x << n`, each bit in `x` is shifted to the left (towards the Most Significa
 - Left-shifting always fills the vacated bits on the right with 0's
 - The displaced bits on the left are discarded
 
-Note that this is equivalent to mulitplying a number by 2^`n`!
+Note that this is equivalent to multiplying a number by 2^`n`!
 
     int x = 1;              // 0001 in binary
     assert(x << 2 == 4);    // 0100 (4)
