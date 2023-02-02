@@ -61,7 +61,7 @@ For example:
     int y = 5;          // 0101 in binary
     assert(x ^ y == 3); // 0011 (3)
 
-#### Bitwise NOT `~` (Negation)
+#### Bitwise NOT `~`
 
 Also known as a bitwise complement. Takes an integer as operand and returns an integer with all its bits flipped.
 
@@ -79,7 +79,7 @@ Another useful operation is the bitshift. What we mean by "shifting bits" is pus
 
 For `x << n`, each bit in `x` is shifted to the left (towards the Most Significant Bit, MSB) by `n` digits:
 
-- Left-shifting always fills the vacated bits on the right with 0s
+- Left-shifting always fills the vacated bits on the right with 0's
 - The displaced bits on the left are discarded
 
 Note that this is equivalent to mulitplying a number by 2^`n`!
