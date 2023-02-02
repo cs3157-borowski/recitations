@@ -169,7 +169,7 @@ $ Tran
 Exercise:
 ------
 ### Agenda:
-- First, we will go through Dr.B's "grade.sh" script in class. We will apply what we just learnt above to see what and why the code is doing what it does. A copy of the code should be available on Courseworks.
+- First, we will go through Dr.B's "grade.sh" script in class. We will apply what we just learnt above to see what and why the code is doing what it does. A copy of the code should be available on Courseworks or from [this repository](https://github.com/cs3157-borowski/recitations/blob/NguyenTran88-patch-2/recitation_1/grade%20(1).sh).
 
 - Second, we will go through a smaller piece of code called "sum.sh" that takes in `$1` and `$2`. It will compute the running total of every integer between the 2 arguments. You can look through the code and recreate it from scratch for practice after the recitation, or you can just program it rightaway.
 
