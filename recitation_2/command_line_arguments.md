@@ -96,7 +96,7 @@ Answers:
 
 Q1 Answer:
 
-    ./a.out
+    ./main
     Welcome
     to
     AP!
