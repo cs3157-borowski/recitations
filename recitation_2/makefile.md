@@ -391,5 +391,5 @@ $(TARGET): $(OBJS) $(TARGET).c
 	
 clean: # removes object files and our executables
 	rm -f $(OBJS) $(TARGET) $(TARGET).exe
-	# -f flag silences errors if any of these files do not exist
+# -f flag silences errors if any of these files do not exist
 ```
