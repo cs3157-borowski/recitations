@@ -122,7 +122,7 @@ To link:
 $ gcc -o myprogram hello.o goodbye.o myprogram.o
 ```
 
-Format: `gcc -o <output name> <ingredients`
+Format: `gcc -o <output name> <ingredients>`
 
 Now we have our executable, `myprogram`:
 
