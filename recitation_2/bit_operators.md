@@ -105,6 +105,39 @@ Note that this is equivalent to dividing a number by 2^`n`
     int x = 5;              // 0101 in binary
     assert((x >> 2) == 1);  // 0001 (1)
 
+## Data Types in C and sizeof
+
+C types tell you precisely how much memory a variable of that type occupies; however, the C standard does **NOT** specify the byte sizes of these types! On most systems:
+
+-   `char`:         1 byte
+-   `short`:        2 bytes
+-   `int`:          4 bytes
+-   `long`:         8 bytes on 64-bit UNIX systems (such as AP server);
+                    4 bytes on most 32-bit systems and 64-bit Windows
+-   `long long`:    8 bytes
+
+You can use `sizeof` operator to obtain the size of a type:
+```
+printf("size of long: %lu\n", sizeof(long));
+```
+Or the size of the type of an expression:
+```
+long i;
+printf("size of i: %lu\n", sizeof(i));
+printf("size of some arithmetic: %lu\n", sizeof(i + 2));
+```
+Some quirks about `sizeof`:
+-   `sizeof` isn't a function. It just looks like one! `sizeof` is an operator
+-   The `sizeof` of any type is known at complie time
+-   `sizeof` does **NOT** evaluate its argument:
+```
+int foo(void) {
+    printf("foo() was called\n"); // never printed
+}
+
+printf("size of foo's return type: %lu\n", sizeof(foo()));
+```
+
 ## Exercises
 
 Without using any arithmetic or comparison operators (e.g., `+`, `-`, `*`, `/`, `%`, `<`, `<=`, `>`, `>=`, `==`, or `!=`), fill in the blanks according to the description. Don't assume `sizeof(int) == 4`; make these methods work for any `int` size!
