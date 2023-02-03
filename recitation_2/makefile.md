@@ -393,3 +393,9 @@ clean: # removes object files and our executables
 	rm -f $(OBJS) $(TARGET) $(TARGET).exe
 # -f flag silences errors if any of these files do not exist
 ```
+
+---
+
+## Acknowledgements
+
+Parts of this note was originally created by John Hui for this course. They were modified by Faustina Cheng in Spring 2023.
