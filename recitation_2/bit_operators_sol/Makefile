@@ -4,7 +4,7 @@
 # - There are other, perhaps better, ways to write a Makefile
 # - This Makefile may not work for your projects
 # - Ensure you understand each line of the code and make necessary changes 
-#   if you want to adopt this Makefile for your projects
+#   if you want to use this Makefile for your projects
 # - Feel free to improve this Makefile and share your way on Ed!
 #
 CC     = gcc
