@@ -149,10 +149,11 @@ myprogram: hello.o goodbye.o myprogram.o
 where:
 
 - `myprogram` is the name of the target file this rule will build
-- `hello.o`, `goodbye.o`, `myprogram.o` are the prerequisites (or ingredients) that the target depends on
+- `hello.o`, `goodbye.o`, `myprogram.o` are the dependencies (prerequisites) that the target depends on
 - `gcc -o myprogram hello.o goodbye.o myprogram.o` is the recipe (ie. the shell command that builds the target)
+    - `goodbye.o` and `myprogram.o` are the ingredients for this recipe
 
-Make uses the “last modified” timestamp of each file to figure out if a target needs to be rebuilt. Make will rebuild a target if it doesn’t exist, or if it was last modified earlier than one of its prerequisites
+Make uses the “last modified” timestamp of each file to figure out if a target needs to be rebuilt. Make will rebuild a target if it doesn’t exist, or if it was last modified earlier than one of its dependencies.
 
 Creating our `Makefile` for `myprogram`:
 
