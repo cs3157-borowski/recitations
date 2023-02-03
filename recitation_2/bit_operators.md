@@ -112,8 +112,7 @@ C types tell you precisely how much memory a variable of that type occupies; how
 -   `char`:         1 byte
 -   `short`:        2 bytes
 -   `int`:          4 bytes
--   `long`:         8 bytes on 64-bit UNIX systems (such as AP server);
-                    4 bytes on most 32-bit systems and 64-bit Windows
+-   `long`:         8 bytes on 64-bit UNIX systems (such as AP server); 4 bytes on most 32-bit systems and 64-bit Windows
 -   `long long`:    8 bytes
 
 You can use `sizeof` operator to obtain the size of a type:
