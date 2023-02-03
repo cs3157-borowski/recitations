@@ -154,3 +154,6 @@ assert(swap(x) == 256); // 0000 0001 0000 0000 (256)
 ```
 ## Solutions
 
+The solutions can be found in `bit_operators_sol` directory in the same repo. The solutions are written in `bitoperators-solutions.h`; you can fill in `bitoperators.c` yourself before looking at the solutions.
+
+Build using `make` and test by running `./bitoperators`.
