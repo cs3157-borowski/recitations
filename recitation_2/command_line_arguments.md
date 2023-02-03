@@ -37,7 +37,7 @@ Note that for the array of pointers, argv, we use a NULL pointer as a null
 terminator for pointer array; for the array of chars, i.e., each of the argument
 strings, we use a null character '\0' as a null terminator for each string.
 
-Here's three different ways to implement the 'echo' program (K&R2, p115):
+Here are three different ways to implement the 'echo' program (K&R2, p115):
 
     for (i = 1; i < argc; i++)
         printf("%s\n", argv[i]);
