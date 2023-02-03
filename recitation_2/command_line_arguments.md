@@ -118,3 +118,10 @@ Answers:
     8
     1
     4
+    
+    
+### Acknowledgments
+
+Parts of this guide were originally developed by John Hui.
+
+Noam Zaid adapted it in Spring 23.
