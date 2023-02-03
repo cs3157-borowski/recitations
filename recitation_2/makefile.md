@@ -365,9 +365,9 @@ Compiling a program is not the only thing your might want to write rules for. Ma
 
 **Phony Targets:**
 
-- A phony target is one that is not really the name of a file. Rather, it is a target that will be executed unconditionally (even if a file with the same name as the target already exists and is up to date).
+- A phony target is one that is not really the name of a file. Rather, it is a target that will be executed unconditionally (even if a file with the same name as the target already exists and its dependencies (if any) are up to date).
 - `clean` and `all` are phony targets, so we specify that in our `Makefile` with `.PHONY: all clean`
-  - Note: the `.` in front of `.PHONY` means that `make` will not attempt to build the target.
+  - Note: the `.` in front of a target (`.PHONY` in this case) means that `make` will not attempt to build the target.
 
 Adding `all` and `clean` to our `Makefile`:
 
