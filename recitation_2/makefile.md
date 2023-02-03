@@ -353,7 +353,7 @@ LDFLAGS = # linker flags
 $(TARGET): $(OBJS) $(TARGET).c
 	$(CC) -o $(TARGET) $(OBJS) $(TARGET).c $(LDFLAGS) # adding linker flags to recipe
 %.o: %.c %.h
-	$(CC) $(CFLAGS) -c -o $@ $< # adding compiler flags to recipe
+	$(CC) $(CFLAGS) -c -o $@ $< # adding compiler flags to the recipe
 ```
 
 **`make all` and `make clean`:**
