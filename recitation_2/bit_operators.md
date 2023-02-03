@@ -2,16 +2,16 @@
 
 C has two sets of operators that look and behave similarly: logical operators and bitwise operators. They are:
 
-- `&&` logical AND
-- `||` logical OR
-- `!` logical NOT
+-   `&&` logical AND
+-   `||` logical OR
+-   `!` logical NOT
 
 and:
 
-- `&` bitwise AND
-- `|` bitwise OR
-- `~` bitwise NOT
-- `^` bitwise XOR
+-   `&` bitwise AND
+-   `|` bitwise OR
+-   `~` bitwise NOT
+-   `^` bitwise XOR
 
 (Note that there is no logical XOR.)
 
@@ -19,8 +19,8 @@ The difference is that the logical operators only consider whether their operand
 
 C also includes two bit-shift operators:
 
-- `<<` bitwise shift left
-- `>>` bitwise shift right
+-   `<<` bitwise shift left
+-   `>>` bitwise shift right
 
 #### Bitwise AND `&`
 
@@ -81,8 +81,8 @@ Another useful operation is the bitshift. What we mean by "shifting bits" is pus
 
 For `x << n`, each bit in `x` is shifted to the left (towards the Most Significant Bit, MSB) by `n` digits:
 
-- Left-shifting always fills the vacated bits on the right with 0's
-- The displaced bits beyond the size of the type on the left are discarded (aka. the bits shoved into the pool, see 2/1 lecture)
+-   Left-shifting always fills the vacated bits on the right with 0's
+-   The displaced bits beyond the size of the type on the left are discarded (aka. the bits shoved into the pool, see 2/1 lecture)
 
 Note that this is equivalent to multiplying a number by 2^`n`!
 
@@ -93,11 +93,11 @@ Note that this is equivalent to multiplying a number by 2^`n`!
 
 For `x >> n`, each bit in `x` is shifted to the right (towards the Least Significant Bit, LSB) by `n` digits:
 
-- How the vacated bits get filled depends on what we're dealing with:
-  - Right-shifting unsigned numbers fills vacated bits on the left with 0's
-  - Right-shifting signed numbers produces results that vary
-    depending on the machine and compiler, but on most modern computers, doing so will **sign extend** the number, i.e. the value of the MSB (the sign) will be used to pad the vacated bits (See [StackOverflow](https://stackoverflow.com/questions/15729765/sign-extension-with-bitwise-shift-operation))
-- The displaced bits on the right are discarded (aka. the bits shoved into the pool, see 2/1 lecture)
+-   How the vacated bits get filled depends on what we're dealing with:
+    -   Right-shifting unsigned numbers fills vacated bits on the left with 0's
+    -   Right-shifting signed numbers produces results that vary
+        depending on the machine and compiler, but on most modern computers, doing so will **sign extend** the number, i.e. the value of the MSB (the sign) will be used to pad the vacated bits (See [StackOverflow](https://stackoverflow.com/questions/15729765/sign-extension-with-bitwise-shift-operation))
+-   The displaced bits on the right are discarded (aka. the bits shoved into the pool, see 2/1 lecture)
 
 Note that this is equivalent to dividing a number by 2^`n`
 (and discarding the remainder)!
@@ -105,25 +105,30 @@ Note that this is equivalent to dividing a number by 2^`n`
     int x = 5;              // 0101 in binary
     assert((x >> 2) == 1);  // 0001 (1)
 
-## Exercises 
+## Exercises
 
-Without using any arithmetic or comparison operators (e.g., `+`, `-`, `*`, `/`, `%`, `<`, `<=`, `>`, `>=`, `==`, or `!=`), fill in the blanks according to the description. Don't assume `sizeof(int) == 4`; make these methods work for any `int` size! 
+Without using any arithmetic or comparison operators (e.g., `+`, `-`, `*`, `/`, `%`, `<`, `<=`, `>`, `>=`, `==`, or `!=`), fill in the blanks according to the description. Don't assume `sizeof(int) == 4`; make these methods work for any `int` size!
 
 **Exception:** you may use `-` only to account for off-by-one (e.g., `x - 1` is ok; `x - 32` or `x - n` is not).
 
 1. `mul8(num)` should return `num * 8`:
+
 ```
     int mul8(int num) {
-        return _______________; 
+        return _______________;
     }
 ```
+
 2. `make_odd(num)` should return `num` if `num` is odd, and return `num + 1` otherwise:
+
 ```
     unsigned int make_odd(unsigned int num) {
         return _______________;
     }
 ```
+
 3. `is_negative(num)` should return `1` when `num` is negative, and `0` otherwise:
+
 ```
     int is_negative(int num) {
         if (_______________)
@@ -132,7 +137,9 @@ Without using any arithmetic or comparison operators (e.g., `+`, `-`, `*`, `/`, 
             return 0;
     }
 ```
+
 4. `set_bit(num, n, b)` should return `num`, with its `n`-th bit is set to `1` if `b` is non-zero, and set to `0` otherwise (`n` is zero-indexed; `set_bit(0, 0 ,1)` should return `1`):
+
 ```
     int set_bit(int num, int n, int b) {
         if (b)
@@ -141,7 +148,9 @@ Without using any arithmetic or comparison operators (e.g., `+`, `-`, `*`, `/`, 
             return _______________;
     }
 ```
+
 5. `swap(num)` swaps the **bytes** of an unsigned short. For example, `swap(1)` should return `256`. Note that `sizeof(unsigned short)` returns `2` on the AP server, and 1 byte consists of 8 bits.
+
 ```
 unsigned short swap(unsigned short num) {
     unsigned short a = _______________;
@@ -152,6 +161,7 @@ unsigned short swap(unsigned short num) {
 unsigned short x = 1;   // 0000 0000 0000 0001 in binary
 assert(swap(x) == 256); // 0000 0001 0000 0000 (256)
 ```
+
 ## Solutions
 
 The solutions can be found in `bit_operators_sol` directory in the same repo. The solutions are written in `bitoperators-solutions.h`; you can fill in `bitoperators.c` yourself before looking at the solutions.
