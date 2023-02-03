@@ -141,7 +141,7 @@ Goodbye, Faustina!
 
 ### Makefile
 
-This process to produce our executable required many steps. We can streamline it by creating a `Makefile`, which give us a simple way to organize code compilation.
+This process to produce our executable required many steps. We can streamline it by creating a `Makefile`, which gives us a simple way to organize code compilation.
 
 Because `hello.o` is produced by including `hello.h` and compiling `hello.c`, we can say that `hello.o` depends on `hello.c` and `hello.h`. Similarly, `myprogram` is produced by linking `hello.o`, `goodbye.o`, and `myprogram.o`, so we say that `myprogram` depends on these object files.
 
