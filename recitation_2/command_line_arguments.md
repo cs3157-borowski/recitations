@@ -54,3 +54,36 @@ Consider the following sample run and the different versions on main,
 try to predict the output of main():
 
     $./main Welcome to AP!
+
+After each version of main() write down the output of the program:
+You may assume that each main has contains #include <stdio.h>
+-
+
+    int main(int argc, char **argv)
+    {
+        for (int i = 0 ; i < argc ; i++)
+            printf("%s\n",argv[i]);
+        return 0;
+    }
+    
+-
+
+    int main(int argc, char **argv)
+    {
+        for (int i = 0 ; i < argc ; i++)
+            printf("%s\n",argv[i][0]);
+        return 0;
+    }
+
+-
+
+    int main(int argc, char** argv)
+    {
+    printf("%s\n",*argv);
+    printf("%s\n",argv[1]);
+    printf("%ld\n",sizeof(argv));
+    printf("%ld\n",sizeof(*argv));
+    printf("%ld\n",sizeof(*argv[1]));
+
+    return 0;
+    }
