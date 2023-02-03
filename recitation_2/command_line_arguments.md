@@ -59,7 +59,7 @@ After each version of main() write down the output of the program:
 
 `You may assume that each main contains #include <stdio.h>`
 
-1.
+1. 
 
     int main(int argc, char **argv)
     {
@@ -94,14 +94,14 @@ After each version of main() write down the output of the program:
     
 Answers:
 
-1.
+Q1 Answer:
 
-    ./a.out
+    ./main
     Welcome
     to
     AP!
 
-2.
+Q2 Answer:
 
     
     .
@@ -110,9 +110,9 @@ Answers:
     A
     
     
-3.
+Q3 Answer:
 
-    ./a.out
+    ./main
     Welcome
     8
     8
