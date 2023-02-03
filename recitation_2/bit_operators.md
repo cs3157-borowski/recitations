@@ -56,7 +56,7 @@ For example:
 
 #### Bitwise XOR `^`
 
-Also known as a bitwise eXclusive OR; behaves just like the bitwise AND and OR, except with an XOR operation. Takes two integers as operands and returns a new integer where its bit pattern consists of 1's where only one of its operands has a 1 in the same position.
+Also known as a bitwise eXclusive OR; it behaves just like the bitwise AND and OR, except with an XOR operation. Takes two integers as operands and returns a new integer where its bit pattern consists of 1's where only one of its operands has a 1 in the same position.
 For example:
 
     int x = 6;            // 0110 in binary
