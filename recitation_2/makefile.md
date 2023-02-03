@@ -361,7 +361,7 @@ $(TARGET): $(OBJS) $(TARGET).c
 Compiling a program is not the only thing your might want to write rules for. Makefiles commonly provide instructions on a few other things besides compiling a program: 
 
 - To delete all the object files and executables so that the directory is ‘clean’. We can create a rule with the target `clean`, then with a recipe to `rm` the object files and executables that we made.
-- An easy-to-read `all` target that is usually the first rule in the `Makefile`. This is helpful because the `make` command will build the first target in your `Makefile`, so having the first target be `all` makes it easy to see what `make` will build.
+- An easy-to-read `all` target that is usually the first rule in the `Makefile`. This is helpful because the `make` command will build the first target in your `Makefile`, so setting the first target to `all` makes it easy to see what `make` will build.
 
 **Phony Targets:**
 
