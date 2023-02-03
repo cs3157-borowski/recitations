@@ -59,6 +59,7 @@ After each version of main() write down the output of the program:
 You may assume that each main has contains #include <stdio.h>
 
 -
+
     int main(int argc, char **argv)
     {
         for (int i = 0 ; i < argc ; i++)
@@ -67,6 +68,7 @@ You may assume that each main has contains #include <stdio.h>
     }
     
 -
+
     int main(int argc, char **argv)
     {
         for (int i = 0 ; i < argc ; i++)
@@ -75,6 +77,7 @@ You may assume that each main has contains #include <stdio.h>
     }
 
 -
+
     int main(int argc, char** argv)
     {
     printf("%s\n",*argv);
