@@ -56,7 +56,8 @@ try to predict the output of main():
     $./main Welcome to AP!
 
 After each version of main() write down the output of the program:
-You may assume that each main has contains #include <stdio.h>
+
+`You may assume that each main contains #include <stdio.h>`
 
 -
 
