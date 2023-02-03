@@ -109,7 +109,7 @@ Note that this is equivalent to dividing a number by 2^`n`
 
 Without using any arithmetic or comparison operators (e.g., `+`, `-`, `*`, `/`, `%`, `<`, `<=`, `>`, `>=`, `==`, or `!=`), fill in the blanks according to the description. Don't assume `sizeof(int) == 4`; make these methods work for any `int` size!
 
-**Exception:** you may use `-` only to account for off-by-one (e.g., `x - 1` is ok; `x - 32` or `x - n` is not).
+**Exception:** you may use `-` only to account for off-by-one (e.g., `num - 1` is ok; `num - 32` or `num - n` is not).
 
 1. `mul8(num)` should return `num * 8`:
 
@@ -167,3 +167,7 @@ assert(swap(x) == 256); // 0000 0001 0000 0000 (256)
 The solutions can be found in `bit_operators_sol` directory in the same repo. The solutions are written in `bitoperators-solutions.h`; you can fill in `bitoperators.c` yourself before looking at the solutions.
 
 Build using `make` and test by running `./bitoperators`.
+
+## Acknowledgements
+
+Parts of this note and exercises were originally created by Prof. Jae Lee and John Hui for this course. They were modified by Stanley Lin in Spring 2023.
