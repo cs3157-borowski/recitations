@@ -73,7 +73,7 @@ After each version of main() write down the output of the program:
     int main(int argc, char **argv)
     {
         for (int i = 0 ; i < argc ; i++)
-            printf("%s\n",argv[i][0]);
+            printf("%c\n",argv[i][0]);
         return 0;
     }
 
@@ -86,5 +86,33 @@ After each version of main() write down the output of the program:
     printf("%ld\n",sizeof(argv));
     printf("%ld\n",sizeof(*argv));
     printf("%ld\n",sizeof(*argv[1]));
+    printf("%ld\n",sizeof(argc));
+    
     return 0;
     }
+    
+    
+Answers:
+
+1.
+
+    ./a.out
+    Welcome
+    to
+    AP!
+
+2.
+    
+    .
+    W
+    t
+    A
+    
+3.
+
+    ./a.out
+    Welcome
+    8
+    8
+    1
+    4
