@@ -112,7 +112,7 @@ Answers:
     
 3.
 
-    ./a.out
+    ./main
     Welcome
     8
     8
