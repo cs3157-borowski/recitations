@@ -147,7 +147,7 @@ Because `hello.o` is produced by including `hello.h` and compiling `hello.c`, we
 
 We should only need to rebuild something if at least one of the files it depends on has changed. After all, part of the reason for separate compilation is to avoid the cost of rebuilding things we do not need to rebuild.
 
-Make is a build system that helps us manage incremental builds. You can fild its manual online here: https://www.gnu.org/software/make/manual/make.html.
+Make is a build system that helps us manage incremental builds. You can find its manual online here: https://www.gnu.org/software/make/manual/make.html.
 
 Make runs commands for you according to instructions specified in a Makefile. For example, it can help you run any of the GCC build commands shown before. A `Makefile` should specify one of more “rules” for building files; each rule looks like this:
 
