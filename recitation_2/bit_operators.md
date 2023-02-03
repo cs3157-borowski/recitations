@@ -1,7 +1,7 @@
 # Compilation and Makefiles
 
 ### Separate Compilation
-Suppose we want to build an executable, `myprogram`, which comprises from:
+Suppose we want to build an executable, `myprogram`, which comprises of:
 
 `myprogram.c`:
 
@@ -49,7 +49,7 @@ void goodbye(char *s)
 
 ```
 
-Because `hello()` and `goodbye()` are not defined in `myprogram.c`, we need to include their respective header files in `myprogram.c` to let our program know that they are defined elsewhere:
+Because `hello()` and `goodbye()` are not defined in `myprogram.c`, we need to include their respective header files in `myprogram.c`  to let our program know that they are defined elsewhere:
 
 `hello.h`:
 
@@ -65,7 +65,7 @@ void goodbye(char *s);
 
 ```
 
--   These header files just contain the method signatures of their respective methods.
+- These header files just contain the method signatures of their respective methods.
 
 ### Compiling
 
@@ -79,16 +79,16 @@ The `.c` files need to be compiled into object files (`.o` files).
 We can do this by using the `gcc -c` command.
 
 ```bash
-$ gcc -c -o hello.o hello.c
-$ gcc -c -o goodbye.o goodbye.c
-$ gcc -c -o myprogram.o myprogram.c
+$ gcc -c -o hello.o hello.c 
+$ gcc -c -o goodbye.o goodbye.c 
+$ gcc -c -o myprogram.o myprogram.c 
 ```
 
--   `gcc` is the C compiler that we use
--   `-c` specifies that we want to compile
--   `-o <filename>.o` specifies that we want the output (the object file) to be named `<filename>.o`
-    -   The `.o` file should have the same name as the `.c` file
--   `<filename>.c` is the `.c` file that we want to compile
+- `gcc` is the C compiler that we use
+- `-c` specifies that we want to compile
+- `-o <filename>.o` specifies that we want the output (the object file) to be named `<filename>.o`
+  - The `.o` file should have the same name as the `.c` file
+- `<filename>.c` is the `.c` file that we want to compile
 
 Format: `gcc -c -o <output name> <ingredients>`
 
@@ -100,7 +100,7 @@ goodbye.c       goodbye.o       hello.h         myprogram.c
 goodbye.h       hello.c         hello.o         myprogram.o
 ```
 
--   `gcc -c` will pre-process (ie. including the headers), compile, and assemble the files; taking in a `.c` file and outputing a `.o` file.
+- `gcc -c` will pre-process (ie. including the headers), compile, and assemble the files; taking in a `.c` file and outputing a `.o` file.
 
 ### Linking
 
@@ -125,7 +125,7 @@ goodbye.h       hello.c         hello.o         myprogram.c
 ```bash
 $ ./myprogram Faustina
 This is my program!
-Hello, Faustina!
+Hello, Faustina! 
 Goodbye, Faustina!
 ```
 
@@ -148,9 +148,9 @@ myprogram: hello.o goodbye.o myprogram.o
 
 where:
 
--   `myprogram` is the name of the target file this rule will build
--   `hello.o`, `goodbye.o`, `myprogram.o` are the prerequisites (or ingredients) that the target depends on
--   `gcc -o myprogram hello.o goodbye.o myprogram.o` is the recipe (ie. the shell command that builds the target)
+- `myprogram` is the name of the target file this rule will build
+- `hello.o`, `goodbye.o`, `myprogram.o` are the prerequisites (or ingredients) that the target depends on
+- `gcc -o myprogram hello.o goodbye.o myprogram.o` is the recipe (ie. the shell command that builds the target)
 
 Make uses the “last modified” timestamp of each file to figure out if a target needs to be rebuilt. Make will rebuild a target if it doesn’t exist, or if it was last modified earlier than one of its prerequisites
 
@@ -197,15 +197,17 @@ Makefile        goodbye.h       hello.c         hello.o         myprogram.c
 goodbye.c       goodbye.o       hello.h         myprogram       myprogram.o
 ```
 
+
+
 Make includes many useful features that we can make use of in our `Makefile`.
 
 ### Macros
 
 If we look at our `Makefile`, we can see that a lot of text entries is repeated (ie. `gcc`, our object files). We can use macros to store these to make our `Makefile` less error-prone and easier to modify for different programs.
 
--   Macro definitions have the form: `NAME = text string`
+- Macro definitions have the form: `NAME = text string`
 
--   Macros are referred to by placing the name in parentheses and preceding it with the `$` sign.
+- Macros are referred to by placing the name in parentheses and preceding it with the `$` sign.
 
 ```bash
 CC = gcc
@@ -236,13 +238,13 @@ We can further generalize our `Makefile` by using functions, special macros and 
 
 Notice that our `C_FILES` are all the `.c` files in our current directory. We can use the `wildcard` function and pattern matching to get these instead. `$(wildcard *.c)` will give us a space-separated list of names of existing files that match the given file name pattern: `*.c`. `*.c` matches all file names that end with `.c`.
 
--   Replace `C_FILES = hello.c goodbye.c myprogram.c` with `C_FILES = $(wildcard *.c)`
+- Replace `C_FILES = hello.c goodbye.c myprogram.c` with `C_FILES = $(wildcard *.c)`
 
 **`patsubst` Function:**
 
 `OBJS` are all the `.c` files in our current directory, but with a `.o` extension instead of `.c`. We can use the `patsubst` function and pattern matching instead. `$(patsubst %.c,%.o,$(C_FILES))` takes all the file names in `C_FILES` and replaces `.c` with `.o`.
 
--   Replace `OBJS = hello.o goodbye.o myprogram.o` with `OBJS = $(patsubst %.c,%.o,$(C_FILES))`
+- Replace `OBJS = hello.o goodbye.o myprogram.o` with `OBJS = $(patsubst %.c,%.o,$(C_FILES))`
 
 **Special Macros:**
 
@@ -252,17 +254,15 @@ For our rules for `.o` targets, the output name of the recipe (what follows the 
 
 `$<` evaluates to the first dependency.
 
--   Replace `$(CC) -c -o <output name> <ingredient>` with `$(CC) $(CFLAGS) -c -o $@ $<`
+- Replace `$(CC) -c -o <output name> <ingredient>` with `$(CC) $(CFLAGS) -c -o $@ $<`
 
 **`%` (Pattern Matching):**
 
 Our rules for `.o` targets all have dependencies for the corresponding `.c` and `.h` files (with the same file name before the extension). We can generalize this with pattern matching. `%.o: %.c %.h` means for every `.o` file that exists, its dependencies are the `.c` and `.h` files of the same file name (before the file extension).
 
-Note that our rule for `myprogram.o` doesn’t depend on `myprogram.h`, as no such file exists. But `%.h` will just be skipped over if no matching name with a `.h` extension exists, so our compilation of `myprogram.o` would still be successful.
+- Replace `<filename>.o: <filename>.c <filename>.h` with `%.o: %.c %.h`
 
-Also, `myprogram` depends on `hello.h` and `goodbye.h`, which our pattern matching doesn’t account for but it’s fine because `myprogram`, our executable, depends on `hello.o` and `goodbye.o`, which in turn depend on `hello.h` and `goodbye.h`. So if for example `hello.h` was updated, `hello.o` would be rebuilt, leading to `myprogram` being rebuilt.
 
--   Replace `<filename>.o: <filename>.c <filename>.h` with `%.o: %.c %.h`
 
 Altogether, we get this `Makefile`:
 
@@ -274,10 +274,46 @@ OBJS    = $(patsubst %.c,%.o,$(C_FILES))
 
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS)
-
+    
 %.o: %.c %.h
 	$(CC) -c -o $@ $<
 ```
+
+
+
+However, note that  `myprogram.o` doesn’t depend on `myprogram.h`, as no such file exists. 
+
+So, we can filter out `myprogram.c` from our `C_FILES` with the **`filter-out`** function.
+
+- Replace `C_FILES = $(wildcard *.c)` with `C_FILES = $(filter-out $(TARGET).c, $(wildcard *.c)) `
+
+We then have to compile and link `myprogram.c` with the rest of the object files to produce `myprogram`, so we can change our rule for `myprogram` to:
+
+```bash
+$(TARGET): $(OBJS) $(TARGET).c
+	$(CC) -o $(TARGET) $(OBJS) $(TARGET).c
+```
+
+This works because the command `gcc -o <output name> <ingredients>` will both compile (if needed for `.c` files) and link your ingredients.
+
+Note: For multi-source programs, however, it is not good practice to compile and link all your files in one step because it defeats the purpose of incremental building and individual dependencies cannot be checked. In our `Makefile`, aside from the `.c` file containing the main function, all other `.o` objects are still built separately.
+
+This gives us:
+
+```bash
+CC      = gcc
+TARGET  = myprogram
+C_FILES = $(filter-out $(TARGET).c, $(wildcard *.c)) # filters out myprogram.c
+OBJS    = $(patsubst %.c,%.o,$(C_FILES))
+
+$(TARGET): $(OBJS) $(TARGET).c # compiles and links myprogram.c with rest of .o files
+	$(CC) -o $(TARGET) $(OBJS) $(TARGET).c
+	
+%.o: %.c %.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+```
+
+
 
 **Adding Flags:**
 
@@ -298,36 +334,36 @@ This gives us:
 ```bash
 CC      = gcc
 TARGET  = myprogram
-C_FILES = $(wildcard *.c)
+C_FILES = $(filter-out $(TARGET).c, $(wildcard *.c))
 OBJS    = $(patsubst %.c,%.o,$(C_FILES))
 CFLAGS  = -g -Wall -Werror -pedantic-errors # compiler flags
 LDFLAGS = # linker flags
 
-$(TARGET): $(OBJS)
-	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS) # adding linker flags to recipe
+$(TARGET): $(OBJS) $(TARGET).c
+	$(CC) -o $(TARGET) $(OBJS) $(TARGET).c $(LDFLAGS) # adding linker flags to recipe
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c -o $@ $< # adding compiler flags to recipe
 ```
 
 **`make all` and `make clean`:**
 
-Compiling a program is not the only thing your might want to write rules for. Makefiles commonly provide instructions on a few other things besides compiling a program:
+Compiling a program is not the only thing your might want to write rules for. Makefiles commonly provide instructions on a few other things besides compiling a program: 
 
--   To delete all the object files and executables so that the directory is ‘clean’. We can create a rule with the target `clean`, then with a recipe to `rm` the object files and executables that we made.
--   An easy-to-read `all` target that is usually the first rule in the `Makefile`. This is helpful because the `make` command will build the first target in your `Makefile` , so having the first target be `all` makes it easy to see what `make` will build.
+- To delete all the object files and executables so that the directory is ‘clean’. We can create a rule with the target `clean`, then with a recipe to `rm`  the object files and executables that we made.
+- An easy-to-read `all` target that is usually the first rule in the `Makefile`. This is helpful because the `make` command will build the first target in your `Makefile` , so having the first target be `all` makes it easy to see what `make` will build.
 
 **Phony Targets:**
 
--   A phony target is one that is not really the name of a file. Rather, it is a target that will be executed unconditionally (even if a file with the same name as the target already exists and is up to date).
--   `clean` and `all` are phony targets, so we specify that in our `Makefile` with `.PHONY: all clean`
-    -   Note: the `.` in front of `.PHONY` means that `make` will not attempt to build the target.
+- A phony target is one that is not really the name of a file. Rather, it is a target that will be executed unconditionally (even if a file with the same name as the target already exists and is up to date).
+- `clean` and `all` are phony targets, so we specify that in our `Makefile` with `.PHONY: all clean`
+  - Note: the `.` in front of `.PHONY` means that `make` will not attempt to build the target.
 
 Adding `all` and `clean` to our `Makefile`:
 
 ```bash
 CC      = gcc
 TARGET  = myprogram
-C_FILES = $(wildcard *.c)
+C_FILES = $(filter-out $(TARGET).c, $(wildcard *.c))
 OBJS    = $(patsubst %.c,%.o,$(C_FILES))
 CFLAGS  = -g -Wall -Werror -pedantic-errors
 LDFLAGS =
@@ -336,47 +372,22 @@ LDFLAGS =
 
 all: $(TARGET) # running make will by default build our executable
 
-$(TARGET): $(OBJS)
-	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS)
-
+$(TARGET): $(OBJS) $(TARGET).c
+	$(CC) -o $(TARGET) $(OBJS) $(TARGET).c $(LDFLAGS)
+	
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c -o $@ $<
-
+	
 clean: # removes object files and our executables
 	rm -f $(OBJS) $(TARGET) $(TARGET).exe
 	# -f flag silences errors if any of these files do not exist
 ```
 
+
+
 ---
 
-The generic Makefile for projects w/ user‐defined libraries and 1 driver program shown in lecture uses the `filter-out` function to filter out the `.c` file of the main executable so that it can be used for single-source projects without leaving behind a `.o` file.
 
-The rule for `$(TARGET)` is then changed to compile and link `$(TARGET).c` in one step. This works because the command `gcc -o <output name> <ingredients>` will both compile (if needed for `.c` files) and link your ingredients .
-
-For multi-source programs, however, it is not good practice to compile and link all your files in one step because it defeats the purpose of incremental building and individual dependencies cannot be checked. This is why in the Makefile shown, `.o` objects are still built separately aside from the one that contains the main function of the executable.
-
-```bash
-CC      = gcc
-TARGET  = <executable name with no extension>
-C_FILES = $(filter-out $(TARGET).c, $(wildcard *.c))
-			# filtering out .c file with main function of executable
-OBJS    = $(patsubst %.c,%.o,$(C_FILES))
-CFLAGS  = -g -Wall -Werror -pedantic-errors
-LDFLAGS =
-
-.PHONY: all clean
-
-all: $(TARGET)
-
-$(TARGET): $(OBJS) $(TARGET).c # main .c file is compiled and linked with the other object files
-	$(CC) $(OBJS) $(TARGET).c -o $(TARGET) $(LDFLAGS)
-
-%.o: %.c %.h
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-clean:
-	rm -f $(OBJS) $(TARGET) $(TARGET).exe
-```
 
 # **Bit Operators**
 
