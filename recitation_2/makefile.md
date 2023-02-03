@@ -181,7 +181,7 @@ myprogram.o: myprogram.c hello.h goodbye.h
 	gcc -c -o myprogram.o myprogram.c
 ```
 
-Note: The space preceding your recipe needs to be a tab, not spaces.
+Note: The space preceding your recipe needs to be a tab, not four spaces.
 
 Note: We include header files in our dependencies in the `Makefile`, but they do not need to be included in the recipe
 
