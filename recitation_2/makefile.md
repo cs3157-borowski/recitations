@@ -307,7 +307,7 @@ $(TARGET): $(OBJS) $(TARGET).c
 
 This works because the command `gcc -o <output name> <ingredients>` will both compile (if needed for `.c` files) and link your ingredients.
 
-Note: For multi-source programs, however, it is not good practice to compile and link all your files in one step because it defeats the purpose of incremental building and individual dependencies cannot be checked. In our `Makefile`, aside from the `.c` file containing the main function, all other `.o` objects are still built separately.
+Note: For multi-source programs, however, it is not good practice to compile and link all your files in one step because it defeats the purpose of incremental building, and individual dependencies cannot be checked. In our `Makefile`, aside from the `.c` file containing the main function, all other `.o` objects are still built separately.
 
 This gives us:
 
