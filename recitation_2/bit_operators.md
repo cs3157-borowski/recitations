@@ -1,6 +1,7 @@
 # Compilation and Makefiles
 
 ### Separate Compilation
+Suppose we want to build an executable, `myprogram`, which comprises from:
 
 `myprogram.c`:
 
