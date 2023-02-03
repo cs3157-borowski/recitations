@@ -54,18 +54,28 @@ Because `hello()` and `goodbye()` are not defined in `myprogram.c`, we need to i
 `hello.h`:
 
 ```c
+#ifndef _HELLO_H_
+#define _HELLO_H_
+
 void hello(char *s);
+
+#endif
 
 ```
 
 `goodbye.h`:
 
 ```c
+#ifndef _GOODBYE_H_
+#define _GOODBYE_H_
+
 void goodbye(char *s);
+
+#endif
 
 ```
 
-- These header files just contain the method signatures of their respective methods.
+- Once the header is included, it checks if a unique value (in this case `_GOODBYE_H_`) is defined. Then if it's not defined, it defines it and continues. If the code is included again, the first `ifndef` fails, resulting in a blank file. This is called an include guard and prevents double declarations.
 
 ### Compiling
 
