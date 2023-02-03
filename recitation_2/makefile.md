@@ -149,7 +149,7 @@ We should only need to rebuild something if at least one of the files it depends
 
 Make is a build system that helps us manage incremental builds. You can find its manual online here: https://www.gnu.org/software/make/manual/make.html.
 
-Make runs commands for you according to instructions specified in a Makefile. For example, it can help you run any of the GCC build commands shown before. A `Makefile` should specify one of more “rules” for building files; each rule looks like this:
+Make runs commands for you according to instructions specified in a Makefile. For example, it can help you run any of the GCC build commands shown before. A `Makefile` should specify one or more “rules” for building files; each rule looks like this:
 
 ```bash
 myprogram: hello.o goodbye.o myprogram.o
