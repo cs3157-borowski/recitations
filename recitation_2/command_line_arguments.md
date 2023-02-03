@@ -77,7 +77,7 @@ After each version of main() write down the output of the program:
         return 0;
     }
 
--
+3.
 
     int main(int argc, char** argv)
     {
