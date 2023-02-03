@@ -53,7 +53,7 @@ Here are three different ways to implement the 'echo' program (K&R2, p115):
 Consider the following sample run and the different versions on main,
 try to predict the output of main():
 
-    $./main Welcome to AP!
+    $ ./main Welcome to AP!
 
 After each version of main() write down the output of the program:
 
