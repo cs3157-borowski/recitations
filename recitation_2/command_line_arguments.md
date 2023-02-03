@@ -59,7 +59,7 @@ After each version of main() write down the output of the program:
 
 `You may assume that each main contains #include <stdio.h>`
 
--
+1.
 
     int main(int argc, char **argv)
     {
