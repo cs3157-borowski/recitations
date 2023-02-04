@@ -330,7 +330,7 @@ $(TARGET): $(OBJS) $(TARGET).c # compiles and links myprogram.c with rest of .o 
 
 We want to pass compiler flags when we compile to get better debug messages to better catch errors in our code. To this, we use the flags: `-g -Wall -Werror -pedantic-errors`.
 
-To compile `hello.c` separately to `hello.c` with the flags, for example, we would do:
+To compile `hello.c` separately to `hello.o` with the flags, for example, we would do:
 
 ```bash
 $ gcc -c -g -Wall -Werror -pedantic-errors -o hello.o hello.c
@@ -358,7 +358,7 @@ $(TARGET): $(OBJS) $(TARGET).c
 
 **`make all` and `make clean`:**
 
-Compiling a program is not the only thing your might want to write rules for. Makefiles commonly provide instructions on a few other things besides compiling a program: 
+Compiling a program is not the only thing you might want to write rules for. Makefiles commonly provide instructions on a few other things besides compiling a program: 
 
 - To delete all the object files and executables so that the directory is ‘clean’. We can create a rule with the target `clean`, then with a recipe to `rm` the object files and executables that we made.
 - An easy-to-read `all` target that is usually the first rule in the `Makefile`. This is helpful because the `make` command will build the first target in your `Makefile`, so setting the first target to `all` makes it easy to see what `make` will build.
