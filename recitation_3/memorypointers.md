@@ -276,6 +276,7 @@ char **p = a;
 char a[][10] = {"hello", "world" }; //what's the difference here?
 ```
 
+## Acknowledgements ## 
 
-
-
+This recitation was originally developed by Jae Woo Lee.
+Claudia Cortell and Shreya Somayajula adapted it in Spring 2023.
