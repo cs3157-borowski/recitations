@@ -12,15 +12,15 @@ Every process, i.e a running program, gets 512G of virtual memory space. The mem
 
 ![hi](./MemoryLayout.png "Memory Layout Diagram")
 
-The stack grows downward starting from 512G while the program code, static variables, and heap variables are all at the bottom (0), sitting in that order (Check the diagram above). This means that when functions are called, space for them is built up on the stack and then cleared as they complete. Imagine function calls being stacked on top of each other (but upside down) and then being popped off last to first as they return. The stack is a *temporary* storage space. Check out [this](./stack-diagram.jpg) diagram to build intuition on how the stack changes throughout your program. 
+The stack grows downward while the program code, static variables, and heap variables are all at the bottom (0), sitting in that order (Check the diagram above). This means that when functions are called, space for them is built up on the stack and then cleared as they complete. Imagine function calls being stacked on top of each other (but upside down) and then being popped off last to first as they return. The stack is a *temporary* storage space.
 
-The heap is where you dynamically allocate memory - it is a storage space that is not automatically managed like the stack. You use the heap if you want to manage how long something is stored in memory, which means you are responsible for clearing any space you allocate on the heap. You also use the heap if what you’re storing is considerably large. This is because there is an OS dependent limit on how much data can be stored in the stack, so the heap is a good choice if you don’t want your storage needs to saturate your stack. Also note that unlike the stack, the heap grows upwards (towards the stack). 
+The heap is where you dynamically allocate memory (using ``malloc()``) - it is a storage space that is not automatically managed like the stack. You use the heap if you want to manage how long something is stored in memory, which means you are responsible for clearing any space you allocate on the heap (using ``free()``). Also note that unlike the stack, the heap grows upwards (towards the stack). 
 
 ### Variables ###
 
 #### Stack Variables ####
 
-When you declare a variable in C, it is defined for the current scope and will be released (removed from memory) at the end of the scope. If you re-declare a variable inside a scope within a ‘nested’ scope (see below), you won't be able to change the outer variable.
+When you declare a variable in C, it is defined for the current scope and will be released (removed from memory) at the end of the scope.
 
 ```c
 int x;
@@ -34,8 +34,7 @@ x = 0;
 //x is still 0 out here
 ```
 
-The variables inside the curly braces are **stack variables** (also known as 
-automatic variables), and are stored on the stack. Their scope is local to a block (meaning code enclosed by curly braces, as shown above). They are created (pushed on the stack) when entering the block and destroyed (popped off the stack) upon exit.
+The variables inside the curly braces are **stack variables**, and are stored on the stack. Their scope is local to a block (meaning code enclosed by curly braces, as shown above). They are created (pushed on the stack) when entering the block and destroyed (popped off the stack) upon exit.
 
 #### Static and Global Variables ####
 
@@ -94,11 +93,10 @@ void magic_print() {
 
 ## Pointers ##
 
-Pointers are what will get you a job. Understanding pointers is crucial and
-using them naturally will make you stand out as a programmer. Let's start with
+Understanding pointers is crucial and using them naturally will make you stand out as a programmer. Let's start with
 the basics.
 
-**Pointer:** A variable that stores a memory address. That's it.
+**Pointer:** A variable that stores a memory address. That's it. The memory address is _just a number_.
 
 There isn't just one data type called "pointer". Every pointer is a
 pointer-to-type, which encodes how to interpret the bytes you find in the memory
@@ -114,13 +112,6 @@ int x = 5; // x is a plain int
 int *p; // p is a pointer-to-int
 ```
 
-Spacing of asterisk doesn't matter, but `*p` is generally preferable as it 
-makes declarations clearer.  `int* p1, p2;` would lead you to assume that both 
-p1 and p2 are being declared as type int* (a pointer to an integer), but in 
-reality the compiler interprets this statement as if it was written 
-`int *p1; int p2;` - declaring p1 as a pointer to int and p2 as a normal int.
-Writing the declaration as `int *p1, p2` will avoid confusion in such cases.
-
 ### Using basic pointers ###
 
 There are two basic operators that you use with pointers: 
@@ -134,8 +125,7 @@ int *p; // p is a pointer-to-int
 p = &x; // p now points to x
 ```
 
-The `*` operator *dereferences* a pointer: it follows the pointer and gets the
-thing it points to.
+The `*` operator *dereferences* a pointer: it follows the pointer to retrieve the value it points to
 
 ```c
 int x = 5;
@@ -144,21 +134,18 @@ printf("%d", *p); //prints out 5
 *p = 9;  // now x is 9
 ```
 
-`&` and `*` are basically opposites: `&` adds a level of indirection taking you
-further from the underlying value, while `*` removes a level, brining you
-closer. So `*&x` is the same as `x`, as is `*&*&x`.
+`&` and `*` are basically opposites: `&` adds a level of indirection, while `*` removes a level, bringing you
+closer to the underlying value. 
 
-There are limits though. Why do you think `&&x` is not valid? (*Spoiler:* because
-`&x` is just a transient *value* of type `int *`, it's not a variable in memory,
-so you cannot get its memory address with the `&` operator).
 
 ### Ok, so why use pointers? ###
 
 C is a **call-by-value** language which means all arguments to functions are 
 copied, and a local copy is made on that function's stack. Changes made inside the
-function are not reflected on the outside. Therefore if you want a function to
+function are not reflected on the outside. 
+__Therefore if you want a function to
 modify a value that you have, you'll have to tell the function where to find the
-that value by memory address, not just give it the value:
+that value by memory address, not just give it the value:__
 
 ```c
 void increment(int a) {
@@ -180,49 +167,10 @@ int main() {
 Note not only the difference in the function, but how the parameters are passed.
 **Passing a pointer is fundamentally a different type than passing a value.**
 
-For more pointer examples, see `E-Memory-Pointers/code/basicpointers.c`.
-
 
 ---- 
 
 ## Arrays ## 
-
-As per the C99 Standard: 
-
->An array type describes a contiguously allocated nonempty set of objects with a particular member object type, called the element type. Array types are characterized by their element type and by the number of elements in the array.
-
-What exactly does that mean? Let's look at an example declaration and try to figure out.
-
-```c
-int a[10];
-```
-
-This would allocate space on the stack for 10 elements of type `int`. The array is in contiguous memory locations. i.e., `a[1]` is located immediately after `a[0]`.
-Within the scope they were declared, arrays generally operate like you're used
-to in Java or other languages:
-
-```c
-int a[10];
-a[0] = 0;
-int i = 3;
-a[i] = -1;
-```
-
-However note that arrays in C have no bound checking, so you can read/write an
-element past the end of the array. It may even work, at least most of the time,
-but it's undefined. Valgrind testing can catch some of this, and compiler
-warnings might catch others, but it's up to the programmer to be careful.
-
-```c
-int a[10]
-a[10000]; //the compiler lets you do this, but it's undefined
-```
-
-Declaring multidimensial arrays is also possible, but fairly rare.
-
-```c
-int matrix[50][20];
-```
 
 The size of an array in C is returned by the `sizeof()` operator.
 
@@ -240,34 +188,18 @@ elements. All arithmetic is with respect to the type of element being addressed,
 so if you have an int pointer `int *p`, `p+1` points to the next int, which is 4
 bytes later. *Think in terms of elements, not in terms of bytes.*
 
-```c
-int *p = q; //p is a pointer to int; it's pointing to the same place as q, exactly where doesn't matter now
-p+1; //this is a pointer-to-int that's point to an integer that immediately follows p
-*(p+1); //this is an integer, the dereferenced value pointed to by the previous line
-*p++; //this returns the current derefenced value (ie the integer), and advances the pointer to the next element
-     //the above is VERY common when looping over arrays in C
-```
-
 
 ## Arrays and Pointers ## 
 
-You may have heard that "arrays are pointers." While this is not true, arrays and pointers behave very similarly and it is important to know the differences!
+Arrays and pointers behave very similarly, but it is important to know the differences!
 
-**Jae's Grand Unified Theory of Pointers** </br>
-Also known as Jae's GUT
 
-> Given pointer `p` of type `T*` and integer `i` </br>
-> `*(p+i) == p[i]`
 
-What does this mean? And how does it unify anything? Let's break it down. </br>
+Given pointer `p` of type `T*` and integer `i`
 
-Given any pointer `p` of type `T*`, we can use pointer arithmetic to get the address of the next element with `p+1`. This address is `sizeof(T)` bytes after `p`. If this doesn't make sense, review the pointer arithmetic section above! </br>
+`*(p+i) == p[i]`
 
-We can understand `p+i` in the same way as above. The address returned by the expression is `sizeof(T)` * `i` bytes after `p`, or the address of the `i`th element of type `T` after `p`. E.g. `i=3`, and `T` is a `char`, then `p+i` returns a `char *` that holds the address three characters after `p`. 
-
-Does it make sense that `p+i` is 3 bytes after `p`? If not, make sure to understand before moving on!
-
-What Jae's **GUT** says, other than *feed me*, is that the `p[i]` is exactly the same thing as `*(p+i)`. Essentially, we can use the square brackets `[]` with a pointer to find the address of the `i`th element away from `p`. Then we can dereference the new address and voilá, we have the `i`th element itself!
+In other words, this means that the `p[i]` is exactly the same thing as `*(p+i)`. Essentially, we can use the square brackets `[]` with a pointer to find the address of the `i`th element away from `p`. Then we can dereference the new address and voilá, we have the `i`th element itself!
 
 If this is sounding a lot like an array, that's because it basically is! If we set a pointer to the beginning of an array, we can use the exact same syntax to access the elements in the array that we want.
 
@@ -282,7 +214,7 @@ int *p = &a[0]; //p still points to 0
 p+5 == a+5; // p+5 is a pointer to the 5th element of the array, so is a+5
 ```
 
-Jae's **GUT** goes the other way too! Arrays, in cases of pointer arithmetic, operate as pointers to the first element.
+This rule goes the other way too! Arrays, in cases of pointer arithmetic, operate as pointers to the first element.
 > i.e. Given an array `a` of type `T` elements </br>
 > a+1 == &a[0]+1
 
@@ -325,7 +257,7 @@ characters with a null terminating character at the end.
 
 ```c
 char c[] = "abc";
-char c[] = {'a', 'b', 'c', '\0'}; // equivalent to the above line
+char c[] = {'a', 'b', 'c', '\0'}; // equivalent to the above line, both are strinng literals
 char *s = "my string"; // modifiable pointer
 "my string"[0] == 'm'; //true!
 ```
@@ -335,26 +267,6 @@ means you can't move where it points to: it's always going to point to the chara
 `a`. `s`, on the other hand, can be incremented and decremented and moved around 
 however you like. `"my string"`, however, can't be modified; it's a string literal! 
 
-Some useful string functions (need to `#include string.h`):
-
-```c
-char d[20];
-char c[] = "abc";
-
-strcpy(d, "123");
-strcat(d, c);
-
-printf("%s\n", d);          // prints 123abc
-printf("%lu\n", strlen(d)); // prints 6
-
-strncpy(d, "456", 2);       // only copy first n chars
-d[2] = '\0';                // null terminate string
-strncat(d, "def", 2);       // only cat first n chars
-
-printf("%s\n", d);          // what does this print?
-```
-
-For a closer look at the strcpy function, see [`E-Memory-Pointers/code/strcpy.c`](https://github.com/cs3157/recitations/blob/master/E-Memory-Pointers/code/strcpy.c).
 
 So how about an array of strings? Well that would be an array of arrays.
 
@@ -364,152 +276,6 @@ char **p = a;
 char a[][10] = {"hello", "world" }; //what's the difference here?
 ```
 
-You can find more examples of this in [`E-Memory-Pointers/code/ptrtoptrs.c`](https://github.com/cs3157/recitations/blob/master/E-Memory-Pointers/code/ptrtoptrs.c).
 
 
-## Heap allocations ##
-
-Sometimes you need memory to persist across function calls (recall
-pseudo-pass-by-reference using pointers). Recall also that variables declared
-within a scope will be cleared once the scope's stack frame collapses. In other
-words, if you're trying to pass back a pointer to a variable that was declared
-within the function as a return value, it won't be there when you try to access
-it. To alleviate this you can allocate space on the heap using malloc.
-
-(From Jae's notes)
-
-```c
-int *p = (int *) malloc(100 * sizeof(int));
-// malloc returns NULL if it cannot allocate the requested memory
-if (p == NULL) {
-  perror("malloc failed");
-  exit(1); 
-}
-// initialize all elements to 0
-for (int i = 0; i < 100; i++)
-  p[i] = 0;
-// another way to do the same thing
-memset(p, 0, 100 * sizeof(int));
-//free() deallocates the memory block previously returned by malloc.
-free(p);
-```
-
-## Memory Errors ##
-
-You'll be testing your code with valgrind for this class to make sure you don't
-have any memory errors in your code. This can include forgetting to free
-allocated memory, accessing memory that doesn't exist, etc. To run valgrind call:
-
-    valgrind --leak-check=full ./your_executable
-
-Recall from other classes that if valgrind doesn't return, it means your program
-isn't returning (this is a case of the halting problem). If your valgrind isn't
-giving you line numbers (and is giving you hex codes) then you're not compiling
-with the debugging flag `-g`.
-
-The following are excerpts from `recitation-4-code/invalidwrite.c` and
-`recitation-4-code/leak.c`.
-
-### Valgrind+Makefile=Good ###
-
-Remembering to run valgrind, and retyping the command, is annoying. A clever way
-to more easily run valgrind repeatedly as part of your normal edit/compile/test
-loop is to add valgrind to your makefile. Remember how you can include phony
-targets in your Makefile? We can use that to have it run Valgrind for us.
-
-For example, using Jae's Makefile template from lecture note 1, you can add a
-stanza at the end:
-
-```make
-.PHONY: valgrind
-valgrind: main
-	valgrind --leak-check=full ./main
-```
-
-Then instead of running `make` followed by `./main` you can just run
-`make valgrind` and it will compile your code and run it under valgrind.
-
-
-### Invalid Write ###
-
-This is pretty easy to do but hard to catch in your code. Like many memory
-errors its usually caused by an off-by-one error. Imagine this:
-
-```c
-int *p = (int *)malloc(sizeof(int));
-// checking that malloc worked
-if (p == NULL) {
-  perror("malloc failed");
-  exit(1);
-}
-```
-
-You'll have a pointer, `p`, to one integer worth of space. Now imagine we move
-our pointer ahead one integer
-
-```c
-p++;
-```
-
-`p` will now point past the space it was allocated. We know nothing about this
-space. It could be accessible, it could be protected. It could be someone else's
-variable that we're about to change. *This is terrible*. But let's mess around
-with it.
-
-```c
-*p = 5;
-```
-
-What happens? You've got an invalid write. What about
-
-```c
-int x = *p
-```
-
-Now you've got an invalid read. Valgrind will tell you about these and where
-they're happening. So long as you know what you're looking for you should be
-able to find it.
-
-### Memory leaks ###
-
-Calling malloc without free-ing the memory you've allocated is awful. You're
-taking away memory from other running processes.  To correct for this, when
-you're finished, just call `free()` on the pointer to the memory that was
-malloced.
-
-```c
-free(--p);
-```
-
-Now aside from those invalid read/writes, our program will run through valgrind
-pretty happily. The trick to memory leaks isn't just in free-ing that integer
-though. Imagine you've malloced space for an array of arrays, each of which was
-also malloc'ed. You'll have to go back through, freeing each individual array,
-and then when you're finished with that, free the higher order array.
-
-### Uninitialized values ###
-
-Valgrind will also inform you when the visible behavior of the program is affected by usage of uninitialized values. For example, let's say you want to increment a variable, but forget to initialize it:
-
-```c
-int *d = (int *)malloc(sizeof(int));
-++*d;
-printf("%d\n", *d);
-```
-
-Valgrind will inform you that the visible behavior of your program depends on an uninitialized, hence unpredictable, values. Always be sure to initialize your variables before using them! 
-
-## Lab 2 ##
-
-Tips:
-  - Test all your code with valgrind. Just do it.
-  - Watch out for fence post errors when it comes to invalid read/writes. You're
-    probably just one outside of your bounds
-  - Watch out for being just inside your bounds on freeing. If you have a leak,
-    its probably because you forgot to free one last element.
-  - Don't forget that in C, strings are characters arrays followed by a *null
-    character*. Without the null character, C has no idea where your string ends!
-  - ALWAYS check the return value of malloc to make sure you were actually given
-    allocated memory.
-  - Name your executables properly. For part1, `isort` and for part2, `twecho`.
 
