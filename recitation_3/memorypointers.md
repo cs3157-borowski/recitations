@@ -213,7 +213,6 @@ So aren't pointers and arrays the same? **Wrong**! Here are the cases in which a
 
 **`sizeof` operator**
 
-As mentioned above, the size of an array is
 Note that as discussed above, `sizeof` is an operator, not a function. 
 Which means that for classic C `sizeof` is evaluated at *compile time*, so the
 value of the operator cannot be anything that depends on user input.
