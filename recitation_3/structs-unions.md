@@ -152,6 +152,7 @@ struct MyStuff {
     char *str2;
     int s len2;
 };
+```
 
 Here, the two `char *`s are the largest type with 8 bytes. :
 
