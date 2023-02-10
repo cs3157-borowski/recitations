@@ -34,10 +34,8 @@ int main() {
 
 Here, `p` is our fuction pointer. Notice that we don't need to get the memory address of `add` or `subtract` when assigning it to the function pointer -- C provides syntatic sugar that lets away with assigning a function directly to a function pointer. The line `p = add` is the exactly same as `p = &add`.
 
-The usual motivating example is qsort(); quicksort is tricky enough that we want
-to implement it generically for all types of arrays, but we can’t implement it
-without knowing how to compare elements of the array. So, we ask the caller to
-provide a pointer to the function used to compare two elements:
+The usual motivating example is qsort(); 
+quicksort is tricky enough that we want to implement it generically for all types of arrays, but we can’t implement it without knowing how to compare elements of the array. So, we ask the caller to provide a pointer to the function used to compare two elements:
 
 ```c
 void qsort(void *base, // the array we want to sort
