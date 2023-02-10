@@ -8,7 +8,7 @@ Understanding pointers and the ins and outs of memory usage in your program is a
 
 ### Address Space ###
 
-Every process, i.e a running program, gets 512G of virtual memory space. The memory layout is given in the diagram below.
+Every process, i.e a running program, gets 512G of virtual memory space on the AP server. The memory layout is given in the diagram below.
 
 ![hi](./MemoryLayout.png "Memory Layout Diagram")
 
@@ -119,7 +119,7 @@ already existing variable. It could then be stored into a pointer.
 ```c
 int x = 5; // x is a plain int
 int *p; // p is a pointer-to-int
-p = &x; // p now points to x
+p = &x; // p now points to x, meaning p holds x's memory address
 ```
 
 The `*` operator *dereferences* a pointer: it follows the pointer to retrieve the value it points to
@@ -156,22 +156,10 @@ int main() {
 }
 ```
 
-Note not only the difference in the function, but how the parameters are passed.
-**Passing a pointer is fundamentally a different type than passing a value.**
+**Note: passing a pointer is very different than passing a value.**
+When you pass ``x`` into ``increment(x)``, it will only live within the scope of ``increment()`` and be trashed afterwards.
+If you pass a pointer ``&x`` into ``actually_increment(&x)``, it will increment the value of ``int x`` that lives in the main function.
 
-
----- 
-
-## Arrays ## 
-
-The size of an array in C is returned by the `sizeof()` operator.
-
-```c
-int a[10];
-printf("%d", sizeof(a)); // This will print "40"
-```
-
-The `sizeof()` operator returns the number of bytes occupied by the array. In this case, `a` is an array of 10 `int` elements. The `sizeof(int)` is 4, therefore the `sizeof(a)` = 40.
 
 ## Pointer Arithmetic ##   
 
@@ -181,10 +169,21 @@ so if you have an int pointer `int *p`, `p+1` points to the next int, which is 4
 bytes later. *Think in terms of elements, not in terms of bytes.*
 
 
+## Arrays ## 
+
+Arrays are a contiguous set of bytes in memory. 
+
+The `sizeof()` operator returns the number of bytes occupied by the array. In this case, `a` is an array of 10 `int` elements. The `sizeof(int)` is 4, therefore the `sizeof(a)` = 40.
+
+```c
+int a[10];
+printf("%d", sizeof(a)); // This will print "40"
+```
+
+
 ## Arrays and Pointers ## 
 
 Arrays and pointers behave very similarly, but it is important to know the differences!
-
 
 
 Given pointer `p` of type `T*` and integer `i`
@@ -238,8 +237,9 @@ assignment after it has been created, it must point to the same chunk of memory.
 Note that once you pass an array into a function, the array becomes a pointer to
 the first element, and loses all its array-ness. So within the scope where `int
 a[10]` was declared, `sizeof(a)` returns the number of bytes of the array `a`,
-ie 40. But if you pass `a` into a function as `arr`, then `sizeof(arr)` is NOT
-40, but 8, the size of a pointer.
+ie 40. 
+But if you pass `a` into a function as `arr`, then `sizeof(arr)` is NOT
+40, but 8, which is the size of a pointer.
 
 
 ### Strings in C ###
@@ -249,7 +249,7 @@ characters with a null terminating character at the end.
 
 ```c
 char c[] = "abc";
-char c[] = {'a', 'b', 'c', '\0'}; // equivalent to the above line, both are string literals
+char c[] = {'a', 'b', 'c', '\0'}; 
 char *s = "my string"; // modifiable pointer
 "my string"[0] == 'm'; //true!
 ```
