@@ -163,10 +163,7 @@ If you pass a pointer ``&x`` into ``actually_increment(&x)``, it will increment 
 
 ## Pointer Arithmetic ##   
 
-If you have a pointer, you can do basic arithmetic with it to address adjacent
-elements. All arithmetic is with respect to the type of element being addressed,
-so if you have an int pointer `int *p`, `p+1` points to the next int, which is 4, or if you have a short pointer `short *p`, `p+1` points to the next short, which is 2 bytes later.
-bytes later. *Think in terms of elements, not in terms of bytes.*
+If you have a pointer, you can do basic arithmetic with it to address adjacent elements. All arithmetic is with respect to the type of element being addressed, so if you have an int pointer `int *p`, `p+1` points to the next int, which is 4, or if you have a short pointer `short *p`, `p+1` points to the next short, which is 2 bytes later. *Think in terms of elements, not in terms of bytes.*
 
 
 ## Arrays ## 
@@ -213,9 +210,7 @@ So aren't pointers and arrays the same? **Wrong**! Here are the cases in which a
 
 **`sizeof` operator**
 
-Note that as discussed above, `sizeof` is an operator, not a function. 
-Which means that for classic C `sizeof` is evaluated at *compile time*, so the
-value of the operator cannot be anything that depends on user input.
+Note that as discussed above, `sizeof` is an operator, not a function. Which means that for classic C `sizeof` is evaluated at *compile time*, so the value of the operator cannot be anything that depends on user input.
 
 **Array is a constant variable**
 
@@ -227,18 +222,12 @@ p++; // ok: `p` is just a pointer like any other, p now points to the next eleme
 a++; // illegal (will throw an error): `a` is an array name, a constant variable
 ```
 
-Unlike a pointer, though, an array is a constant variable. You cannot change its
-assignment after it has been created, it must point to the same chunk of memory.
+Unlike a pointer, though, an array is a constant variable. You cannot change its assignment after it has been created, it must point to the same chunk of memory.
 
 
 **Arrays cannot be passed into functions**
 
-Note that once you pass an array into a function, the array becomes a pointer to
-the first element, and loses all its array-ness. So within the scope where `int
-a[10]` was declared, `sizeof(a)` returns the number of bytes of the array `a`,
-ie 40. 
-But if you pass `a` into a function as `arr`, then `sizeof(arr)` is NOT
-40, but 8, which is the size of a pointer.
+Note that once you pass an array into a function, the array becomes a pointer to the first element, and loses all its array-ness. So within the scope where `int a[10]` was declared, `sizeof(a)` returns the number of bytes of the array `a`, ie 40. But if you pass `a` into a function as `arr`, then `sizeof(arr)` is NOT 40, but 8, which is the size of a pointer.
 
 
 ### Strings in C ###
@@ -253,10 +242,7 @@ char *s = "my string";
 "my string"[0] == 'm'; //true!
 ```
 
-There's a slight difference between these two definitions. `c` is an array which
-means you can't move where it points to: it's always going to point to the character 
-`a`. `s`, on the other hand, can be incremented and decremented and moved around 
-however you like. `"my string"`, however, can't be modified; it's a string literal! 
+There's a slight difference between these two definitions. `c` is an array which means you can't move where it points to: it's always going to point to the character `a`. `s`, on the other hand, can be incremented and decremented and moved around however you like. `"my string"`, however, can't be modified; it's a string literal! 
 
 
 So how about an array of strings? Well that would be an array of arrays.
