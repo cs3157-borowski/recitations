@@ -194,7 +194,7 @@ The layout would look like this:
  +---+---+---+---+---+---+---+---+
  | .len1         |  .len2        |
  +---+---+---+---+---+---+---+---+
- |------- struct MyStuff --------|
+ |------- struct MyStuff2 -------|
 
 ```
 
