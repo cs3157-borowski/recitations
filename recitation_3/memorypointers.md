@@ -250,7 +250,7 @@ characters with a null terminating character at the end.
 ```c
 char c[] = "abc";
 char c[] = {'a', 'b', 'c', '\0'}; 
-char *s = "my string"; // modifiable pointer
+char *s = "my string";
 "my string"[0] == 'm'; //true!
 ```
 
