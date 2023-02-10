@@ -12,7 +12,7 @@ Every process, i.e a running program, gets 512G of virtual memory space. The mem
 
 ![hi](./MemoryLayout.png "Memory Layout Diagram")
 
-The stack grows downward while the program code, static variables, and heap variables are all at the bottom (0), sitting in that order (Check the diagram above). This means that when functions are called, space for them is built up on the stack and then cleared as they complete. Imagine function calls being stacked on top of each other (but upside down) and then being popped off last to first as they return. The stack is a *temporary* storage space.
+The stack grows downwards while the program code, static variables, and heap variables are all at the bottom (0), sitting in that order (Check the diagram above). This means that when functions are called, space for them is built up on the stack and then cleared as they complete. Imagine function calls being stacked on top of each other (but upside down) and then being popped off last to first as they return. The stack is a *temporary* storage space.
 
 The heap is where you dynamically allocate memory (using ``malloc()``) - it is a storage space that is not automatically managed like the stack. You use the heap if you want to manage how long something is stored in memory, which means you are responsible for clearing any space you allocate on the heap (using ``free()``). Also note that unlike the stack, the heap grows upwards (towards the stack). 
 
@@ -93,17 +93,14 @@ void magic_print() {
 
 ## Pointers ##
 
-Understanding pointers is crucial and using them naturally will make you stand out as a programmer. Let's start with
-the basics.
+Understanding pointers is crucial and using them naturally will make you stand out as a programmer. Let's start with the basics.
 
 **Pointer:** A variable that stores a memory address. That's it. The memory address is _just a number_.
 
 There isn't just one data type called "pointer". Every pointer is a
-pointer-to-type, which encodes how to interpret the bytes you find in the memory
-address.
+pointer-to-type, which encodes how to interpret the bytes you find in the memory address.
 
-In a variable declaration, an asterisk denotes the fact that the variable is a
-pointer.
+In a variable declaration, an asterisk denotes the fact that the variable is a pointer.
 
 Here's an example:
 
@@ -134,18 +131,13 @@ printf("%d", *p); //prints out 5
 *p = 9;  // now x is 9
 ```
 
-`&` and `*` are basically opposites: `&` adds a level of indirection, while `*` removes a level, bringing you
-closer to the underlying value. 
+`&` and `*` are basically opposites: `&` adds a level of indirection, while `*` removes a level, bringing you closer to the underlying value. 
 
 
 ### Ok, so why use pointers? ###
 
-C is a **call-by-value** language which means all arguments to functions are 
-copied, and a local copy is made on that function's stack. Changes made inside the
-function are not reflected on the outside. 
-__Therefore if you want a function to
-modify a value that you have, you'll have to tell the function where to find the
-that value by memory address, not just give it the value:__
+C is a **call-by-value** language which means all arguments to functions are copied, and a local copy is made on that function's stack. Changes made inside the function are not reflected on the outside. 
+__Therefore if you want a function to modify a value that you have, you'll have to tell the function where to find the that value by memory address, not just give it the value:__
 
 ```c
 void increment(int a) {
@@ -185,7 +177,7 @@ The `sizeof()` operator returns the number of bytes occupied by the array. In th
 
 If you have a pointer, you can do basic arithmetic with it to address adjacent
 elements. All arithmetic is with respect to the type of element being addressed,
-so if you have an int pointer `int *p`, `p+1` points to the next int, which is 4
+so if you have an int pointer `int *p`, `p+1` points to the next int, which is 4, or if you have a short pointer `short *p`, `p+1` points to the next short, which is 2 bytes later.
 bytes later. *Think in terms of elements, not in terms of bytes.*
 
 
@@ -257,7 +249,7 @@ characters with a null terminating character at the end.
 
 ```c
 char c[] = "abc";
-char c[] = {'a', 'b', 'c', '\0'}; // equivalent to the above line, both are strinng literals
+char c[] = {'a', 'b', 'c', '\0'}; // equivalent to the above line, both are string literals
 char *s = "my string"; // modifiable pointer
 "my string"[0] == 'm'; //true!
 ```
