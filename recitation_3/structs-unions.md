@@ -14,8 +14,7 @@ struct Point {
 };
 ```
 
-This struct definition must be written at the top-level (e.g., it cannot be
-inside of a function body); don’t forget the trailing ’;’!
+This struct definition must be written at the top-level (e.g., it cannot be inside of a function body); don’t forget the trailing ’;’!
 
 The above struct definition creates a new type named "struct Point", which we
 can define and use like so:
