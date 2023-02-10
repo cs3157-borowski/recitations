@@ -50,8 +50,7 @@ The declaration for compar:
 int (*compar)(const void *, const void *)
 ```
 
-says that compar is a pointer to a function that receives two arguments (whose
-types are both const void *), and returns an int.
+says that compar is a pointer to a function that receives two arguments (whose types are both const void *), and returns an int.
 
 Here an example of a comparison function:
 
