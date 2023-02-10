@@ -204,8 +204,7 @@ void inefficient_arg(struct Buffer buf) { ... }
 void efficient_arg(struct Buffer *buf) { ... }
 ```
 
-Thus, a common pattern when using a pointer to a struct is to first dereference
-it, and then access the field:
+Thus, a common pattern when using a pointer to a struct is to first dereference it, and then access the field:
 
 ```c
 (*b).len
