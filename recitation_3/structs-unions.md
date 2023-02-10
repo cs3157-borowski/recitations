@@ -217,8 +217,7 @@ b->len
 ```
 
 This notation should be read as, "dereference b, and access the len field."
-Keep in mind that this notation still performs a dereference; if b is a NULL
-pointer, this expression will segfault.
+Keep in mind that this notation still performs a dereference. If b is a NULL pointer, this expression will segfault.
 
 ### Unions
 
