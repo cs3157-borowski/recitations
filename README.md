@@ -13,4 +13,8 @@ for Prof. Brian Borowski's offering of the course.
     - [Makefiles](recitation_2/makefile.md): Makefiles
     - [Bit Operations](recitation_2/bit_operators.md): Bit Operations
     - [Command Line Arguments](recitation_2/command_line_arguments.md): Command Line Arguments
+- Recitation 2
+    - [Memory & Pointers](recitation_3/memorypointers.md): Memory & Pointers
+    - [Structs and Unions](recitation_3/structs-unions.md): Structs & Unions
+    - [Function Pointers](recitation_3/function-pointers.md): Function Pointers
     
