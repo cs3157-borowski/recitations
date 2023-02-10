@@ -197,8 +197,7 @@ int main() {
 
 ### Pointers to structs
 
-Since structs may get very large in size (e.g., struct Buffer), it can be more
-efficient to refer to them via pointers rather than copy them around by value:
+Since structs may get very large in size (e.g., struct Buffer), it can be more efficient to refer to them via pointers rather than copy them around by value:
 
 ```c
 void inefficient_arg(struct Buffer buf) { ... }
