@@ -40,7 +40,7 @@ This is what `pt` looks like in memory:
 A `typedef` is a directive that creates an alias for an existing type. We can use this directive to simplify the syntax of declaring instances of a struct like so:
 
 ```c
-typedef struct {
+typedef struct Point {
     int x;
     int y;
 } Point;
