@@ -69,8 +69,7 @@ s.len = strlen("abc");
 ```
 
 The size and layout of each struct is determined and fixed at compile time.
-Struct definitions may contains fields of any type, including pointers, arrays,
-and other structs (as long as they don’t contain themselves):
+Struct definitions may contains fields of any type, including pointers, arrays, and other structs (as long as they don’t contain themselves):
 
 ```c
 struct TwoPoints {
