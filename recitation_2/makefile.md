@@ -351,10 +351,16 @@ CFLAGS  = -g -Wall -Werror -pedantic-errors # compiler flags
 LDFLAGS = # linker flags
 
 $(TARGET): $(OBJS) $(TARGET).c
-	$(CC) -o $(TARGET) $(OBJS) $(TARGET).c $(LDFLAGS) # adding linker flags to recipe
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(TARGET).c $(LDFLAGS) 
+# 	adding compiler and linker flags to recipe
+	
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c -o $@ $< # adding compiler flags to the recipe
 ```
+
+- Note: We add `$(CFLAGS)` to our recipe for building `$(TARGET)` so that `$(TARGET).c` is also compiled using the compiler flags.
+
+  
 
 **`make all` and `make clean`:**
 
@@ -384,7 +390,7 @@ LDFLAGS =
 all: $(TARGET) # running make will by default build our executable
 
 $(TARGET): $(OBJS) $(TARGET).c
-	$(CC) -o $(TARGET) $(OBJS) $(TARGET).c $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(TARGET).c $(LDFLAGS)
 	
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -393,36 +399,6 @@ clean: # removes object files and our executables
 	rm -f $(OBJS) $(TARGET) $(TARGET).exe
 # -f flag silences errors if any of these files do not exist
 ```
-
-
-
-There is another improvement we can make!
-
-And that is adding `$(CFLAGS)` to our recipe for building `$(TARGET)` :
-
-```makefile
-CC      = gcc
-TARGET  = myprogram
-C_FILES = $(filter-out $(TARGET).c, $(wildcard *.c))
-OBJS    = $(patsubst %.c,%.o,$(C_FILES))
-CFLAGS  = -g -Wall -Werror -pedantic-errors
-LDFLAGS =
-
-.PHONY: all clean
-
-all: $(TARGET)
-
-$(TARGET): $(OBJS) $(TARGET).c
-    $(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(TARGET).c $(LDFLAGS) # CFLAGS added to the recipe
-    
-%.o: %.c %.h
-    $(CC) $(CFLAGS) -c -o $@ $<
-    
-clean:
-    rm -f $(OBJS) $(TARGET) $(TARGET).exe
-```
-
-Does it still work without it? Yes, but compiling `$(TARGET).c` is done without `-g -Wall -Werror -pedantic-errors`. This is not the best approach, since it can lead to code not fully compliant with the standards.
 
 
 
