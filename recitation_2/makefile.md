@@ -167,7 +167,7 @@ Make uses the “last modified” timestamp of each file to figure out if a targ
 
 Creating our `Makefile` for `myprogram`:
 
-```bash
+```makefile
 myprogram: hello.o goodbye.o myprogram.o
 	gcc -o myprogram hello.o goodbye.o myprogram.o
 
@@ -220,7 +220,7 @@ If we look at our `Makefile`, we can see that a lot of text entries is repeated 
 
 - Macros are referred to by placing the name in parentheses and preceding it with the `$` sign.
 
-```bash
+```makefile
 CC = gcc
 TARGET = myprogram
 C_FILES = hello.c goodbye.c myprogram.c
@@ -277,7 +277,7 @@ Our rules for `.o` targets all have dependencies for the corresponding `.c` and 
 
 Altogether, we get this `Makefile`:
 
-```bash
+```makefile
 CC      = gcc
 TARGET  = myprogram
 C_FILES = $(wildcard *.c)
@@ -311,7 +311,7 @@ Note: For multi-source programs, however, it is not good practice to compile and
 
 This gives us:
 
-```bash
+```makefile
 CC      = gcc
 TARGET  = myprogram
 C_FILES = $(filter-out $(TARGET).c, $(wildcard *.c)) # filters out myprogram.c
@@ -342,7 +342,7 @@ Similarly, we might want to pass flags that enable options for linking.
 
 This gives us:
 
-```bash
+```makefile
 CC      = gcc
 TARGET  = myprogram
 C_FILES = $(filter-out $(TARGET).c, $(wildcard *.c))
@@ -371,7 +371,7 @@ Compiling a program is not the only thing you might want to write rules for. Mak
 
 Adding `all` and `clean` to our `Makefile`:
 
-```bash
+```makefile
 CC      = gcc
 TARGET  = myprogram
 C_FILES = $(filter-out $(TARGET).c, $(wildcard *.c))
@@ -394,8 +394,64 @@ clean: # removes object files and our executables
 # -f flag silences errors if any of these files do not exist
 ```
 
+
+
+There is another improvement we can make!
+
+And that is adding `$(CFLAGS)` to our recipe for building `$(TARGET)` :
+
+```makefile
+CC      = gcc
+TARGET  = myprogram
+C_FILES = $(filter-out $(TARGET).c, $(wildcard *.c))
+OBJS    = $(patsubst %.c,%.o,$(C_FILES))
+CFLAGS  = -g -Wall -Werror -pedantic-errors
+LDFLAGS =
+
+.PHONY: all clean
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS) $(TARGET).c
+    $(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(TARGET).c $(LDFLAGS) # CFLAGS added to the recipe
+    
+%.o: %.c %.h
+    $(CC) $(CFLAGS) -c -o $@ $<
+    
+clean:
+    rm -f $(OBJS) $(TARGET) $(TARGET).exe
+```
+
+Does it still work without it? Yes, but compiling `$(TARGET).c` is done without `-g -Wall -Werror -pedantic-errors`. This is not the best approach, since it can lead to code not fully compliant with the standards.
+
+
+
+### Debugging your `Makefile`
+
+Also, you might need to debug a Makefile at some point. You can print out the value of variables with the info function. Note two `$` in a row means the literal '`$`' that does not evaluate the variable.
+
+For example:
+
+```makefile
+$(TARGET): $(OBJS)
+    $(info $$(OBJS) is $(OBJS))
+    $(CC) $(OBJS) -o $(TARGET) $(LDFLAGS)
+```
+
+would print out what files `OBJS` consists of.
+
+
+
+### Final Note
+
+There are many different ways to create a `Makefile`, and no one `Makefile` fits all projects, so be sure to understand what your `Makefile` does and whether it is suitable for your project!
+
+There are also many different features of makefiles that we didn’t show in class. If you’re interested, you can read more about them here: https://www.gnu.org/software/make/manual/make.html. 
+
+
+
 ---
 
 ## Acknowledgements
 
-Parts of this note was originally created by John Hui for this course. They were modified by Faustina Cheng in Spring 2023.
+Parts of this note was originally created by John Hui and Brian Borowski for this course. They were modified by Faustina Cheng in Spring 2023.
