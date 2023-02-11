@@ -411,7 +411,7 @@ For example:
 ```makefile
 $(TARGET): $(OBJS)
     $(info $$(OBJS) is $(OBJS))
-    $(CC) $(OBJS) -o $(TARGET) $(LDFLAGS)
+    $(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(TARGET).c $(LDFLAGS)
 ```
 
 would print out what files `OBJS` consists of.
