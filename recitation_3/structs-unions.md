@@ -235,6 +235,8 @@ int main() {
 }
 ```
 
+See [this guide](struct-padding-walkthrough.md) for a more interactive walkthrough of struct padding.
+
 ### Pointers to structs
 
 Since structs may get very large in size (e.g., struct Buffer), it can be more
