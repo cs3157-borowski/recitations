@@ -16,5 +16,6 @@ for Prof. Brian Borowski's offering of the course.
 - Recitation 3
     - [Memory & Pointers](recitation_3/memorypointers.md): Memory & Pointers
     - [Structs and Unions](recitation_3/structs-unions.md): Structs & Unions
+    - [Structs Padding](recitation_3/struct-padding-walkthrough.md): Struct Padding Walkthrough
     - [Function Pointers](recitation_3/function-pointers.md): Function Pointers
     
