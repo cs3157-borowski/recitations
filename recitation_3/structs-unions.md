@@ -268,7 +268,7 @@ this expression may segfault.
 Unions in C are similar to structs, but they differ in the way they allocate
 memory. A union defines a data structure that can store values of different data
 types at the same memory location. This allows the same memory location to be
-interpreted as different types. The size of a union is equal to the size of the
+interpreted as different types. The size of a union is at least the size of the
 largest member of the union. Here's an example:
 
 ```c
