@@ -1,4 +1,5 @@
-﻿### 3 channels
+﻿# FILE I/O
+### 3 channels
 
 By convention, every C program is given 3 channels for input/output operations, often called I/O. I/O refers to anything that involves data coming into the program from outside (such as getting user input with  `scanf`) and writing data to the outside (such as printing data to the console with  `printf`).
 
