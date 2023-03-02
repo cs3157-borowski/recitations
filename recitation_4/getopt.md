@@ -50,4 +50,4 @@ int main(int argc, char *argv[])
 Notice a few things in this example. We never define a `optarg` variable, yet we are able to use it. This is because `getopt` maintains a few global variables:
 - `optind`: This variable keeps track of the current index in the argv array. It is initialized to 1 by default, and is updated by `getopt()` as it processes options.
 - `optarg`: This variable points to the argument for the current option, if the option requires an argument. It is set by `getopt()` when it processes an option that requires an argument.
-- `optopt`: This variable holds the last option character that was processed by getopt(). It is used to indicate an error when an unknown option is encountered.
+- `optopt`: This variable holds the last option character that was processed by getopt(). It is also used to indicate an error when an unknown option is encountered.
