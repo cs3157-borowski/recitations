@@ -1,5 +1,7 @@
 // cats.c: cats play with strings!
 #include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
 
 int main(void) {
 	assert(atoi("10") == '\n'); // Important!
