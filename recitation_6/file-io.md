@@ -21,8 +21,10 @@ There are several kinds of redirection possible from the console:
 -   `2>`  is similar, except that it takes the standard error and redirects it, rather than the standard output.
 -   `<`  does 'input redirection', meaning that the contents of the file on the right of the operator serves as the standard input of the left argument. For example, after running the example above,  `cat < hi.txt`  will print "hello world" to the console.
 -   `2>&1`  will redirect stderr to the same location as stdout.
--   `>>`  will append the output to a file instead of overwriting the file.
--  `|`  will feed the output from the program on the left as input to the program on the right. For example the `head -n` command will print as output the first n number of data of its input. Running `ls | head -3` will print up to 3 files in your working directory. 
+-   `>>`  will also redirect the standard output of the left argument to the right (destination), but instead of overwriting data that may already be in the destination, '>>' will append.
+-  `|`  will pipe the output from the program on the left as input to the program on the right. For example the `head -n` command will print as output the first n number of data of its input. Running `ls | head -3` will print up to 3 files in your working directory. 
+
+#### Remark: We use redirection in C to redirect input and output to and from the standard/default streams. So, redirection is between programs and streams/files. Whereas piping deals with only programs.
 
 ### Formatting
 
@@ -38,7 +40,7 @@ printf and scanf both use format strings to specify what how to format their out
 
 ### File Descriptors
 
-Among other things, a FILE wraps a file descriptor, an integer used by the operating system to keep track of open files. As you'll see below, a FILE pointer provides a nicer interface than a file descriptor for interacting with files. You can use function like  `fopen`  and  `fclose`  instead of the more low-level  `open`  and  `close`.
+Among other things, a FILE * wraps a file descriptor, an integer used by the operating system to keep track of open files. As you'll see below, a FILE pointer provides a nicer interface than a file descriptor for interacting with files. You can use function like  `fopen`  and  `fclose`  instead of the more low-level  `open`  and  `close`.
 
 ### fopen and fclose
 
