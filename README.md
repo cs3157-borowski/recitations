@@ -21,7 +21,7 @@ for Prof. Brian Borowski's offering of the course.
 - Recitation 4
     - Practice Exams
 - Recitation 5
-    - Midterm review
+    - Midterm Review
 - Rectiation 6
     - [File I/O](recitation_6/file-io.md)
     - [getopt](recitation_6/getopt.md)
