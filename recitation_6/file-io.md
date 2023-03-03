@@ -28,7 +28,7 @@ There are several kinds of redirection possible from the console:
 
 You can chain pipes together and use them with redirection. For example:
 
-	$ cat *.txt | tr ’ ’ ’\n’ | sort | uniq > total-words.txt
+	$ cat *.txt | tr " " ’\n’ | sort | uniq > total-words.txt
 
 Breaking it down (though you don’t need to understand every command):
  - `cat *.txt`: concatenates the contents of all .txt files in the pwd, and outputs those contents to stdout
