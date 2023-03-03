@@ -26,6 +26,22 @@ There are several kinds of redirection possible from the console:
 
 #### Remark: We use redirection in C to redirect input and output to and from the standard/default streams. So, redirection is between programs and streams/files. Whereas piping deals with only programs.
 
+You can chain pipes together and use them with redirection. For example:
+
+	$ cat *.txt | tr ’ ’ ’\n’ | sort | uniq > total-words.txt
+
+Breaking it down (though you don’t need to understand every command):
+ - `cat *.txt`: concatenates the contents of all .txt files in the pwd, and outputs those contents to stdout
+ - `tr ’ ’ ’\n’`: reads from stdin, translates each space to a newline, and writes it to stdout (i.e., puts every space-separated word on its own line)
+ - `sort`: sorts lines from stdin in alphabetical order, and outputs to stdout
+ - `uniq > total-words.txt`: omit repeated lines; stdout is redirected to a file named `total-words.txt`
+
+Then you can get the total number of unique words in your pwd by doing:
+
+	$ wc -l < total-words.txt
+	
+- `wc -l`: counts them number of lines from its stdin.
+
 ### Formatting
 
 printf and scanf both use format strings to specify what how to format their output. They also both accept variable arguments. All arguments to scanf  **must**  be pointers whereas arguments to printf should be values (in the case of numbers) or  `char *`  in the case of strings. Pages 153-154 in the K&R explain how to format your format strings for  `printf()`  and 157-158 explain formatting for  `scanf()`. Make sure you can identify the following two format strings:
@@ -109,6 +125,16 @@ If you're reading a text stream,  `offset`  must either be zero or the current p
 
 So you didn't get what you were expecting from one of the above functions. What do you do? You call  `feof`  or  `ferror`. These two functions let you know what happened.  `feof`  returns true if the end of the  `stream`  has been reached, and  `ferror`  returns true if there was an error reading the  `stream`.
 
+IMPORTANT: EOF is only encountered when we try to read PAST the end of the stream. If the stream position is here:
+```
+	+---+---+---+---+---+---+
+ myfile | h | e | l | l | o | \n|
+ 	+---+---+---+---+---+---+
+				 ^
+```
+feof() will still return zero for the FILE pointer of myfile until we actually try to read more from myfile.
+
+
 ### fprintf and fscanf
 
 These functions work just like their counterparts  `printf`  and  `scanf`, respectively, except you specify which FILE to write to, rather than defaulting to  `stdout`  and  `stdin`, respectively.
@@ -123,6 +149,34 @@ Buffering determines how often the contents of a stream are sent to their destin
 -   stderr is unbuffered (why?)
 -   stdout is line-buffered when it's connected to terminal
 -   everything else is block-buffered
+
+### Buffering Demo
+
+Take for example this sample Hello World program. What gets printed first?
+```
+// helloworld.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main(int argc, char **argv) {
+        printf("Hello...");
+        fprintf(stderr, "Sleeping for 3 seconds.\n");
+        sleep(3);
+        printf("World!\n");
+
+}
+```
+
+The sleep statement printed to stderr will be printed first because stderr is unbuffered. Then after sleeping for 3 seconds, the program will print out "Hello...World" at once, because stdout is line-buffered and will only print to terminal screen when it receives a full line (with the newline character `\n`). 
+
+```
+$ ./helloworld
+Sleeping for 3 seconds.
+Hello...World!
+```
+
+You should try running this program yourself, and see what happens when you insert a `fflush(stdout);` line inbetween the first printf and sleep(). 
 
 ### Exercise
 In this exercise, we will use two programs,  `decho`  and  `dcat`, to experiment with FILE I/O functions provided by the C standard library.
