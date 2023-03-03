@@ -7,15 +7,22 @@ for Prof. Brian Borowski's offering of the course.
 ## Notes
 
 - Recitation 1
-    - [Git](recitation_1/git.md): Git
-    - [Bash](recitation_1/bash.md): Bash
+    - [Git](recitation_1/git.md)
+    - [Bash](recitation_1/bash.md)
 - Recitation 2
-    - [Makefiles](recitation_2/makefile.md): Makefiles
-    - [Bit Operations](recitation_2/bit_operators.md): Bit Operations
-    - [Command Line Arguments](recitation_2/command_line_arguments.md): Command Line Arguments
+    - [Makefiles](recitation_2/makefile.md)
+    - [Bit Operations](recitation_2/bit_operators.md)
+    - [Command Line Arguments](recitation_2/command_line_arguments.md)
 - Recitation 3
-    - [Memory & Pointers](recitation_3/memorypointers.md): Memory & Pointers
-    - [Structs and Unions](recitation_3/structs-unions.md): Structs & Unions
-    - [Struct Padding](recitation_3/struct-padding-walkthrough.md): Struct Padding Walkthrough
-    - [Function Pointers](recitation_3/function-pointers.md): Function Pointers
+    - [Memory & Pointers](recitation_3/memorypointers.md)
+    - [Structs and Unions](recitation_3/structs-unions.md)
+    - [Struct Padding Walkthrough](recitation_3/struct-padding-walkthrough.md)
+    - [Function Pointers](recitation_3/function-pointers.md)
+- Recitation 4
+    - Practice Exams
+- Recitation 5
+    - Midterm Review
+- Rectiation 6
+    - [File I/O](recitation_6/file-io.md)
+    - [getopt](recitation_6/getopt.md)
     
