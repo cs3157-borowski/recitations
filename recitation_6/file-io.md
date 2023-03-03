@@ -1,15 +1,15 @@
 ﻿# FILE I/O
 ### 3 channels
 
-By convention, every C program is given 3 channels for input/output operations, often called I/O. I/O refers to anything that involves data coming into the program from outside (such as getting user input with  `scanf`) and writing data to the outside (such as printing data to the console with  `printf`).
+Every C program is given 3 channels for input/output operations, often called I/O. I/O refers to anything that involves data coming into the program from outside (such as getting user input with  `scanf`) and writing data to the outside (such as printing data to the console with  `printf`).
 
 The 3 basic channels (often called "streams") as well as their corresponding integer representations are:
 
 -   **(0) stdin (standard input)**  This stream is for incoming data, which often comes from the keyboard but can also be from other sources (e.g. through piping & redirection)
--   **(1) stdout (standard output)**  This stream is for outgoing data, and normally goes to the terminal screen but does not necessarily have to. This stream is buffered which means it is not sent to the terminal until a new line character is sent. This means if you use  `printf("hello")`  you likely will not see it until the end of your program is reached.
--   **(2) stderr (standard error)**  This stream is for error messages and is not buffered, meaning any characters written to it will immediately be flushed to their destination. This destination is often the terminal screen, but can be other locations as well.
+-   **(1) stdout (standard output)**  This stream is for outgoing data, and normally goes to the terminal screen but does not necessarily have to. This stream is buffered which means it is not sent to the terminal until a new line character is sent. 
+-   **(2) stderr (standard error)**  This stream is for error messages and is unbuffered, meaning any characters written to it will immediately be flushed to their destination. The destination is often the terminal screen, but can be other locations as well.
 
-If you wish to interact with these buffers you will need to  `#include <stdio.h>`. This library defines standard functions such as  `printf()`  `scanf()`  and others which you may or may not have already used.
+If you wish to interact with these streams you will need to  `#include <stdio.h>`. This library defines standard functions such as  `printf()`  `scanf()`  and others which you may or may not have already used.
 
 ### Redirection and Piping
 
@@ -17,7 +17,7 @@ Lots of input and output to/from programs is visible in the shell (your terminal
 
 There are several kinds of redirection possible from the console:
 
--   `>`  redirects the standard output of the left argument to the right argument. For example  `echo "hello world" > hi.txt`  will write the words 'hello world' to a file called  `hi.txt`, and 'hello world' will not appear on the terminal screen. 
+-   `>`  redirects the standard output of the left argument to the right argument. For example  `echo "hello world" > hi.txt`  will write the words "hello world" to a file called  `hi.txt`, and "hello world" will not appear on the terminal screen. 
 -   `2>`  is similar, except that it takes the standard error and redirects it, rather than the standard output.
 -   `<`  does 'input redirection', meaning that the contents of the file on the right of the operator serves as the standard input of the left argument. For example, after running the example above,  `cat < hi.txt`  will print "hello world" to the console.
 -   `2>&1`  will redirect stderr to the same location as stdout.
@@ -44,7 +44,7 @@ Then you can get the total number of unique words in your pwd by doing:
 
 ### Formatting
 
-printf and scanf both use format strings to specify what how to format their output. They also both accept variable arguments. All arguments to scanf  **must**  be pointers whereas arguments to printf should be values (in the case of numbers) or  `char *`  in the case of strings. Pages 153-154 in the K&R explain how to format your format strings for  `printf()`  and 157-158 explain formatting for  `scanf()`. Make sure you can identify the following two format strings:
+printf and scanf both use format strings to specify what how to format their output. They also both accept variable arguments. All arguments to scanf  **must**  be pointers. Pages 153-154 in the K&R explain how to format your format strings for  `printf()`  and 157-158 explain formatting for  `scanf()`. Make sure you can identify the following two format strings:
 
 	printf("%-15.10s", "hello, world");
 	sscanf("25 Dec 1988", "%d %s %d", &day, month, &year);
@@ -52,7 +52,7 @@ printf and scanf both use format strings to specify what how to format their out
 
 ### FILE Pointers
 
-`FILE`  is a typedef'ed structure in  `stdio.h`. Whenever you use it, you'll use a  `FILE *`  though because you'll always be getting a value back from/passing it to common file operating functions. Why a pointer? Because these functions will modify the internal values of the  `FILE`  value. So while you could copy them because it's a struct and C would be fine with passing it by value, things like your place in the file would not be maintained. A  `FILE *`  is given as an  _opaque type_, meaning you should never be accessing it's internals directly.
+`FILE`  is a typedef'ed structure in  `stdio.h`. Whenever you use it, you'll use a  `FILE *`  though because you'll always be getting a value back from/passing it to common file operating functions. A  `FILE *`  is given as an  _opaque type_, meaning you should never be accessing it's internals directly.
 
 ### File Descriptors
 
