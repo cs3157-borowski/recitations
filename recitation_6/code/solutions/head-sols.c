@@ -82,6 +82,7 @@ int main(int argc, char *argv[]) {
 
     int opt = 0, line_count = DEFAULT_LINE_COUNT;
     char *n_value = NULL, *src_file = NULL;
+    opterr = 0;
 
     while ((opt = getopt(argc, argv, ":n:")) != -1) {
         switch (opt) {
