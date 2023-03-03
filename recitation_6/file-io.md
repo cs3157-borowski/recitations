@@ -28,11 +28,11 @@ There are several kinds of redirection possible from the console:
 
 You can chain pipes together and use them with redirection. For example:
 
-	$ cat *.txt | tr " " ’\n’ | sort | uniq > total-words.txt
+	$ cat *.txt | tr " " "\n" | sort | uniq > total-words.txt
 
 Breaking it down (though you don’t need to understand every command):
  - `cat *.txt`: concatenates the contents of all .txt files in the pwd, and outputs those contents to stdout
- - `tr ’ ’ ’\n’`: reads from stdin, translates each space to a newline, and writes it to stdout (i.e., puts every space-separated word on its own line)
+ - `tr " " "\n"`: reads from stdin, translates each space to a newline, and writes it to stdout (i.e., puts every space-separated word on its own line)
  - `sort`: sorts lines from stdin in alphabetical order, and outputs to stdout
  - `uniq > total-words.txt`: omit repeated lines; stdout is redirected to a file named `total-words.txt`
 
