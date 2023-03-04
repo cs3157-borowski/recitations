@@ -147,7 +147,7 @@ These functions work just like their counterparts  `printf`  and  `scanf`, respe
 Buffering determines how often the contents of a stream are sent to their destination. There's some low level stuff going on at this point, but just understand that its not very efficient to send data one character at a time, so buffering happens. Unbuffered streams are constantly flushed to their destination. Line-buffered streams are only flushed to its destination after a newline character is written. Block-buffered streams are flushed when they reach a certain size. You can use  `fflush(fp)`  to manually flush the buffer for any file pointer.
 
 -   stderr is unbuffered (why?)
--   stdin and stdout are line-buffered when it's connected to terminal
+-   stdin and stdout are line-buffered when connected to terminal
 -   everything else is block-buffered
 
 ### Buffering Demo
