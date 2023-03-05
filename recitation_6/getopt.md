@@ -23,7 +23,7 @@ A simple example:
 int main(int argc, char *argv[])
 {
     int opt;
-
+    opterr = 0;
     while ((opt = getopt(argc, argv, "abc:")) != -1) {
         switch (opt) {
         case 'a':
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
             printf("Option c was specified with argument %s\n", optarg);
             break;
         case '?':
-            printf("Unknown option %c\n", opt);
+            printf("Unknown option %c\n", optopt);
             break;
         default:
             break;
