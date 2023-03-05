@@ -12,7 +12,7 @@ int getopt(int argc, char *const argv[], const char *optstring);
 - `argv`: An array of strings containing the arguments passed to the program.
 - `optstring`: A string that specifies the options that the program accepts. Each character in the string represents a single option, and the character may be followed by a colon (:) if the option requires an argument.
 
-The getopt() function returns the next option character from the optstring parameter. If there are no more options to process, it returns -1. It also updates the optind variable, which keeps track of the current index in the argv array.
+The `getopt()` function returns the next option character from the optstring parameter. If there are no more options to process, it returns -1. It also updates the optind variable, which keeps track of the current index in the argv array.
 
 A simple example:
 
