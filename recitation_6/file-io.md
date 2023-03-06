@@ -93,7 +93,7 @@ What's that you ask? It means they're really good at reading in strings, but bad
 
 `fgets`  reads the next  _line_  from the input file in  `fp`  into the memory location pointed to by  `line`. If all is successful, it reads at most  `maxline-1`  characters out of the file, and returns  `line`  as well. If something goes wrong (on end of file, or error) it returns  `NULL`. It will keep the newline character it reads if it gets to one before it reaches  `maxline-1`  characters. It also ALWAYS appends the null character to the end of the string.  `fgets`  will advance the file position after each read by the space read into  `line`.
 
-`fputs`  returns EOF if there's an error and 0 otherwise. This will not append a newline to the file, nor does your string need to contain a newline character. It will write the null-terminated string pointed to by `line` to the stream pointed to by `fp`.  The terminating null byte will not be written.
+`fputs`  returns EOF if there's an error and a non-negative number on success. This will not append a newline to the file, nor does your string need to contain a newline character. It will write the null-terminated string pointed to by `line` to the stream pointed to by `fp`.  The terminating null byte will not be written.
 
 **Watch out!**  `gets`  and  `puts`  work very similarly for  `stdin`  and  `stdout`  but  `gets`  will not give you the newline character. But you shouldn't have to worry about that because you should NEVER use  `gets`. It does not perform any bounds checking on the input, so you're just asking for memory errors.
 
