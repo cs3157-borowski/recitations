@@ -124,28 +124,6 @@ int main(int argc, char **argv)
         star(n);
         exit(0);
 #endif
-
-#ifdef S8
-        star(i);
-        pid_t pid = fork();
-        if (pid == 0) // Child process
-            exit(i);
-
-        char c;
-        read(0, &c, sizeof(char)); // Block until we can read a byte from stdin
-                                   // (fd=0)
-#endif
-
-#ifdef S9
-        star(i);
-        pid_t pid = fork();
-        if (pid == 0) // Child process
-            exit(i);
-
-        char c;
-        read(0, &c, sizeof(char)); // Block until we can read a byte from stdin
-                                   // (fd=0), or we are interrupted by a signal
-#endif
     }
 }
 
