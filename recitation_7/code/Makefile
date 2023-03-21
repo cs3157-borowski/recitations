@@ -11,8 +11,6 @@ STARS = \
 		starfork-s5 \
 		starfork-s6 \
 		starfork-s7 \
-		starfork-s8 \
-		starfork-s9 \
 
 .PHONY: default
 default: $(STARS)
@@ -39,12 +37,6 @@ starfork-s6.o: starfork.c
 
 starfork-s7.o: starfork.c
 	$(CC) $(CFLAGS) -DS7 -c -o $@ $<
-
-starfork-s8.o: starfork.c
-	$(CC) $(CFLAGS) -DS8 -c -o $@ $<
-
-starfork-s9.o: starfork.c
-	$(CC) $(CFLAGS) -DS9 -c -o $@ $<
 
 .PHONY: clean
 clean:
