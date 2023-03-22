@@ -19,7 +19,7 @@ For starters, let’s make sure you understand the skeleton code:
 
 void star(int numstar) {
     if (numstar >= 100)
-        exit(1);
+        exit(EXIT_FAILURE);
 
     char star = '*';
 
@@ -126,7 +126,7 @@ star(i);
 pid_t pid = fork();
 if (pid == 0) { // Child process
     star(i);
-    exit(0);
+    exit(EXIT_SUCCESS);
 }
 waitpid(pid, NULL, 0); // No status, no options
 ```
@@ -142,7 +142,7 @@ pid_t pid = fork();
 if (pid > 0) { // Parent process
     waitpid(pid, NULL, 0); // No status, no options
     star(i);
-    exit(0);
+    exit(EXIT_SUCCESS);
 }
 ```
 - Is the output predictable?
@@ -157,7 +157,7 @@ sleep(1);
 char *a[] = { argv[0], argv[1], NULL };
 execv(*a, a);
 printf("%s\n", "A STAR IS BORN");
-exit(0);
+exit(EXIT_SUCCESS);
 ```
 - Is `A STAR IS BORN` ever printed?
 - Are any new processes ever created?
@@ -177,7 +177,7 @@ if (pid == 0) { // Child process
 }
 waitpid(pid, NULL, 0); // No status, no options
 star(n);
-exit(0);
+exit(EXIT_SUCCESS);
 ```
 Some hints and guiding questions:
 
