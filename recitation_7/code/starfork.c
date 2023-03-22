@@ -20,7 +20,7 @@ void star(int numstar) {
 
     char line[100];
 
-    line[numstar] = 0;
+    line[numstar] = '\0';
 
     while (0 <= --numstar)
         line[numstar] = star;
@@ -28,35 +28,10 @@ void star(int numstar) {
     printf("%s\n", line);
 }
 
-void supernova(int sig) {
-    int wstatus;
-    while (waitpid(-1, &wstatus, WNOHANG) > 0)
-        for (int i = WEXITSTATUS(wstatus); i > 0; i--)
-            star(-i);
-}
-
-void setup_supernova(int sa_restart) {
-    struct sigaction sa;
-    memset(&sa, 0, sizeof(sa));
-    sigemptyset(&sa.sa_mask);
-    sa.sa_handler = supernova;
-    if (sa_restart)
-        sa.sa_flags = SA_RESTART;
-    sigaction(SIGCHLD, &sa, NULL);
-}
-
 int main(int argc, char **argv)
 {
     assert(argc == 2);
     int n = atoi(argv[1]);
-
-#ifdef S8
-    setup_supernova(1);
-#endif
-
-#ifdef S9
-    setup_supernova(0);
-#endif
 
     for (int i = 1; i <= n; i++) {
 
