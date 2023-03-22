@@ -16,7 +16,7 @@ void star(int numstar) {
     }
 
     if (numstar >= 100)
-        exit(1);
+        exit(EXIT_FAILURE);
 
     char line[100];
 
@@ -62,7 +62,7 @@ int main(int argc, char **argv)
         pid_t pid = fork();
         if (pid == 0) { // Child process
             star(i);
-            exit(0);
+            exit(EXIT_SUCCESS);
         }
         waitpid(pid, NULL, 0); // No status, no options
 #endif
@@ -73,7 +73,7 @@ int main(int argc, char **argv)
         if (pid > 0) { // Parent process
             waitpid(pid, NULL, 0); // No status, no options
             star(i);
-            exit(0);
+            exit(EXIT_SUCCESS);
         }
 #endif
 
@@ -83,7 +83,7 @@ int main(int argc, char **argv)
         char *a[] = { argv[0], argv[1], NULL };
         execv(*a, a);
         printf("%s\n", "A STAR IS BORN");
-        exit(0);
+        exit(EXIT_SUCCESS);
 #endif
 
 #ifdef S7
@@ -97,7 +97,7 @@ int main(int argc, char **argv)
         }
         waitpid(pid, NULL, 0); // no status, no options
         star(n);
-        exit(0);
+        exit(EXIT_SUCCESS);
 #endif
     }
 }
