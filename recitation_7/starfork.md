@@ -8,7 +8,7 @@ When you run `make` in here, it will build seven different version of starfork, 
 
 For starters, let’s make sure you understand the skeleton code:
 
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -67,7 +67,7 @@ In subsequent parts, we will modify the “mod block”, the portion of the code
 ## Part 2
 
 Change the main function to:
-```
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
@@ -125,7 +125,7 @@ Note that stars were printed even after the shell prompt `$` was shown. Why migh
 ## Part 3
 
 What about the following modification?
-```
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
@@ -143,7 +143,7 @@ int main(int argc, char **argv)
 
 ## Part 4
 Let’s add some synchronization by having the parent process wait for its child. What would be the output if you change the main function to the following?
-```
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
@@ -166,7 +166,7 @@ int main(int argc, char **argv)
 ## Part 5
 
 Now what about this version?
-```
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
@@ -189,7 +189,7 @@ int main(int argc, char **argv)
 ## Part 6
 
 Now let’s understand what `exec()` does. How would the following block behave?
-```
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
@@ -212,7 +212,7 @@ int main(int argc, char **argv)
 ## Part 7
 
 Now let’s see if you really understood `exec()`. What would be the output for the following block when you run `starfork` with arguments `2`, `10`, and `50`?
-```
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
