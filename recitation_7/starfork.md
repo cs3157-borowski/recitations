@@ -68,8 +68,16 @@ In subsequent parts, we will modify the “mod block”, the portion of the code
 
 Change the mod block to:
 ```
-star(i);
-fork();
+int main(int argc, char **argv) 
+{
+    assert(argc == 2);
+    int n = atoi(argv[1]);
+
+    for (int i = 1; i <= n; i++) {
+        star(i);
+        fork();
+    }
+}
 ```
 Run it with different command line arguments, `1`, `2`, `3`, etc.
 
@@ -112,9 +120,17 @@ Note that stars were printed even after the shell prompt `$` was shown. Why migh
 
 What about the following modification?
 ```
-star(i);
-fork();
-star(i);
+int main(int argc, char **argv) 
+{
+    assert(argc == 2);
+    int n = atoi(argv[1]);
+
+    for (int i = 1; i <= n; i++) {
+        star(i);
+        fork();
+        star(i);
+    }
+}
 ```
 - Try to predict the output with command line argument `1`; identify which process prints each line.
 - What about with arguments `2` or `3`? Are they predictable?
@@ -122,13 +138,21 @@ star(i);
 ## Part 4
 Let’s add some synchronization by having the parent process wait for its child. What would be the output if you change the modification block to the following?
 ```
-star(i);
-pid_t pid = fork();
-if (pid == 0) { // Child process
-    star(i);
-    exit(EXIT_SUCCESS);
+int main(int argc, char **argv) 
+{
+    assert(argc == 2);
+    int n = atoi(argv[1]);
+
+    for (int i = 1; i <= n; i++) {
+        star(i);
+        pid_t pid = fork();
+        if (pid == 0) { // Child process
+            star(i);
+            exit(EXIT_SUCCESS);
+        }
+        waitpid(pid, NULL, 0); // No status, no options
+    }
 }
-waitpid(pid, NULL, 0); // No status, no options
 ```
 - Is the output predictable?
 - Could you rewrite this modification block to produce the same output, without using `fork()` and `waitpid()`?
@@ -137,12 +161,20 @@ waitpid(pid, NULL, 0); // No status, no options
 
 Now what about this version?
 ```
-star(i);
-pid_t pid = fork();
-if (pid > 0) { // Parent process
-    waitpid(pid, NULL, 0); // No status, no options
-    star(i);
-    exit(EXIT_SUCCESS);
+int main(int argc, char **argv) 
+{
+    assert(argc == 2);
+    int n = atoi(argv[1]);
+
+    for (int i = 1; i <= n; i++) {
+        star(i);
+        pid_t pid = fork();
+        if (pid > 0) { // Parent process
+            waitpid(pid, NULL, 0); // No status, no options
+            star(i);
+            exit(EXIT_SUCCESS);
+        }
+    }
 }
 ```
 - Is the output predictable?
@@ -152,12 +184,20 @@ if (pid > 0) { // Parent process
 
 Now let’s understand what `exec()` does. How would the following block behave?
 ```
-star(i);
-sleep(1);
-char *a[] = { argv[0], argv[1], NULL };
-execv(*a, a);
-printf("%s\n", "A STAR IS BORN");
-exit(EXIT_SUCCESS);
+int main(int argc, char **argv) 
+{
+    assert(argc == 2);
+    int n = atoi(argv[1]);
+
+    for (int i = 1; i <= n; i++) {
+        star(i);
+        sleep(1);
+        char *a[] = { argv[0], argv[1], NULL };
+        execv(*a, a);
+        printf("%s\n", "A STAR IS BORN");
+        exit(EXIT_SUCCESS);
+    }
+}
 ```
 - Is `A STAR IS BORN` ever printed?
 - Are any new processes ever created?
@@ -167,17 +207,25 @@ exit(EXIT_SUCCESS);
 
 Now let’s see if you really understood `exec()`. What would be the output for the following block when you run `starfork` with arguments `2`, `10`, and `50`?
 ```
-star(n);
-pid_t pid = fork();
-if (pid == 0) { // Child process
-    char buf[100];
-    sprintf(buf, "%d", 2 * n);
-    char *a[] = { argv[0], buf, NULL };
-    execv(*a, a);
+int main(int argc, char **argv) 
+{
+    assert(argc == 2);
+    int n = atoi(argv[1]);
+
+    for (int i = 1; i <= n; i++) {
+        star(n);
+        pid_t pid = fork();
+        if (pid == 0) { // Child process
+            char buf[100];
+            sprintf(buf, "%d", 2 * n);
+            char *a[] = { argv[0], buf, NULL };
+            execv(*a, a);
+        }
+        waitpid(pid, NULL, 0); // No status, no options
+        star(n);
+        exit(EXIT_SUCCESS);
+    }
 }
-waitpid(pid, NULL, 0); // No status, no options
-star(n);
-exit(EXIT_SUCCESS);
 ```
 Some hints and guiding questions:
 
