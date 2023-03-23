@@ -7,6 +7,10 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+static void exit_report(void) {
+    fprintf(stderr, "Process [%d] finished.\n", getpid());
+}
+
 void star(int numstar) {
     char star = '*';
 
@@ -32,6 +36,9 @@ int main(int argc, char **argv)
 {
     assert(argc == 2);
     int n = atoi(argv[1]);
+
+    if (atexit(exit_report) != 0)
+        perror("Can't register exit function");
 
     for (int i = 1; i <= n; i++) {
 
