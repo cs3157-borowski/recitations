@@ -7,6 +7,10 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+static void exit_report(void) {
+    fprintf(stderr, "Process [%d] finished.\n", getpid());
+}
+
 void star(int numstar) {
     char star = '*';
 
@@ -33,14 +37,10 @@ int main(int argc, char **argv)
     assert(argc == 2);
     int n = atoi(argv[1]);
 
-    for (int i = 1; i <= n; i++) {
+    if (atexit(exit_report) != 0)
+        perror("Can't register exit function");
 
-        // You can enable each code block below by defining S1, S2, etc.
-        // at the preprocessing stage using -D option in gcc. For example:
-        //
-        //     gcc -Wall -g -D S1 starfork.c && ./a.out 3
-        //
-        // will run the program with the code in S1 block.
+    for (int i = 1; i <= n; i++) {
 
 #ifdef S1
         star(i);

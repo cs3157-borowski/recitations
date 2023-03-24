@@ -8,7 +8,7 @@ When you run `make` in here, it will build seven different version of starfork, 
 
 For starters, let’s make sure you understand the skeleton code:
 
-```
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,6 +16,10 @@ For starters, let’s make sure you understand the skeleton code:
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+
+static void exit_report(void) {
+    fprintf(stderr, "Process [%d] finished.\n", getpid());
+}
 
 void star(int numstar) {
     if (numstar >= 100)
@@ -43,15 +47,10 @@ int main(int argc, char **argv)
     assert(argc == 2);
     int n = atoi(argv[1]);
 
+    if (atexit(exit_report) != 0)
+        perror("Can't register exit function");
+
     for (int i = 1; i <= n; i++) {
-
-        // You can enable each code block below by defining S1, S2, etc.
-        // at the preprocessing stage using -D option in gcc. For example,
-        //
-        //     gcc -Wall -g -D S1 starfork.c && ./a.out 3 
-        //
-        // will run the program with the code in S1 block. 
-
         // BEGIN MOD BLOCK
 
         star(i);
@@ -60,18 +59,22 @@ int main(int argc, char **argv)
     }
 }
 ```
-How does this code behave? How many arguments does this program expect, and what do those arguments do?
+How does this code behave? How many arguments does this program expect, and what do those arguments do?  
+When will the `exit_report` function be invoked? How many times will its contents be printed?
 
 In subsequent parts, we will modify the “mod block”, the portion of the code between `// BEGIN MOD BLOCK` and `// END MOD BLOCK`.
 
 ## Part 2
 
-Change the mod block to:
-```
+Change the main function to:
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
     int n = atoi(argv[1]);
+
+    if (atexit(exit_report) != 0)
+        perror("Can't register exit function");
 
     for (int i = 1; i <= n; i++) {
         star(i);
@@ -81,8 +84,9 @@ int main(int argc, char **argv)
 ```
 Run it with different command line arguments, `1`, `2`, `3`, etc.
 
-- Can you predict the output? How many lines are printed, and how many stars are printed?
-- Is the output always the same? And if not, are there any kinds of patterns you can find among possible outputs?
+- Can you predict the output of stars? How many lines are printed, and how many stars are printed? 
+- How many times will the "Process xxx finished." be printed?
+- Is the output of stars always the same? And if not, are there any kinds of patterns you can find among possible outputs?
 - Is the following output possible:
 ```
 *
@@ -116,10 +120,12 @@ $ ***
 ```
 Note that stars were printed even after the shell prompt `$` was shown. Why might this happen? (Hint: what is the parent process of `starfork`?)
 
+> Note that while the exit function can help us understand how many processes are being used, in order to deepen our understanding of `fork` and `exec`, we will only consider the `stdout` output in the later sections (i.e. attaching the `2>/dev/null` when run them.)
+
 ## Part 3
 
 What about the following modification?
-```
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
@@ -136,8 +142,8 @@ int main(int argc, char **argv)
 - What about with arguments `2` or `3`? Are they predictable?
 
 ## Part 4
-Let’s add some synchronization by having the parent process wait for its child. What would be the output if you change the modification block to the following?
-```
+Let’s add some synchronization by having the parent process wait for its child. What would be the output if you change the main function to the following?
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
@@ -160,7 +166,7 @@ int main(int argc, char **argv)
 ## Part 5
 
 Now what about this version?
-```
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
@@ -183,7 +189,7 @@ int main(int argc, char **argv)
 ## Part 6
 
 Now let’s understand what `exec()` does. How would the following block behave?
-```
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
@@ -206,7 +212,7 @@ int main(int argc, char **argv)
 ## Part 7
 
 Now let’s see if you really understood `exec()`. What would be the output for the following block when you run `starfork` with arguments `2`, `10`, and `50`?
-```
+```c
 int main(int argc, char **argv) 
 {
     assert(argc == 2);
@@ -235,4 +241,4 @@ Some hints and guiding questions:
 
 ## Acknowledgements
 
-Parts of this note and exercises were originally created by Prof. Jae Lee and John Hui for this course. They were modified by Stanley Lin in Spring 2023.
+Parts of this note and exercises were originally created by Prof. Jae Lee and John Hui for this course. They were modified by Stanley Lin and Alex Xu in Spring 2023.
