@@ -42,13 +42,6 @@ int main(int argc, char **argv)
 
     for (int i = 1; i <= n; i++) {
 
-        // You can enable each code block below by defining S1, S2, etc.
-        // at the preprocessing stage using -D option in gcc. For example:
-        //
-        //     gcc -Wall -g -D S1 starfork.c && ./a.out 3
-        //
-        // will run the program with the code in S1 block.
-
 #ifdef S1
         star(i);
 #endif
