@@ -25,4 +25,6 @@ for Prof. Brian Borowski's offering of the course.
 - Rectiation 6
     - [File I/O](recitation_6/file-io.md)
     - [getopt](recitation_6/getopt.md)
-    
+- Rectiation 7
+    - [fork & waitpid & exec](recitation_7/starfork.md)
+    - [fork & sleep](recitation_7/modern_family/modern_family.c)
