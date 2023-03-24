@@ -18,25 +18,25 @@ default: $(STARS)
 $(STARS):
 
 starfork-s1.o: starfork.c
-	$(CC) $(CFLAGS) -DS1 -c -o $@ $<
+	$(CC) $(CFLAGS) -D S1 -c -o $@ $<
 
 starfork-s2.o: starfork.c
-	$(CC) $(CFLAGS) -DS2 -c -o $@ $<
+	$(CC) $(CFLAGS) -D S2 -c -o $@ $<
 
 starfork-s3.o: starfork.c
-	$(CC) $(CFLAGS) -DS3 -c -o $@ $<
+	$(CC) $(CFLAGS) -D S3 -c -o $@ $<
 
 starfork-s4.o: starfork.c
-	$(CC) $(CFLAGS) -DS4 -c -o $@ $<
+	$(CC) $(CFLAGS) -D S4 -c -o $@ $<
 
 starfork-s5.o: starfork.c
-	$(CC) $(CFLAGS) -DS5 -c -o $@ $<
+	$(CC) $(CFLAGS) -D S5 -c -o $@ $<
 
 starfork-s6.o: starfork.c
-	$(CC) $(CFLAGS) -DS6 -c -o $@ $<
+	$(CC) $(CFLAGS) -D S6 -c -o $@ $<
 
 starfork-s7.o: starfork.c
-	$(CC) $(CFLAGS) -DS7 -c -o $@ $<
+	$(CC) $(CFLAGS) -D S7 -c -o $@ $<
 
 .PHONY: clean
 clean:
