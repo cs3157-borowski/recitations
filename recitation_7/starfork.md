@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 }
 ```
 How does this code behave? How many arguments does this program expect, and what do those arguments do?  
-When will the `exit_report` function be invoked? How many times will its contents be printed?
+When will the `exit_report` function be invoked? How many times will its content be printed?
 
 In subsequent parts, we will modify the “mod block”, the portion of the code between `// BEGIN MOD BLOCK` and `// END MOD BLOCK`.
 
