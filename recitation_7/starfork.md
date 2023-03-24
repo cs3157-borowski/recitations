@@ -120,7 +120,7 @@ $ ***
 ```
 Note that stars were printed even after the shell prompt `$` was shown. Why might this happen? (Hint: what is the parent process of `starfork`?)
 
-> Note that while the exit function can help us understand how many processes are being used, in order to deepen our understanding of `fork` and `exec`, we will only consider the `stdout` output in the later sections (i.e. attaching the `2>/dev/null` when run them.)
+> Note that while the exit function can help us understand how many processes are being used, in order to deepen our understanding of `fork` and `exec`, we will only consider the `stdout` output in the later sections (i.e., attaching `2>/dev/null` in your command when running them.)
 
 ## Part 3
 
