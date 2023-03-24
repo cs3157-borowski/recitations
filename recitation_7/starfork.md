@@ -239,6 +239,50 @@ Some hints and guiding questions:
 - Note that we call `star()` with `n` instead of `i`!
 - Try to justify your explanation with a fork diagram; when `starfork` executes itself, make a note of what argument it is called with.
 
+
+# Modern Family
+
+Is the output of this program predictable? Why or why not?
+Try to predict the output before you run the program.
+
+## modern_family.c
+```c
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int i;
+    pid_t p;
+
+    p = fork();
+
+    if (p > 0) {
+        for (i = 0; i < 10; i++) {
+            printf("Listen to me\n");
+            sleep(1);
+        }
+        printf("I give up...\n");
+        return 0;
+    }
+    else if (p == 0) {
+        for (i = 0; i < 10; i++) {
+            printf("No way\n");
+            sleep(1);
+        }
+        printf("Whatever.\n");
+        return 1;
+    }
+    else {
+        perror("fork failed");
+        return -1;
+    }
+}
+```
+What is the effect of removing the sleep statements in the parent and child processes on the program's output?
+Will the program's output change? Why or why not?
+
 ## Acknowledgements
 
-Parts of this note and exercises were originally created by Prof. Jae Lee and John Hui for this course. They were modified by Stanley Lin and Alex Xu in Spring 2023.
+Parts of this note and exercises were originally created by Prof. Jae Lee and John Hui for this course. They were modified by Stanley Lin, Alex Xu and Noam Zaid in Spring 2023.
