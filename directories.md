@@ -125,8 +125,8 @@ In the following scenario:
 (1.4) Does the following code contain any memory leaks? If so, how would you fix it?
 
 	int main(int argc, char **argv){
-	    DIR *dir;
-	    if (opendir(argv[1]) != NULL)
+	    DIR *dir = opendir(argv[1]);
+	    if (dir != NULL)
 	        printf("Opened directory\n");
 	     else
 	        printf("Could not open directory\n");
