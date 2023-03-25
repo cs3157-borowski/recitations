@@ -17,7 +17,7 @@ Part 2
 ------
 
 Running starfork <N> will print 1 line with 1 *, 2 lines with 2 *s, 4 lines with
-3 *s, etc. i.e., 2^i lines of i *s for i <= N.
+3 *s, etc. i.e., 2^i-1 lines of i *s for i <= N.
 
 starfork 1 and starfork 2 are predictable:
 
