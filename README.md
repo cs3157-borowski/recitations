@@ -28,3 +28,5 @@ for Prof. Brian Borowski's offering of the course.
 - Rectiation 7
     - [fork & waitpid & exec](recitation_7/starfork.md)
     - [fork & sleep](recitation_7/modern_family/modern_family.c)
+- Rectiation NN
+    - [Working w/ Directories and Files](recitation_NN/directories.md)
