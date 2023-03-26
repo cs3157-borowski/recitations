@@ -2,7 +2,7 @@
 
 ### DIR Pointers
 
-`DIR`  is a typedef'ed structure in  `dirent.h`. As it was the case with the `FILE` struct, `DIR` is an _opaque type_ so its contents are never to be directly accesed. Rather, there is a series of function that we can use to operate on a `DIR *` in a very recognizable and similar manner to the functions we used to operate on `FILE *`. Since directories are a special case of files, the `DIR` structure also wraps a file descriptor.
+`DIR`  is a typedef'ed structure in  `dirent.h`. As it was the case with the `FILE` struct, `DIR` is an _opaque type_ so its contents are never to be directly accessed. Rather, there is a series of function that we can use to operate on a `DIR *` in a very recognizable and similar manner to the functions we used to operate on `FILE *`. Since directories are a special case of files, the `DIR` structure also wraps a file descriptor.
 
 ### opendir and closedir
 
@@ -96,14 +96,14 @@ If instead we relied on the one-hot encoded macros, our function could simply ha
 
 	int create_file(char *filename, int mode);
   
-and could be called as `create_file("dummyfile", S_IRUSR | S_IWUSR)` and it would carry the same information while using considerably less space and mantain sufficient readability.
+and could be called as `create_file("dummyfile", S_IRUSR | S_IWUSR)` and it would carry the same information while using considerably less space and maintain sufficient readability.
 
 ## lstat
 
 int lstat(const char *restrict pathname,
                 struct stat *restrict statbuf);
 
-`lstat` performs an identical function to `stat()` with the only diference being that if `pathname` refers to a symbolic link, the information on `statbuf` will represent information about the link itself, and not the file pointed to by the link.
+`lstat` performs an identical function to `stat()` with the only difference being that if `pathname` refers to a symbolic link, the information on `statbuf` will represent information about the link itself, and not the file pointed to by the link.
 
 In the following scenario:
 
