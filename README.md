@@ -27,4 +27,4 @@ for Prof. Brian Borowski's offering of the course.
     - [getopt](recitation_6/getopt.md)
 - Rectiation 7
     - [fork & waitpid & exec](recitation_7/starfork.md)
-    - [fork & sleep](recitation_7/modern_family/modern_family.c)
+    - [fork & sleep](recitation_7/code/modern_family/modern_family.c)
