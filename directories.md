@@ -62,7 +62,7 @@ In a similar fashion to `readdir()`, despite the interface of `stat()` being sim
        struct timespec st_ctim;  /* Time of last status change */
      }
 
-One of the key elements is `st_mode`, which despite its `mode_t` type is just basically 16-bit bitfield. Where 7 bits are used to store the file type, and 9 bits are used to store the permissions. The 7 bits storing the file type, can be easily conveniently accessed by the following macros:
+One of the key elements is `st_mode`, which despite its `mode_t` type is just a 16-bit bitfield. 7 bits are used to store the file type, and 9 bits are used to store the permissions. The 7 bits storing the file type, can be easily conveniently accessed by the following macros:
 
     S_ISREG() // regular file
     S_ISDIR() // directory file
@@ -84,7 +84,7 @@ The remaining 9 bits, require some additional manipulation and the usage of the 
     S_IWOTH // other-write
     S_IXOTH // other-execute
     
-The macros simply represent one-hot encoded values which can be tested for using bitwise and (&) or combined using bitwise (or).
+The macros simply represent [one-hot encoded values](https://en.wikipedia.org/wiki/One-hot) which can be tested for using bitwise and (&) or combined using bitwise (or).
 
 Using one-hot encoded values is a very common pattern in systems programming because it allows for efficient usage of resources while preserving the readability of the code. For example, let's suppose we wanted to write a function to create a file with some permissions, one option would be for the prototype of the function to be as follows:
 
@@ -143,6 +143,7 @@ In the following scenario:
 Check the additional, `permstat.c` exercise on CourseWorks for more hands-on coding practice. 
 
 ### Solutions
+<details><summary>Click Here for Solutions</summary>
 
 (1.1) `(S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)`
 
@@ -153,7 +154,7 @@ Check the additional, `permstat.c` exercise on CourseWorks for more hands-on cod
 (1.4) Yes, it can be prevented calling `closedir()`
 
 (1.5) 6
-
+</details>
 
 ### Acknowledgements
 This recitation was originally developed by Xurxo Riesco for Spring 2023.
