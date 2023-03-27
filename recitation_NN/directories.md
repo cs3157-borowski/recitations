@@ -132,7 +132,7 @@ In the following scenario:
 	        printf("Could not open directory\n");
 	}
 
-(1.5) How many times will `readdir()` execute in the following directory before it returns `NULL`. You may assume it never fails
+(1.5) How many times will `readdir()` execute in the following directory before it returns `NULL`. You may assume it never fails and it is run on the AP Server.
 
 	$ ls -l
 	-rw-rw----  1 xurxo xurxo   0 Mar 25 17:58 file1.txt
