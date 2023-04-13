@@ -17,22 +17,24 @@ int main()
     sa.sa_flags = 0;
     
     for(int i=1; i< 65; i++){
-	if(i == 9 || i == 19 || i == 32 || i == 33)
-	    continue;
-	if(sigaction(i, &sa, NULL) == -1){
-	    fprintf(stderr, "failed sigaction %d\n", i);
-	    return 1;
-	}
+		if(i == 9 || i == 19 || i == 32 || i == 33)
+			continue;
+
+		if (sigaction(i, &sa, NULL) == -1) {
+			fprintf(stderr, "failed sigaction %d\n", i);
+			return 1;
+		}
     }
 
     while(1){
-	if(sig_num){
-	    printf("The signum is %d\n", sig_num);
-	    sig_num = 0;
-	} else {
-	    printf("I ♥ AP\n");
+		if (sig_num) {
+			printf("The signum is %d\n", sig_num);
+			sig_num = 0;
+		} else {
+			printf("I ♥ AP\n");
+		}
+		sleep(1);
 	}
-	sleep(1);
-    }
-    return 0;
+    
+	return 0;
 }
