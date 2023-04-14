@@ -18,11 +18,10 @@ int main() {
         fprintf(stderr, "failed sigaction\n");
 	    return 1;
     }
-
-    while (1) {
-        int count = read(STDIN_FILENO, buf, 256);
-        iteration++;
-        printf("iteration: %d\n", iteration);
+    
+    int count = read(STDIN_FILENO, buf, 256);
+    if (count > 0) {
+        write(STDOUT_FILENO, buf, count);
     }
     
 }
