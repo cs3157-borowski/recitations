@@ -7,7 +7,7 @@ void sig_handler(int signum) {
     printf("starting handler\n");
     sleep(3);
     /* some important code */
-    printf("interrupt handled\n");
+    printf("signal handled\n");
 }
 
 int main() {

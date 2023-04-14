@@ -27,7 +27,7 @@ int sigaction(int signum, const struct sigaction *restrict act,
 Usually we would use `sigaction` for a couple of reasons:
 
 - `signal()` does not block other signals from arriving. Therefore,
-if another signal can arrive during the execution of the signal handler. 
+another signal can arrive during the execution of the signal handler. 
 `sigaction()` blocks other signals until the signal handler finishes 
 executing.
 - `signal()` usually resets signal action back to `SIG_DFL`
@@ -44,7 +44,7 @@ void sig_handler(int signum) {
     printf("starting handler\n");
     sleep(3);
     /* some important code */
-    printf("interrupt handled\n");
+    printf("signal handled\n");
 }
 
 int main() {
@@ -69,7 +69,7 @@ the keyboard*
 ``` bash
 $ ./a.out
 ^Cstarting handler
-interrupt handled
+signal handled
 ```
 
 However, consider what happens if we send `SIGINT` immediately followed by `SIGQUIT`.
@@ -93,7 +93,7 @@ void sig_handler(int signum) {
     printf("starting handler\n");
     sleep(3);
     /* some important code */
-    printf("interrupt handled\n");
+    printf("signal handled\n");
 }
 
 int main() {
@@ -121,7 +121,7 @@ Now, we observe what happens if we send `SIGINT` immediately followed by `SIGQUI
 ``` bash 
 $ ./a.out
 ^Cstarting handler
-^\interrupt handled
+^\signal handled
 Quit: 3
 $
 ```
@@ -164,7 +164,7 @@ and ignore any `SIGINT`. With `signal()` this could be implemented as follows.
 ``` c
 
 void sig_handler(int signum) {
-    printf("interrupt handled\n");
+    printf("signal handled\n");
 }
 
 char buf[256];
@@ -189,7 +189,7 @@ On some machines this could be equivalent to the following code.
 
 ``` c
 void sig_handler(int signum) {
-    printf("interrupt handled\n");
+    printf("signal handled\n");
 }
 
 char buf[256];
@@ -216,7 +216,7 @@ Observe the following shell session running this code.
 
 ``` bash
 $ ./a.out
-^C interrupt handled
+^C signal handled
 $
 ```
 
@@ -227,7 +227,7 @@ On other machines, such as Linux, the first block of code would be equivalent to
 
 ``` c
 void sig_handler(int signum) {
-    printf("interrupt handled\n");
+    printf("signal handled\n");
 }
 
 char buf[256];
@@ -256,9 +256,9 @@ We can then run the following shell session.
 
 ``` bash
 $ ./a.out
-^Cinterrupt handled
-^Cinterrupt handled
-^Cinterrupt handled
+^Csignal handled
+^Csignal handled
+^Csignal handled
 hello
 hello
 $

@@ -6,7 +6,7 @@
 #include <sys/types.h>
 
 void sig_handler(int signum) {
-    printf("interrupt handled\n");
+    printf("signal handled\n");
 }
 
 char buf[256];
