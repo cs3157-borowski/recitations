@@ -9,7 +9,11 @@ void sig_handler(int signum) {
     printf("interrupt handled\n");
 }
 
+char buf[256];
+int iteration = 0;
+
 int main() {
+
     struct sigaction sa;
     sa.sa_handler = sig_handler;
     /* automatically restarts slow system call */
@@ -20,13 +24,10 @@ int main() {
 	    return 1;
     }
 
-    printf("PID: %d\n", getpid());
-
-    pid_t pid = fork();
-
-    if (pid == 0) {
-        sleep(1000);
-    } else if (pid > 0) {
-        wait(NULL);
+    while (1) {
+        int count = read(STDIN_FILENO, buf, 256);
+        iteration++;
+        printf("iteration: %d\n", iteration);
     }
+    
 }
