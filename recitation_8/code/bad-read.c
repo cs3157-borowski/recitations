@@ -14,7 +14,10 @@ int iteration = 0;
 
 int main() {
 
-    if (signal(SIGINT, sig_handler) == SIG_ERR) {
+    struct sigaction sa;
+    sa.sa_handler = sig_handler;
+
+    if (sigaction(SIGINT, &sa, NULL) == -1) {
         fprintf(stderr, "failed sigaction\n");
 	    return 1;
     }
