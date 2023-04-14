@@ -33,6 +33,7 @@ executing.
 so the signal handler must reinstall itself as its first action.
 Therefore, the default action may be execution if the signal arrives 
 in between signal detection and handler reinstallation.
+- `signal()` does not automatically restart "slow" system calls.
 
 Suppose we had a critical section of code that we want to execute on a 3 second delay every time we receive `SIGINT`. 
 This can be implemented as follows.
