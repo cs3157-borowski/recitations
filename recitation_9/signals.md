@@ -25,6 +25,7 @@ int sigaction(int signum, const struct sigaction *restrict act,
 ```
 
 Usually we would use `sigaction` for a couple of reasons:
+
 - `signal()` does not block other signals from arriving. Therefore,
 if another signal can arrive during the execution of the signal handler. 
 `sigaction()` blocks other signals until the signal handler finishes 
