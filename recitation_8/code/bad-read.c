@@ -10,7 +10,6 @@ void sig_handler(int signum) {
 }
 
 char buf[256];
-int iteration = 0;
 
 int main() {
 

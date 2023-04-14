@@ -33,7 +33,7 @@ executing.
 so the signal handler must reinstall itself as its first action.
 Therefore, the default action may be execution if the signal arrives 
 in between signal detection and handler reinstallation.
-- `signal()` does not automatically restart "slow" system calls.
+- `signal()` may not automatically restart "slow" system calls.
 
 Suppose we had a critical section of code that we want to execute on a 3 second delay every time we receive `SIGINT`. 
 This can be implemented as follows.
@@ -150,3 +150,115 @@ sigfillset(&sa.sa_mask);
 
 ***IMPORTANT: SIGKILL and SIGSTOP cannot be blocked, so if the these
 signals are delivered, the program will execute their default handlers***
+
+Another problem with signal that we will cover is portability across
+systems. In particular, we will look at system call restarts. In
+the standard, there is no convention for how `signal()` should be
+behave when a signal is received when a blocking system call is
+running.
+
+Suppose we wanted to read one line from stdin and then write to stdout,
+and ignore any `SIGINT`. With `signal()` this could be implemented as follows.
+
+``` c
+
+void sig_handler(int signum) {
+    printf("interrupt handled\n");
+}
+
+char buf[256];
+
+int main() {
+
+    if (signal(SIGINT, sig_handler) == SIG_ERR) {
+        fprintf(stderr, "failed signal\n");
+	    return 1;
+    }
+    
+    int count = read(STDIN_FILENO, buf, 256);
+    if (count > 0) {
+        write(STDOUT_FILENO, buf, count);
+    }
+    
+}
+```
+
+However, if we run this on different machines, we could see different behavior. 
+On some machines this could be equivalent to the following code.
+
+``` c
+void sig_handler(int signum) {
+    printf("interrupt handled\n");
+}
+
+char buf[256];
+
+int main() {
+
+    struct sigaction sa;
+    sa.sa_handler = sig_handler;
+
+    if (sigaction(SIGINT, &sa, NULL) == -1) {
+        fprintf(stderr, "failed sigaction\n");
+	    return 1;
+    }
+    
+    int count = read(STDIN_FILENO, buf, 256);
+    if (count > 0) {
+        write(STDOUT_FILENO, buf, count);
+    }
+    
+}
+```
+
+Observe the following shell session running this code.
+
+``` bash
+$ ./a.out
+^C interrupt handled
+$
+```
+
+The signal is handled which causes `read` to fail. However,
+this call never restarts so this code does not work as intended.
+
+On other machines, such as Linux, the first block of code would be equivalent to the following.
+
+``` c
+void sig_handler(int signum) {
+    printf("interrupt handled\n");
+}
+
+char buf[256];
+
+int main() {
+
+    struct sigaction sa;
+    sa.sa_handler = sig_handler;
+    /* automatically restarts slow system call */
+    sa.sa_flags = SA_RESTART;
+
+    if (sigaction(SIGINT, &sa, NULL) == -1) {
+        fprintf(stderr, "failed sigaction\n");
+	    return 1;
+    }
+
+    int count = read(STDIN_FILENO, buf, 256);
+    if (count > 0) {
+        write(STDOUT_FILENO, buf, count);
+    }
+    
+}
+```
+
+We can then run the following shell session.
+
+``` bash
+$ ./a.out
+^Cinterrupt handled
+^Cinterrupt handled
+^Cinterrupt handled
+hello
+hello
+$
+```

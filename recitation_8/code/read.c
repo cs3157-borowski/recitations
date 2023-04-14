@@ -13,16 +13,11 @@ char buf[256];
 
 int main() {
 
-    struct sigaction sa;
-    sa.sa_handler = sig_handler;
-    /* automatically restarts slow system call */
-    sa.sa_flags = SA_RESTART;
-
-    if (sigaction(SIGINT, &sa, NULL) == -1) {
-        fprintf(stderr, "failed sigaction\n");
+    if (signal(SIGINT, sig_handler) == SIG_ERR) {
+        fprintf(stderr, "failed signal\n");
 	    return 1;
     }
-
+    
     int count = read(STDIN_FILENO, buf, 256);
     if (count > 0) {
         write(STDOUT_FILENO, buf, count);
