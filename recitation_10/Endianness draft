@@ -1,3 +1,4 @@
+Endianness
 When we deal with reading and writing data, we must know what format those bytes are appearing in. 
 The order that a multi-byte number appears in is called "endianness". 
 
