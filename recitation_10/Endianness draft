@@ -44,7 +44,6 @@ Below is a short puzzle where you can practice your understanding of endianness:
   //allocate address info, make info a pointer to it
   getaddrinfo("12.34.56.78","g", &hints, &info);
   
-  //contains
   struct sockaddr in *addr = (struct sockaddr in*) info->ai addr:
   
   uint32_t na = addr->sin_addr.s_addr; //get the IPv4 address (big endian)
@@ -57,10 +56,46 @@ Below is a short puzzle where you can practice your understanding of endianness:
 
 What is in each byte of the following values:
   na:
++------+------+------+------+
+|      |      |      |      |        
++------+------+------+------+
   ha:
++------+------+------+------+
+|      |      |      |      |        
++------+------+------+------+
   a:
++------+------+
+|      |      |          
++------+------+
   b:
++------+------+
+|      |      |          
++------+------+
   c:
++------+------+
+|      |      |          
++------+------+
   
+Puzzle Solutions (Leslie are you able to make this a dropdown lol. its ok if not)
+
+  na:
++------+------+------+------+
+| 12   | 34   | 56   | 78   |        
++------+------+------+------+
+  ha:
++------+------+------+------+
+|   78 |   56 |   34 |   12 |        
++------+------+------+------+
+  a:
++------+------+
+|  0   |   9  |          
++------+------+
+  b:
++------+------+
+|  9   |   0  |          
++------+------+
+  c:
++------+------+
+|  12  |   34 |          
++------+------+
   
- 
