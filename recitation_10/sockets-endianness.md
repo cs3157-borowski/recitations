@@ -252,5 +252,6 @@ Puzzle Solutions
 - Some examples were taken from John Hui's [Advanced
   Programming](https://cs3157.github.io/www/2022-9/) lecture notes. We recommend
   reading them on top of these recitation notes.
+  - [Lecture 12 - File Contents and Descriptors](https://cs3157.github.io/www/2022-9/lecture-notes/12-files.pdf)
   - [Lecture 13 - TCP/IP Networking](https://cs3157.github.io/www/2022-9/lecture-notes/13-tcp-ip.pdf)
   - [Lecture 14 - HTTP](https://cs3157.github.io/www/2022-9/lecture-notes/14-http.pdf)
