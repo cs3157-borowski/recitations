@@ -183,21 +183,20 @@ An important thing to note is depending on the endianness of your local machine,
 Below is a short puzzle where you can practice your understanding of endianness:
 
 ```c
-  //On AP Server: little-endian
-  struct addrinfo hints = {0}, *info;
-  
-  //TCP/IP
-  //allocate address info, make info a pointer to it
-  getaddrinfo("12.34.56.78","9", &hints, &info);
-  
-  struct sockaddr in *addr = (struct sockaddr in*) info->ai addr:
-  
-  uint32_t na = addr->sin_addr.s_addr; //get the IPv4 address (big endian)
-  uint32_t ha = ntohl(addr->sin_ addr.s addr); //network to host, convert to little endian
-  
-  uint16 t a = addr->sin port; //port number (big endian)
-  uint16 t b = htons (addr->sin port); //convert host to network, to big endian
-  uint16 t c = *(uint16 t*) &na;
+//On AP Server: little-endian
+struct addrinfo hints = {0}, *info;
+
+//allocate address info, make info a pointer to it
+getaddrinfo("12.34.56.78","9", &hints, &info);
+
+struct sockaddr_in *addr = (struct sockaddr_in*) info->ai_addr;
+
+uint32_t na = addr->sin_addr.s_addr; //get the IPv4 address (big endian)
+uint32_t ha = ntohl(addr->sin_addr.s_addr); //network to host, convert to little endian
+
+uint16_t a = addr->sin_port; //port number (big endian)
+uint16_t b = htons(addr->sin_port); //convert host to network, to big endian
+uint16_t c = *(uint16_t*) &na;
 ```
 
 What is in each byte of the following values:
@@ -223,6 +222,7 @@ What is in each byte of the following values:
 |      |      |          
 +------+------+
 ```
+<br>
 Puzzle Solutions:
 ```
   na:
