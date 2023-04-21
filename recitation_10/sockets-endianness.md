@@ -159,8 +159,9 @@ In big-endian, bytes are arranged from the most significant byte (MSB) to the le
 +------+------+------+------+
 | 0x00 | 0x00 | 0x00 | 0x08 |         (big-endian representation of 0x00000008)
 +------+------+------+------+
-
+```
 In little-endian, bytes are arranged from least significant byte (LSB) to most significant byte (MSB). The same number above would be represented in little-endian as follows:
+```
 +------+------+------+------+
 | 0x08 | 0x00 | 0x00 | 0x00 |         (little-endian representation of 0x00000008)
 +------+------+------+------+
