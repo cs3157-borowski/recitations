@@ -1,6 +1,6 @@
-# Sockets and Server Testing
+# Endianness, Sockets, and Server Testing
 
-## 
+## Endianness
 
 ```
 When we deal with reading and writing data, we must know what format those bytes are appearing in. 
