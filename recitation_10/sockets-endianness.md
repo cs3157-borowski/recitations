@@ -50,7 +50,7 @@ the other needs to act as a client. You tell `netcat` to act as a server with
 the `-l` flag:
 
 ```console
-leslie@ap.cs.columbia.edu:~$ nc -l 10000
+uni_1@ap.cs.columbia.edu:~$ nc -l 10000
 ```
 
 The `netcat` program on `ap.cs.columbia.edu` will create a socket and wait for
@@ -59,7 +59,7 @@ IP address of the server and the port number of the socket listening on that
 server:
 
 ```console
-joseph@ap.cs.columbia.edu:~$ nc ap.cs.columbia.edu 10000
+uni_2@ap.cs.columbia.edu:~$ nc ap.cs.columbia.edu 10000
 ```
 
 Notice the differences between these two commands. The first command only
@@ -151,30 +151,18 @@ To form a bidirectional channel between client and server, three sockets are use
 ### Big-Endian and Little-Endian
 When we deal with reading and writing data, we must know what format those bytes are appearing in. 
 The order that a multi-byte number appears in is called "endianness". 
-```
-There is big-endian and little-endian. 
-In big-endian, bytes are arranged from the most significant byte (MSB) to the least significant byte (LSB). For example, the number 8 would be represented in big-endian as follows: 
-+------+------+------+------+
-| 0x00 | 0x00 | 0x00 | 0x8  |         (big-endian representation of 0x00000008)
-+------+------+------+------+
-
-In little-endian, bytes are arranged from least significant byte (LSB) to most significant byte (MSB). The same number above would be represented in little-endian as follows:
-+------+------+------+------+
-| 0x8 | 0x00 | 0x00 | 0x00  |         (little-endian representation of 0x00000008)
-+------+------+------+------+
-```
 The endianness of your host machine depends on what computer architecture your program is running on. Most computers we use nowadays are little-endian. Network endianness is always big-endian.
 
 There is big-endian and little-endian. 
 In big-endian, bytes are arranged from the most significant byte (MSB) to the least significant byte (LSB). For example, the number 8 would be represented in big-endian as follows: 
 ```
 +------+------+------+------+
-| 0x00 | 0x00 | 0x00 | 0x8  |         (big-endian representation of 0x00000008)
+| 0x00 | 0x00 | 0x00 | 0x08 |         (big-endian representation of 0x00000008)
 +------+------+------+------+
 
 In little-endian, bytes are arranged from least significant byte (LSB) to most significant byte (MSB). The same number above would be represented in little-endian as follows:
 +------+------+------+------+
-| 0x8 | 0x00 | 0x00 | 0x00  |         (little-endian representation of 0x00000008)
+| 0x08 | 0x00 | 0x00 | 0x00 |         (little-endian representation of 0x00000008)
 +------+------+------+------+
 ```
 
@@ -192,8 +180,6 @@ An important thing to note is depending on the endianness of your local machine,
 
 ### Endianness Puzzle
 Below is a short puzzle where you can practice your understanding of endianness:
-
-###### Leslie doesn't make this chunk below code
 
 ```c
   //On AP Server: little-endian
@@ -237,7 +223,7 @@ What is in each byte of the following values:
 +------+------+
 ```
 
-Puzzle Solutions (Leslie are you able to make this a dropdown lol. its ok if not)
+Puzzle Solutions
 ```
   na:
 +------+------+------+------+
