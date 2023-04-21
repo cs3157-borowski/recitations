@@ -223,8 +223,7 @@ What is in each byte of the following values:
 |      |      |          
 +------+------+
 ```
-
-Puzzle Solutions
+Puzzle Solutions:
 ```
   na:
 +------+------+------+------+
