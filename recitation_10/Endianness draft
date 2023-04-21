@@ -1,4 +1,6 @@
 ##Endianness
+
+#Big-Endian and Little-Endian
 When we deal with reading and writing data, we must know what format those bytes are appearing in. 
 The order that a multi-byte number appears in is called "endianness". 
 
@@ -13,12 +15,52 @@ In little-endian, bytes are arranged from least significant byte (LSB) to most s
 | 0x8 | 0x00 | 0x00 | 0x00  |         (little-endian representation of 0x00000008)
 +------+------+------+------+
 
-The endianness of your host machine depends on what computer architecture your program is running on. Most computers we use nowadays are little-endian. 
+The endianness of your host machine depends on what computer architecture your program is running on. Most computers we use nowadays are little-endian. Network endianness is always big-endian.
 
 
-#Functions
+#Endian Converting Functions
 
 There are four main functions we should know regarding endianness: ntohl(), htonl(), ntohs(), and htons(). 
 
+ntohl() and htonl() stand for "network to host long" and "host to network long", respectfully. These functions operate pretty much as they sound: they convert an 8 byte number from network endianness (big-endian) to host endianness (little-endian) or vice versa. This is performed by swapping *bytes* in a number. *Note, bits are not swapped, but entire bytes are. These functions are blind to what you (the programmer) are trying to do--when it's called, it simply just swaped the bytes. Therefore functionally, ntohl() and htonl() are identical functions under the hood. 
 
+ntohs() and htons() stand for "network to host short" and "host to network short", respectfully. These functions operate the same as those above, except for taking in a 4 byte number (the size of a short).
 
+An important thing to note is depending on the endianness of your local machine, all of these endian converting functions could perform one of two actions: swap the internal bytes or do nothing. If your local machine is little-endian, all of these functions will swap bytes each time they are called. (ie they have no regard for whether the bytes you pass in actually need to be swapped to achieve the goal endianness). If your local machine is big-endian, these functions will do nothing.
+
+#Endianness Puzzle
+Below is a short puzzle where you can practice your understanding of endianness:
+
+#Leslie make this chunk below code#####
+  //On AP Server: little-endian
+  struct addrinfo hints = {0}, *info;
+  
+  //assign constants
+  hints-ai_family = AF_INET;
+  hints ai_socktype = SOCK_STREAM;
+  hints.ai protocol = IPPROTO TCP:
+  
+  //TCP/IP
+  //allocate address info, make info a pointer to it
+  getaddrinfo("12.34.56.78","g", &hints, &info);
+  
+  //contains
+  struct sockaddr in *addr = (struct sockaddr in*) info->ai addr:
+  
+  uint32_t na = addr->sin_addr.s_addr; //get the IPv4 address (big endian)
+  uint32_t ha = ntohl(addr->sin_ addr.s addr); //network to host, convert to little endian
+  
+  uint16 t a = addr->sin port; //port number (big endian)
+  uint16 t b = htons (addr->sin port); //convert host to network, to big endian
+  uint16 t c = *(uint16 t*) &na;
+###########
+
+What is in each byte of the following values:
+  na:
+  ha:
+  a:
+  b:
+  c:
+  
+  
+ 
