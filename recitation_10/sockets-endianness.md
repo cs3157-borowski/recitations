@@ -190,10 +190,12 @@ ntohs() and htons() stand for "network to host short" and "host to network short
 
 An important thing to note is depending on the endianness of your local machine, all of these endian converting functions could perform one of two actions: swap the internal bytes or do nothing. If your local machine is little-endian, all of these functions will swap bytes each time they are called. (ie they have no regard for whether the bytes you pass in actually need to be swapped to achieve the goal endianness). If your local machine is big-endian, these functions will do nothing.
 
-#Endianness Puzzle
+# Endianness Puzzle
 Below is a short puzzle where you can practice your understanding of endianness:
 
-#Leslie make this chunk below code#####
+# Leslie make this chunk below code
+
+```c
   //On AP Server: little-endian
   struct addrinfo hints = {0}, *info;
   
@@ -214,9 +216,10 @@ Below is a short puzzle where you can practice your understanding of endianness:
   uint16 t a = addr->sin port; //port number (big endian)
   uint16 t b = htons (addr->sin port); //convert host to network, to big endian
   uint16 t c = *(uint16 t*) &na;
-###########
+```
 
 What is in each byte of the following values:
+```
   na:
 +------+------+------+------+
 |      |      |      |      |        
@@ -237,9 +240,10 @@ What is in each byte of the following values:
 +------+------+
 |      |      |          
 +------+------+
-  
-Puzzle Solutions (Leslie are you able to make this a dropdown lol. its ok if not)
+```
 
+Puzzle Solutions (Leslie are you able to make this a dropdown lol. its ok if not)
+```
   na:
 +------+------+------+------+
 | 12   | 34   | 56   | 78   |        
@@ -260,13 +264,14 @@ Puzzle Solutions (Leslie are you able to make this a dropdown lol. its ok if not
 +------+------+
 |  12  |   34 |          
 +------+------+
-  
 ```
+
 When we deal with reading and writing data, we must know what format those bytes are appearing in. 
 The order that a multi-byte number appears in is called "endianness". 
 
 There is big-endian and little-endian. 
 In big-endian, bytes are arranged from the most significant byte (MSB) to the least significant byte (LSB). For example, the number 8 would be represented in big-endian as follows: 
+```
 +------+------+------+------+
 | 0x00 | 0x00 | 0x00 | 0x8  |         (big-endian representation of 0x00000008)
 +------+------+------+------+
