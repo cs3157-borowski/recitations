@@ -1,5 +1,23 @@
 # Sockets and Server Testing
 
+## 
+
+When we deal with reading and writing data, we must know what format those bytes are appearing in. 
+The order that a multi-byte number appears in is called "endianness". 
+
+There is big-endian and little-endian. 
+In big-endian, bytes are arranged from the most significant byte (MSB) to the least significant byte (LSB). For example, the number 8 would be represented in big-endian as follows: 
++------+------+------+------+
+| 0x00 | 0x00 | 0x00 | 0x8  |         (big-endian representation of 0x00000008)
++------+------+------+------+
+
+In little-endian, bytes are arranged from least significant byte (LSB) to most significant byte (MSB). The same number above would be represented in little-endian as follows:
++------+------+------+------+
+| 0x8 | 0x00 | 0x00 | 0x00  |         (little-endian representation of 0x00000008)
++------+------+------+------+
+
+The endianness of your host machine depends on what computer architecture your program is running on. Most computers we use nowadays are little-endian. 
+
 ## Sockets and HTTP
 
 ### What is a socket?
