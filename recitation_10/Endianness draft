@@ -16,3 +16,9 @@ In little-endian, bytes are arranged from least significant byte (LSB) to most s
 The endianness of your host machine depends on what computer architecture your program is running on. Most computers we use nowadays are little-endian. 
 
 
+#Functions
+
+There are four main functions we should know regarding endianness: ntohl(), htonl(), ntohs(), and htons(). 
+
+
+
