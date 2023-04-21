@@ -13,12 +13,17 @@ In little-endian, bytes are arranged from least significant byte (LSB) to most s
 | 0x8 | 0x00 | 0x00 | 0x00  |         (little-endian representation of 0x00000008)
 +------+------+------+------+
 
-The endianness of your host machine depends on what computer architecture your program is running on. Most computers we use nowadays are little-endian. 
+The endianness of your host machine depends on what computer architecture your program is running on. Most computers we use nowadays are little-endian. Network endianness is always big-endian.
 
 
 #Functions
 
 There are four main functions we should know regarding endianness: ntohl(), htonl(), ntohs(), and htons(). 
 
+ntohl() and htonl() stand for "network to host long" and "host to network long", respectfully. These functions operate pretty much as they sound: they convert an 8 byte number from network endianness (big-endian) to host endianness (little-endian) or vice versa. This is performed by swapping *bytes* in a number. *Note, bits are not swapped, but entire bytes are. These functions are blind to what you (the programmer) are trying to do--when it's called, it simply just swaped the bytes. Therefore functionally, ntohl() and htonl() are identical functions under the hood. 
+
+ntohs() and htons() stand for "network to host short" and "host to network short", respectfully. These functions operate the same as those above, except for taking in a 4 byte number (the size of a short).
+
+An important thing to note is depending on the endianness of your local machine, all of these endianness converting functions could perform one of two actions: swap the internal bytes or do nothing. If your local machine is little-endian, all of these functions will swap bytes each time they are called. (ie they have no regard for whether the bytes you pass in actually need to be swapped to achieve the goal endianness). If your local machine is big-endian, these functions will do nothing.
 
 
