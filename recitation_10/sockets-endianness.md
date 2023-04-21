@@ -222,7 +222,7 @@ What is in each byte of the following values:
 |      |      |          
 +------+------+
 ```
-<br>
+
 Puzzle Solutions:
 ```
   na:
