@@ -2,6 +2,7 @@
 
 ## 
 
+```
 When we deal with reading and writing data, we must know what format those bytes are appearing in. 
 The order that a multi-byte number appears in is called "endianness". 
 
@@ -17,7 +18,7 @@ In little-endian, bytes are arranged from least significant byte (LSB) to most s
 +------+------+------+------+
 
 The endianness of your host machine depends on what computer architecture your program is running on. Most computers we use nowadays are little-endian. 
-
+```
 ## Sockets and HTTP
 
 ### What is a socket?
