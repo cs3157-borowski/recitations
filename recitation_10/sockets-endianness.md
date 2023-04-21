@@ -1,6 +1,6 @@
 # Sockets, Server Testing, and Endianness 
 
-## Sockets and HTTP
+## Sockets
 
 ### What is a socket?
 A socket is a software construct used for many modes of communication between
@@ -42,7 +42,7 @@ sockets is with `netcat`. `netcat` is a bare-bones program to send streams of
 binary data over the network.
 
 Imagine we have two computers that can communicate over the internet, with the
-IP addresses `clac.cs.columbia.edu` and `clorp.cs.nyu.edu`.
+IP addresses `ap.cs.columbia.edu` and `clorp.cs.nyu.edu`.
 
 Because of the client-server model, connecting two socket endpoints to each
 other is not a symmetrical process. One socket needs to act as the server, while
@@ -53,13 +53,13 @@ the `-l` flag:
 leslie@ap.cs.columbia.edu:~$ nc -l 10000
 ```
 
-The `netcat` program on `clac.cs.columbia.edu` will create a socket and wait for
+The `netcat` program on `ap.cs.columbia.edu` will create a socket and wait for
 connections on port 10000. To tell `netcat` to act as a client, you supply the
 IP address of the server and the port number of the socket listening on that
 server:
 
 ```console
-joseph@ap.cs.nyu.edu:~$ nc clac.cs.columbia.edu 10000
+joseph@ap.cs.columbia.edu:~$ nc ap.cs.columbia.edu 10000
 ```
 
 Notice the differences between these two commands. The first command only
@@ -117,7 +117,6 @@ close(fd);
 ```
 
 And a TCP server:
-
 ```c
 int serv_fd = socket(...);
 bind(serv_fd, ... /* server address */);
@@ -180,7 +179,7 @@ In little-endian, bytes are arranged from least significant byte (LSB) to most s
 
 The endianness of your host machine depends on what computer architecture your program is running on. Most computers we use nowadays are little-endian. Network endianness is always big-endian.
 
-#Endian Converting Functions
+### Endian Converting Functions
 
 There are four main functions we should know regarding endianness: ntohl(), htonl(), ntohs(), and htons(). 
 
@@ -188,25 +187,20 @@ ntohl() and htonl() stand for "network to host long" and "host to network long",
 
 ntohs() and htons() stand for "network to host short" and "host to network short", respectfully. These functions operate the same as those above, except for taking in a 4 byte number (the size of a short).
 
-An important thing to note is depending on the endianness of your local machine, all of these endian converting functions could perform one of two actions: swap the internal bytes or do nothing. If your local machine is little-endian, all of these functions will swap bytes each time they are called. (ie they have no regard for whether the bytes you pass in actually need to be swapped to achieve the goal endianness). If your local machine is big-endian, these functions will do nothing.
+An important thing to note is depending on the endianness of your local machine, all of these endian converting functions could perform one of two actions: swap the internal bytes or do nothing. If your local machine is little-endian, all of these functions will swap bytes each time they are called. If your local machine is big-endian, these functions will do nothing.
 
-# Endianness Puzzle
+### Endianness Puzzle
 Below is a short puzzle where you can practice your understanding of endianness:
 
-# Leslie make this chunk below code
+###### Leslie doesn't make this chunk below code
 
 ```c
   //On AP Server: little-endian
   struct addrinfo hints = {0}, *info;
   
-  //assign constants
-  hints-ai_family = AF_INET;
-  hints ai_socktype = SOCK_STREAM;
-  hints.ai protocol = IPPROTO TCP:
-  
   //TCP/IP
   //allocate address info, make info a pointer to it
-  getaddrinfo("12.34.56.78","g", &hints, &info);
+  getaddrinfo("12.34.56.78","9", &hints, &info);
   
   struct sockaddr in *addr = (struct sockaddr in*) info->ai addr:
   
@@ -265,10 +259,8 @@ Puzzle Solutions (Leslie are you able to make this a dropdown lol. its ok if not
 |  12  |   34 |          
 +------+------+
 ```
-
 When we deal with reading and writing data, we must know what format those bytes are appearing in. 
 The order that a multi-byte number appears in is called "endianness". 
-
 There is big-endian and little-endian. 
 In big-endian, bytes are arranged from the most significant byte (MSB) to the least significant byte (LSB). For example, the number 8 would be represented in big-endian as follows: 
 ```
