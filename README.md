@@ -30,5 +30,9 @@ for Prof. Brian Borowski's offering of the course.
     - [fork & sleep](recitation_7/code/modern_family/modern_family.c)
 - Recitation 9
     - [signals](recitation_9/signals.md)
+- Recitation 10
+    - [Sockets, Server Testing, and Endianness](recitation_10/sockets-endianness.md.md)
+- Recitation 11
+    - [select](recitation_11/select.md)
 - Rectiation NN
     - [Working w/ Directories and Files](recitation_NN/directories.md)
