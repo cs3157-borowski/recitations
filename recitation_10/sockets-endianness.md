@@ -173,7 +173,7 @@ The endianness of your host machine depends on what computer architecture your p
 
 There are four main functions we should know regarding endianness: ntohl(), htonl(), ntohs(), and htons(). 
 
-ntohl() and htonl() stand for "network to host long" and "host to network long", respectfully. These functions operate pretty much as they sound: they convert an 4 byte number from network endianness (big-endian) to host endianness (little-endian) or vice versa. This is performed by swapping *bytes* in a number. *Note, bits are not swapped, but entire bytes are. These functions are blind to what you (the programmer) are trying to do--when it's called, it simply just swaped the bytes. Therefore functionally, ntohl() and htonl() are identical functions under the hood. 
+ntohl() and htonl() stand for "network to host long" and "host to network long", respectfully. These functions operate pretty much as they sound: they convert a 4 byte number from network endianness (big-endian) to host endianness (little-endian) or vice versa. This is performed by swapping *bytes* in a number. *Note, bits are not swapped, but entire bytes are. These functions are blind to what you (the programmer) are trying to do--when it's called, it simply just swaped the bytes. Therefore functionally, ntohl() and htonl() are identical functions under the hood. 
 
 ntohs() and htons() stand for "network to host short" and "host to network short", respectfully. These functions operate the same as those above, except for taking in a 2 byte number (the size of a short).
 
