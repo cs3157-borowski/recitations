@@ -31,7 +31,7 @@ for Prof. Brian Borowski's offering of the course.
 - Recitation 9
     - [signals](recitation_9/signals.md)
 - Recitation 10
-    - [Sockets, Server Testing, and Endianness](recitation_10/sockets-endianness.md.md)
+    - [Sockets, Server Testing, and Endianness](recitation_10/sockets-endianness.md)
 - Recitation 11
     - [select](recitation_11/select.md)
 - Rectiation NN
