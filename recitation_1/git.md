@@ -23,8 +23,8 @@ Commits are "snapshots" of your code throughout the various stages of developmen
 ## Remote Repository and Skeleton Code
 Now that we have established what Git and Git commits are, we can go ahead and start this demo! 
 
-1. Check your email for an invitation on the **"cs3157-borowski-s23/hw#-team#"** repository and accept the invitation. 
-2. Now, sign-in to GitHub.com, go to the top right profile icon and find 'Your Organizations'. You should see **"cs3157-borowski-s23"** listed as one of them, find the repository that corresponds with the assignment number that we are on (ie: hw1-team1)
+1. Check your email for an invitation on the **"cs3157-borowski-hw/hw#-#"** repository and accept the invitation. 
+2. Now, sign-in to GitHub.com, go to the top right profile icon and find 'Your Organizations'. You should see **"cs3157-borowski-hw"** listed as one of them, find the repository that corresponds with the assignment number that we are on (ie: hw1-1)
 3. This is **your remote repository** that you are working out of
 
 You should see all the necessary skeleton code that we distribute for the assignment. Remember, this is your remote repository and now we need to create your **local repository** in order for you to actually work on the assignment. 
@@ -215,34 +215,34 @@ A merge conflict may arise if:
 ### **What to do if you have a Merge Conflict?**
 Let's trigger a merge conflict.
 ```bash
-UNI@ap:~/cs3157/hw1-team0/src$ git branch -a 
+UNI@ap:~/cs3157/hw1-0/src$ git branch -a 
 * master 
   your-branch
 
-UNI@ap:~/cs3157/hw1-team0/src$ git checkout your-branch
+UNI@ap:~/cs3157/hw1-0/src$ git checkout your-branch
 Switched to branch 'your-branch'
 ```
 Up to this point we have seen that there are two branches. In both of those branches we have have a file named **AP.txt** that contains only one line Let's see what that looks like in each branch. Note `cat` is a bash command that when passed a file will output the files contents to the terminal (stdout to be precise). 
 
 ```
-UNI@ap:~/cs3157/hw1-team0/src$ git checkout master
+UNI@ap:~/cs3157/hw1-0/src$ git checkout master
 Switched to branch 'master'
 
-UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
+UNI@ap:~/cs3157/hw1-0/src$ cat AP.txt 
 AP teaching staff is the worst :( 
 ```
 Let's see what that file contains in "your-branch":
 ```
-UNI@ap:~/cs3157/hw1-team0/src$ git checkout your-branch
+UNI@ap:~/cs3157/hw1-0/src$ git checkout your-branch
 Switched to branch 'your-branch'
 
-UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
+UNI@ap:~/cs3157/hw1-0/src$ cat AP.txt 
 AP teaching staff is the best :)
 ```
 Running `$ git merge` will result in a conflict, as Git sees that both branches have committed changes to the same file and the same line. This is where `$ git merge --no-ff <your branch>` comes in. In the above example, if we ran this command, the file might look something like this (remember we are on the master branch): 
 
 ```
-UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
+UNI@ap:~/cs3157/hw1-0/src$ cat AP.txt 
 <<<<< master
 AP teaching staff is the worst :(
 ======
@@ -251,7 +251,7 @@ AP teaching staff is the best :)
 ```
 As you can see, it has both of our changes, so we have to manually decide which one to keep, you would do that by removing the lines that start with <<<< (showing you the state of that line in the branch you are in, the one with the * when you run the git branch command), the one that starts with >>>> (showing you the state of that line in the branch you specified in the git merge <branch> command), and the one that starts with ==== (just a separator), and also the change you don't want to keep, so like this:
 ```
-UNI@ap:~/cs3157/hw1-team0/src$ cat AP.txt 
+UNI@ap:~/cs3157/hw1-0/src$ cat AP.txt 
 AP teaching staff is the best :)
 ```
 Then, of course, you would stage and commit the file –– this is what we call a **merge commit**. You can configure merge so that it will always merge with the `--no-ff option` option. To make this configuration apply to this repo, run `git config --add merge.ff false` add the --global flag to apply this configuration for **every** repo: `$ git config --global --add merge.ff false`.
