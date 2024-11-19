@@ -42,7 +42,7 @@ sockets is with `netcat`. `netcat` is a bare-bones program to send streams of
 binary data over the network.
 
 Imagine we have two computers that can communicate over the internet, with the
-IP addresses `ap.cs.columbia.edu`.
+IP addresses `bb.cs.columbia.edu`.
 
 Because of the client-server model, connecting two socket endpoints to each
 other is not a symmetrical process. One socket needs to act as the server, while
@@ -50,16 +50,16 @@ the other needs to act as a client. You tell `netcat` to act as a server with
 the `-l` flag:
 
 ```console
-uni_1@ap.cs.columbia.edu:~$ nc -l 10000
+uni_1@bb.cs.columbia.edu:~$ nc -l 10000
 ```
 
-The `netcat` program on `ap.cs.columbia.edu` will create a socket and wait for
+The `netcat` program on `bb.cs.columbia.edu` will create a socket and wait for
 connections on port 10000. To tell `netcat` to act as a client, you supply the
 IP address of the server and the port number of the socket listening on that
 server:
 
 ```console
-uni_2@ap.cs.columbia.edu:~$ nc ap.cs.columbia.edu 10000
+uni_2@bb.cs.columbia.edu:~$ nc bb.cs.columbia.edu 10000
 ```
 
 Notice the differences between these two commands. The first command only
