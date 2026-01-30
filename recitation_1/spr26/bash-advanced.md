@@ -4,37 +4,13 @@ This recitation covers intermediate bash topics. All code blocks can be copy-pas
 
 ---
 
-## Platform Differences: macOS vs Linux
+## VM Setup
 
-### Line Endings
+### Windows - VirtualBox
 
-Windows uses `\r\n` (CRLF), Unix/macOS uses `\n` (LF). This causes issues when sharing scripts.
+### Mac - Multipass
 
-```bash
-# Check for Windows line endings
-cat -A script.sh | head -5
-# If you see ^M at end of lines, you have CRLF
-
-# Fix on macOS/Linux
-sed -i '' 's/\r$//' script.sh    # macOS
-sed -i 's/\r$//' script.sh       # Linux
-```
-
-### sed Differences
-
-```bash
-# In-place editing differs between platforms
-sed -i '' 's/old/new/g' file.txt   # macOS (BSD sed)
-sed -i 's/old/new/g' file.txt      # Linux (GNU sed)
-```
-
-### date Command
-
-```bash
-# Get timestamp from N days ago
-date -v-7d +%Y-%m-%d              # macOS
-date -d "7 days ago" +%Y-%m-%d    # Linux
-```
+[Multipass Setup Guide](https://courseworks2.columbia.edu/courses/237711/files/25781482?wrap=1)
 
 ---
 
