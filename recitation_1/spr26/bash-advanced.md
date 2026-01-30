@@ -164,7 +164,6 @@ esac
 Create this script together:
 
 ```bash
-cat > getopts_demo.sh << 'SCRIPT'
 #!/bin/bash
 
 # Default values
@@ -217,9 +216,6 @@ if $verbose; then
         echo "Iteration $i"
     done
 fi
-SCRIPT
-
-chmod +x getopts_demo.sh
 ```
 
 ### Test the Script
